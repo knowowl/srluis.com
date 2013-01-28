@@ -1,6 +1,6 @@
 var http = require("http");
 var url = require("url");
-
+var port = process.env.PORT || 5000;
 function iniciar(route) {
   function onRequest(request, response) {
     var pathname = url.parse(request.url).pathname;
@@ -13,7 +13,7 @@ function iniciar(route) {
     response.end();
   }
 
-  http.createServer(onRequest).listen(55531);
+  http.createServer(onRequest).listen(port);
   console.log("Servidor Iniciado.");
 }
 
