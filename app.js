@@ -6,8 +6,6 @@
 var express = require('express')
   , stylus = require('stylus')
   , nib = require('nib')  
-  , coffeeScript = require('coffee-script')
-  , connectCoffeescript = require('connect-coffee-script')
   , routes = require('./routes')
   , user = require('./routes/user')
   , http = require('http')
@@ -23,10 +21,7 @@ function compileStylus(str, path) {
     .set('filename', path)
     .use(nib())
 }
-function compileCoffee(str, options, coffeePath) {
-  options.bare = true;
-  return coffeeScript.compile(str, options);
-}
+
 
 app.configure(function(){
   app.set('port', process.env.PORT || 3000);
@@ -39,12 +34,7 @@ app.configure(function(){
   , compile: compileStylus
   }
   ))
-  app.use(connectCoffeescript(
-  { src: __dirname
-  , dest: __dirname + '/public',
-  compile: compileCoffee
-  }
-  ))
+
 
   app.use(express.bodyParser());
   app.use(express.methodOverride());
