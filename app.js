@@ -5,7 +5,9 @@
 
 var express = require('express')
   , stylus = require('stylus')
-  , nib = require('nib')
+  , nib = require('nib')  
+  , coffeeScript = require('coffee-script');
+  , connectCoffeescript = require('connect-coffee-script');
   , routes = require('./routes')
   , user = require('./routes/user')
   , http = require('http')
@@ -16,10 +18,14 @@ var express = require('express')
 
 var app = express();
 
-function compile(str, path) {
+function compileStylus(str, path) {
   return stylus(str)
     .set('filename', path)
     .use(nib())
+}
+function compileCoffee(str, options, coffeePath) {
+  options.bare = true;
+  return coffeeScript.compile(str, options);
 }
 
 app.configure(function(){
@@ -30,9 +36,16 @@ app.configure(function(){
   app.use(express.logger('dev'));
   app.use(stylus.middleware(
   { src: __dirname + '/public'
-  , compile: compile
+  , compile: compileStylus
   }
-))
+  ))
+  app.use(connectCoffeescript(
+  { src: __dirname
+  , dest: __dirname + '/public',
+  compile: compileCoffee
+  }
+  ))
+
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(app.router);
