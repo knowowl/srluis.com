@@ -6,8 +6,8 @@
 var express = require('express')
   , stylus = require('stylus')
   , nib = require('nib')  
-  , coffeeScript = require('coffee-script');
-  , connectCoffeescript = require('connect-coffee-script');
+  , coffeeScript = require('coffee-script')
+  , connectCoffeescript = require('connect-coffee-script')
   , routes = require('./routes')
   , user = require('./routes/user')
   , http = require('http')
