@@ -16,7 +16,7 @@ var express = require('express')
 
 var app = express();
 
-function compileStylus(str, path) {
+function compile(str, path) {
   return stylus(str)
     .set('filename', path)
     .use(nib())
@@ -31,7 +31,7 @@ app.configure(function(){
   app.use(express.logger('dev'));
   app.use(stylus.middleware(
   { src: __dirname + '/public'
-  , compile: compileStylus
+  , compile: compile
   }
   ))
 
