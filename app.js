@@ -3,7 +3,9 @@
  * Module dependencies.
  */
 
-var express = require('express') 
+var express = require('express')
+  , stylus = require('stylus')
+  , nib = require('nib')  
   , routes = require('./routes')
   , user = require('./routes/user')
   , http = require('http')
@@ -14,6 +16,11 @@ var express = require('express')
 
 var app = express();
 
+function compile(str, path) {
+  return stylus(str)
+    .set('filename', path)
+    .use(nib())
+}
 
 
 app.configure(function(){
@@ -22,7 +29,11 @@ app.configure(function(){
   app.set('view engine', 'jade');
   app.use(express.favicon());
   app.use(express.logger('dev'));
-  
+  app.use(stylus.middleware(
+  { src: __dirname + '/public'
+  , compile: compile
+  }
+  ))
 
 
   app.use(express.bodyParser());
