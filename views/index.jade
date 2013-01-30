@@ -24,14 +24,10 @@ head
             span.icon-bar
             span.icon-bar
           a.brand(href='#')
+          form
+          	 input.search.span5(type='text', placeholder='Buscar producto o servicio.')
           .nav-collapse.collapse
-            ul.nav
-              li.active
-                a(href='#') Home
-              li
-                a(href='#about') About
-              li
-                a(href='#contact') Contact
+            ul.nav.pull-right  
               li.dropdown
                 a.dropdown-toggle(href='#', data-toggle='dropdown')
                   | Dropdown
@@ -49,10 +45,7 @@ head
                     a(href='#') Separated link
                   li
                     a(href='#') One more separated link
-            form.navbar-form.pull-right
-              input.span2(type='text', placeholder='Email')
-              input.span2(type='password', placeholder='Password')
-              button.btn(type='submit') Sign in
+            
     .container
       .hero-unit
         h1 Hello, world!
