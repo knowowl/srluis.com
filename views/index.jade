@@ -24,14 +24,12 @@ head
             span.icon-bar
             span.icon-bar
             span.icon-bar
-          a.brand(href='#')
-          form
-            input.search.span5(type='text', placeholder='Buscar producto o servicio')
+          a.brand(href='#')          
           .nav-collapse.collapse
             ul.nav.pull-right  
               li.dropdown
                 a.dropdown-toggle(href='#', data-toggle='dropdown')
-                  | Dropdown
+                  .fs1.settings(aria-hidden='true', data-icon='&#xe000;')
                   b.caret
                 ul.dropdown-menu
                   li
@@ -46,36 +44,15 @@ head
                     a(href='#') Separated link
                   li
                     a(href='#') One more separated link
-            
-    .container
-      .hero-unit
-        h1 Hello, world!
-        p
-          | This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.
-        p
-          a.btn.btn-primary.btn-large Learn more »
-      .row
-        .span4
-          h2 Heading
-          p
-            | Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-          p
-            a.btn(href='#') View details »
-        .span4
-          h2 Heading
-          p
-            | Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-          p
-            a.btn(href='#') View details »
-        .span4
-          h2 Heading
-          p
-            | Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
-          p
-            a.btn(href='#') View details »
-      hr
-      footer
-        p © Company 2012
+          form
+            .fs1.searchIcon(aria-hidden='true', data-icon='&#xe001;')
+            input.search.span5(type="text", placeholder="Haz click aqui para buscar", onfocus="this.placeholder = ''", onblur="this.placeholder = 'Haz click aqui para buscar'")
+    #myCarousel.carousel.slide
+      .carousel-inner
+        .item.active
+          img(src="http://know-owl.com/img/srluis/carousel.jpg", alt="") 
+    footer
+      p © Company 2012
     script(src='//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js')
     script
       window.jQuery || document.write('<script src="js/vendor/jquery-1.9.0.min.js"><\\/script>')
