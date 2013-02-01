@@ -3,9 +3,8 @@
  * GET home page.
  */
 var mongoose = require('mongoose'),
-    db = mongoose.connect('mongodb://ricroid:7023341conde...@linus.mongohq.com:10028/app11422772'),
-    
-var store = mongoose.model('store');
+    db = mongoose.connect('mongodb://ricroid:7023341conde...@linus.mongohq.com:10028/app11422772'),    
+ store = mongoose.model('store');
 exports.index = function(req, res){
   res.render('index', { title: 'Express' });
 };
