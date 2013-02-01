@@ -9,7 +9,7 @@ var Store = new Schema({
   DisplayName: String,
   DisplayDescription: String
 });
-var storeModel = mongoose.model('Store', Store);
+var storeModel = mongoose.model('storeModel', Store);
 exports.index = function(req, res){
   res.render('index', { title: 'Express' });
 };
@@ -18,7 +18,7 @@ exports.contact = function(req, res){
 };
 
 exports.search = function(req, res) {
-	storeModel.find({}, function(err, user) {
+	storeModel.find(function(err, user) {
       if (user != null) {
         console.log('Found the User:' + user.username);
         res.JSON(user);
