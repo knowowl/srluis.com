@@ -48,7 +48,7 @@ app.configure('development', function(){
 
 app.get('/', routes.index);
 app.get('/contact', routes.contact);
-app.get('/search', routes.search);
+
 app.get('/users', user.list);
 
 
