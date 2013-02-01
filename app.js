@@ -4,7 +4,6 @@
  */
 
 var express = require('express')
-  , mongoose = require('mongoose')
   , stylus = require('stylus')
   , nib = require('nib')  
   , routes = require('./routes')
