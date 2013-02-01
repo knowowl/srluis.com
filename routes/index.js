@@ -2,7 +2,7 @@
 /*
  * GET home page.
  */
-var mongoose = require('../mongoose'),
+var mongoose = require('mongoose'),
     db = mongoose.connect('mongodb://ricroid:7023341conde...@linus.mongohq.com:10028/app11422772'),
     Schema = mongoose.Schema;
 var Store = new Schema({
