@@ -17,8 +17,8 @@ exports.contact = function(req, res){
   res.render('contact', { title: 'Express' });
 };
 
-exports.search = function(req, res, storeModel) {
-	storeModel.findOne({'username': 'Chad'}, function(err, user) {
+exports.search = function(req, res) {
+	storeModel.find({}, function(err, user) {
       if (user != null) {
         console.log('Found the User:' + user.username);
         res.JSON(user);
