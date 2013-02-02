@@ -4,7 +4,8 @@
  */
 var mongoose = require('mongoose'),
     db = mongoose.connect('mongodb://ricroid:7023341conde...@linus.mongohq.com:10028/app11422772'),    
- store = mongoose.model('store');
+ store = mongoose.model('store',  new Schema({ DisplayName: String, DisplayDescription: String }) );
+ var Schema = mongoose.Schema;
 
 exports.index = function(req, res){
   res.render('index', { title: 'Express' });
