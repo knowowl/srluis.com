@@ -32,9 +32,7 @@ function showResults(data, highlight){
            var resultHtml = '';
             $.each(data, function(i,item){
                 resultHtml+='<div class="result">';
-                resultHtml+='<h2><a href="#">'+item.title+'</a></h2>';
-                resultHtml+='<p>'+item.post.replace(highlight, '<span class="highlight">'+highlight+'</span>')+'</p>';
-                resultHtml+='<a href="#" class="readMore">Read more..</a>'
+                resultHtml+='<h2><a href="#">'+item+'</a></h2>';                
                 resultHtml+='</div>';
             });
 
