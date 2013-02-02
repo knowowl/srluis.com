@@ -21,7 +21,8 @@ exports.search = function(req, res) {
 	  if (err) {console.log(err);}
       if (user != null) {
         console.log('Found the User:' + user.DisplayName);
-        //res.JSON(user);
+        res.json(user);
+        
       }
     });
 };
