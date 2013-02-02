@@ -40,8 +40,10 @@ html.no-js
                     a(href='#') Separated link
                   li
                     a(href='#') One more separated link
-          form
-          .searchList
+          form   
+          .searchList   
+            <div class="fs1 searchIcon" aria-hidden='true' data-icon='&#xe001;'></div>
+            input.search.span5(type="text", placeholder="Haz click aqui para buscar", onfocus="this.placeholder = ''", onblur="this.placeholder = 'Haz click aqui para buscar'")      
             ul.category
               li
                 a(href="#")
@@ -64,8 +66,7 @@ html.no-js
                   Farmacia
             
        
-            <div class="fs1 searchIcon" aria-hidden='true' data-icon='&#xe001;'></div>
-            input.search.span5(type="text", placeholder="Haz click aqui para buscar", onfocus="this.placeholder = ''", onblur="this.placeholder = 'Haz click aqui para buscar'")
+            
     #myCarousel.carousel.slide
       .carousel-inner
         .item.active
