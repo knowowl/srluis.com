@@ -3,19 +3,21 @@ rojo2 = #741620
 rojo3 = #4D0910
 
 .brand
-	background transparent url("http://know-owl.com/img/srluis/isologo_small.png") no-repeat
+	background transparent url("http://know-owl.com/img/srluis/isologo_small3.png") no-repeat
 	width 124px
 	height 54px
 	padding 0 !important
-	margin 0px 0 0px 10px
+	margin 5px 0 0px 10px
 	float left 
-	position relative
-	box-shadow 0px 1px 1px #333 !important
+	position relative	
+	z-index: 2
+.container
+  width 100% !important
 .navbar-inner
 	background rojo1 url("http://know-owl.com/img/srluis/navbar-bg2.jpg") repeat-x !important
 	border 0 !important
 	height 35px !important
-	box-shadow 0px 1px 1px rojo3 !important
+	box-shadow 0px 1px 0px rojo3 !important
 .navbar
 	height 35px !important
 .search
@@ -30,7 +32,41 @@ rojo3 = #4D0910
 	box-shadow none !important
 	font-weight 400
 	text-shadow 0 -1px 0 rojo2
-form
+.searchList
+	position relative
+	float left
+	height 0px
+	background white
+	margin-top -18px
+	width 100%
+	opacity .9
+	box-shadow 0px 1px 2px #4D0910 !important
+.category
+	padding 0
+	margin 0
+	float left
+.category>li
+	padding 10px 5px 0px 5px
+	float left
+	width 80px 
+	height: 80px
+	background transparent
+	list-style none
+	display none
+.category li img
+	border-radius 6px
+	margin0 5px 0px 5px !important
+	float left
+.category li label
+	float left
+	width 80px
+	text-align center
+.category a
+	color #999
+	float left
+.category a:hover
+	color #333
+form 
 	margin 0 !important
 	float left
 .search::-webkit-input-placeholder 
@@ -66,4 +102,5 @@ form
 	margin-left 12px
 .carousel
 	margin-top -20px
+
 
