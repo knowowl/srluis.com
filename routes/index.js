@@ -17,7 +17,7 @@ exports.contact = function(req, res){
 
 exports.search = function(req, res) {
 	res.contentType('application/json');
-	db.store.find({},function(err, user) {
+	store.find(function(err, user) {
 	  if (err) {console.log(err);}
       if (user != null) {
         console.log('Found the User:' + user.DisplayName);
