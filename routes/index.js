@@ -20,7 +20,7 @@ exports.search = function(req, res) {
 	store.find({},function(err, user) {
 	  if (err) {console.log(err);}
       if (user != null) {
-        console.log('Found the User:' + user.username);
+        console.log('Found the User:' + user.DisplayName);
         //res.JSON(user);
       }
     });
