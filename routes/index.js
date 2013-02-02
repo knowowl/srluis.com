@@ -5,6 +5,7 @@
 var mongoose = require('mongoose'),
     db = mongoose.connect('mongodb://ricroid:7023341conde...@linus.mongohq.com:10028/app11422772'),    
  store = mongoose.model('store');
+
 exports.index = function(req, res){
   res.render('index', { title: 'Express' });
 };
@@ -17,7 +18,7 @@ exports.search = function(req, res) {
 	store.find({},function(err, user) {
       if (user != null) {
         console.log('Found the User:' + user.username);
-        res.JSON(user);
+        //res.JSON(user);
       }
     });
 };
