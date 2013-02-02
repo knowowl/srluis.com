@@ -31,9 +31,7 @@ function evento (ev)
    
 
   });
-
-    }
-function showResults(data, highlight){
+        function showResults(data, highlight){
            var resultHtml = '';
             $.each(data, function(i,item){
                 resultHtml+='<div class="result">';
@@ -44,19 +42,23 @@ function showResults(data, highlight){
             });
 
             $('div#results').html(resultHtml);
+            
         }
 
-        $('form').submit(function(e){
+$('form').submit(function(e){
             e.preventDefault();
         });
-
-  $('.search').keyup(function() {
+    
+$('.search').keyup(function() {
 
 
     clearTimeout(thread);
     $this = $(this);
     thread = setTimeout(function() { findMember($this.val()); }, 500); 
   });
+    }
+
+  
 
 
 }
