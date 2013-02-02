@@ -32,7 +32,7 @@ function showResults(data, highlight){
            var resultHtml = '';
             $.each(data, function(i,item){
                 resultHtml+='<div class="result">';
-                resultHtml+='<h2><a href="#">'+item+'</a></h2>';                
+                resultHtml+='<h4><a href="#">'+item.DisplayName+'</a></h4>';                
                 resultHtml+='</div>';
             });
 
