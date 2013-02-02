@@ -2,14 +2,12 @@
 $(document).on("ready", evento);
 function evento (ev)
 {
-  var runningRequest = false;
-  var request;
-  var thread = null;
-
-  function findMember(str) {
-
-		e.preventDefault();
-        var $q = $(".search");
+	   var runningRequest = false;
+    var request;
+   //Identify the typing action
+    $('.search').keyup(function(e){
+        e.preventDefault();
+        var $q = $(this);
 
         if($q.val() == ''){
             $('div#results').html('');
@@ -23,15 +21,14 @@ function evento (ev)
 
         runningRequest=true;
         request = $.getJSON('/search',{
-        q:$q.val()
+            q:$q.val()
         },function(data){           
             showResults(data,$q.val());
             runningRequest=false;
+        });
 
-   
-
-  });
-        function showResults(data, highlight){
+//Create HTML structure for the results and insert it on the result div
+function showResults(data, highlight){
            var resultHtml = '';
             $.each(data, function(i,item){
                 resultHtml+='<div class="result">';
@@ -42,24 +39,12 @@ function evento (ev)
             });
 
             $('div#results').html(resultHtml);
-            
         }
 
-$('form').submit(function(e){
+        $('form').submit(function(e){
             e.preventDefault();
         });
-    
-$('.search').keyup(function() {
-
-
-    clearTimeout(thread);
-    $this = $(this);
-    thread = setTimeout(function() { findMember($this.val()); }, 500); 
-  });
-    }
-
-  
-
+    });
 
 }
 $(".search").focus(function(){
