@@ -12,7 +12,9 @@
     "connect-coffee-script": "*",
     "jade": "*",
     "stylus": "*",
-    "nib": "*"
+    "nib": "*",
+    "underscore": "latest",
+    "request": "latest"
    
   },
   "engines": {
