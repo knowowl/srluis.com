@@ -9,7 +9,9 @@ var express = require('express')
   , routes = require('./routes')
   , user = require('./routes/user')
   , http = require('http')
-  , path = require('path');
+  , path = require('path')
+  , _ = require('underscore')._
+  , request = require('request');
 
   
 
@@ -51,7 +53,24 @@ app.configure('development', function(){
 app.get('/', routes.index);
 app.get('/contact', routes.contact);
 app.get('/users', user.list);
-app.get('/search',routes.elasticsearch,routes.search);
+
+function loadSearch() {
+    return function(req, res, next) {
+        var url = 'http://juniper-2415144.us-east-1.bonsai.io/stores/1/_search?q='+req.param('q', null);
+        req.searchResults = [];
+        request({ uri: url, json: true }, function(err, resp, data) {
+            if (err) return res.send(500);
+            req.searchResults = _(data.hits.hits).map(function(hit) {
+                return hit._source;
+            });
+            next();
+        });
+    };
+}
+
+app.get('/search', loadSearch(), function(req, res, next) {
+     console.log(req.searchResults);
+});
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
