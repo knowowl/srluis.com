@@ -56,7 +56,7 @@ app.get('/users', user.list);
 
 function loadSearch() {
     return function(req, res, next) {
-        var url = 'http://juniper-2415144.us-east-1.bonsai.io/stores/1/_search?q='+req.param('q', null);
+        var url = 'http://6czgqqle:ceur22bw9iso66xu@juniper-2415144.us-east-1.bonsai.io/stores/1/_search?q='+req.param('q', null);
         req.searchResults = [];
         request({ uri: url, json: true }, function(err, resp, data) {
             if (err) return res.send(500);
@@ -69,7 +69,7 @@ function loadSearch() {
 }
 
 app.get('/search', loadSearch(), function(req, res, next) {
-     console.log(req.searchResults);
+     console.log("elasticsearch test: "+req.searchResults);
 });
 
 http.createServer(app).listen(app.get('port'), function(){
