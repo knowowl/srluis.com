@@ -34,6 +34,5 @@ exports.elasticsearch = function() {
 
 exports.search = function(req, res, next) {
 	res.contentType('application/json');
-  console.log(req.searchResults);
-	);
+  console.log(req.searchResults);	
 };
