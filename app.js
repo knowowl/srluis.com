@@ -69,7 +69,7 @@ function loadSearch() {
 }
 
 app.get('/search', loadSearch(), function(req, res, next) {
-     console.log("elasticsearch test: "+req.searchResults);
+     res.json(req.searchResults);
 });
 
 http.createServer(app).listen(app.get('port'), function(){
