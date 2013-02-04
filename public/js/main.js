@@ -43,7 +43,9 @@ function showResults(data, highlight){
                 resultHtml+='<p class="Store">'+item.Store+'</p>'; 
                 resultHtml+='<img src="http://www.know-owl.com/img/srluis/'+item.Path+'.jpg">';
                 resultHtml+='<p class="Name">'+item.Name+'</p>'; 
-                resultHtml+='<p class="Peek">'+item.Peek+'</p>';               
+                resultHtml+='<p class="Peek">'+item.Peek+'</p>'; 
+                resultHtml+='<span>Bs. 60,00</span>';     
+                             
                 resultHtml+='</div>';
                 resultHtml+='</a>';
                 resultHtml+='</li>';
