@@ -7,7 +7,7 @@ function evento (ev)
     itemSelector : '.product-box',
     columnWidth : 260
   });
-	   var runningRequest = false;
+       var runningRequest = false;
     var request;
    //Identify the typing action
     $('.search').keyup(function(e){
@@ -49,14 +49,15 @@ function showResults(data, highlight){
                 resultHtml+='</a>';
                 resultHtml+='</li>';
             });
-            $('ul.results').html(resultHtml, function (){
-                var delayIt = 100;
+            var delayIt = 100;
+            $('ul.results').html(resultHtml);
+                
                 $('li.product-box').each(function(){                
                 delayIt += 100;
                 $(this).delay(delayIt).fadeIn(100);
             });
 
-            });
+          
         }
 
         $('form').submit(function(e){
@@ -65,26 +66,30 @@ function showResults(data, highlight){
     });
 
 }
-$(".search").focus(function(){		
-		$('.searchList').animate({height: '100px'}, 300);
-		var delayIt = 100;
+$(".search").focus(function(){      
+        $('.searchList').animate({height: '100px'}, 300);
+        var delayIt = 100;
 $('.category li').each(function(){                
     delayIt += 100;
     $(this).delay(delayIt).fadeIn(100);
 });
-		
-	});
-    	
-	
-	$(".search").blur(function(){
-	    $('.searchList').animate({height: '0px'}, 300);
-	    $('.category>li').fadeOut(100);
-	});
+        
+    });
+        
+    
+    $(".search").blur(function(){
+        $('.searchList').animate({height: '0px'}, 300);
+        $('.category>li').fadeOut(100);
+    });
 
-	$(".search").keyup(function(){
-		if($(".search").val()==""){
-			$("#myCarousel").fadeIn(100);
-		}else if($(".search").val()!=""){
-			$("#myCarousel").fadeOut(100);
-		}
-	});
+    $(".search").keyup(function(){
+        if($(".search").val()==""){
+            $("#myCarousel").fadeIn(100);
+             $('li.product-box').each(function(){                
+                
+                $(this).hide();
+            });
+        }else if($(".search").val()!=""){
+            $("#myCarousel").fadeOut(100);
+        }
+    });
