@@ -44,13 +44,19 @@ function showResults(data, highlight){
                 resultHtml+='<img src="http://www.know-owl.com/img/srluis/'+item.Path+'.jpg">';
                 resultHtml+='<p class="Name">'+item.Name+'</p>'; 
                 resultHtml+='<p class="Peek">'+item.Peek+'</p>'; 
-                resultHtml+='<span>Bs. 60,00</span>';     
-                             
+                resultHtml+='<span>Bs. 60,00</span>';                               
                 resultHtml+='</div>';
                 resultHtml+='</a>';
                 resultHtml+='</li>';
             });
-            $('ul.results').html(resultHtml);
+            $('ul.results').html(resultHtml, function (){
+                var delayIt = 100;
+                $('li.product-box').each(function(){                
+                delayIt += 100;
+                $(this).delay(delayIt).fadeIn(100);
+            });
+
+            });
         }
 
         $('form').submit(function(e){
