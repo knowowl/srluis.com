@@ -39,10 +39,11 @@ function showResults(data, highlight){
              
                 resultHtml+='<li class="product-box">';
                 resultHtml+='<a href="#" class="product">';
-                resultHtml+='<div class="product-inner">';
+                resultHtml+='<div class="product-inner">';                
+                resultHtml+='<p class="Store">'+item.Store+'</p>'; 
                 resultHtml+='<img src="http://www.know-owl.com/img/srluis/'+item.Path+'.jpg">';
-                resultHtml+='<h4>'+item.Name+'</h4>'; 
-                resultHtml+='<p>'+item.Peek+'</p>';               
+                resultHtml+='<p class="Name">'+item.Name+'</p>'; 
+                resultHtml+='<p class="Peek">'+item.Peek+'</p>';               
                 resultHtml+='</div>';
                 resultHtml+='</a>';
                 resultHtml+='</li>';
