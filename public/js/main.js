@@ -2,6 +2,11 @@
 $(document).on("ready", evento);
 function evento (ev)
 {
+    $('.results').masonry({
+    // options
+    itemSelector : '.product-box',
+    columnWidth : 260
+  });
 	   var runningRequest = false;
     var request;
    //Identify the typing action
@@ -31,13 +36,18 @@ function evento (ev)
 function showResults(data, highlight){
            var resultHtml = '';
             $.each(data, function(i,item){
-                resultHtml+='<div class="result">';
-                resultHtml+='<h4><a href="#">'+item.Name+'</a></h4>'; 
+             
+                resultHtml+='<li class="product-box">';
+                resultHtml+='<a href="#" class="product">';
+                resultHtml+='<div class="product-inner">';
+                resultHtml+='<img src="http://www.know-owl.com/img/srluis/'+item.Path+'.jpg">';
+                resultHtml+='<h4>'+item.Name+'</h4>'; 
                 resultHtml+='<p>'+item.Peek+'</p>';               
                 resultHtml+='</div>';
+                resultHtml+='</a>';
+                resultHtml+='</li>';
             });
-
-            $('div#results').html(resultHtml);
+            $('ul.results').html(resultHtml);
         }
 
         $('form').submit(function(e){
@@ -46,9 +56,7 @@ function showResults(data, highlight){
     });
 
 }
-$(".search").focus(function(){
-		
-		
+$(".search").focus(function(){		
 		$('.searchList').animate({height: '100px'}, 300);
 		var delayIt = 100;
 $('.category li').each(function(){                
