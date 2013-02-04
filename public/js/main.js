@@ -2,11 +2,7 @@
 $(document).on("ready", evento);
 function evento (ev)
 {
-    $('.results').masonry({
-    // options
-    itemSelector : '.product-box',
-    columnWidth : 260
-  });
+   
        var runningRequest = false;
     var request;
    //Identify the typing action
@@ -55,6 +51,11 @@ function showResults(data, highlight){
                 $('li.product-box').each(function(){                
                 delayIt += 100;
                 $(this).delay(delayIt).fadeIn(100);
+                 $('.results').masonry({
+    // options
+    itemSelector : '.product-box'
+    
+  });
             });
 
           
