@@ -33,7 +33,7 @@ function showResults(data, highlight){
            var resultHtml = '';
             $.each(data, function(i,item){
              
-                resultHtml+='<li class="product-box">';
+                resultHtml+='<div class="product-box">';
                 resultHtml+='<a href="#" class="product">';
                 resultHtml+='<div class="product-inner">';                
                 resultHtml+='<p class="Store">'+item.Store+'</p>'; 
@@ -43,19 +43,16 @@ function showResults(data, highlight){
                 resultHtml+='<span>Bs. 60,00</span>';                               
                 resultHtml+='</div>';
                 resultHtml+='</a>';
-                resultHtml+='</li>';
+                resultHtml+='</div>';
             });
             var delayIt = 100;
-            $('ul.results').html(resultHtml);
+            $('.results').html(resultHtml);
                 
-                $('div.product-box').each(function(){                
+                $('.product-box').each(function(){                
                 delayIt += 100;
-                $("ul.results").delay(delayIt).fadeIn(100);
-                 $('.results').masonry({
-    // options
-    itemSelector : '.product-box'
-    
-  });
+                $(this).delay(delayIt).fadeIn(100);
+
+                 $('.results').masonry({itemSelector : '.product-box' });
             });
 
           
@@ -86,7 +83,7 @@ $('.category li').each(function(){
     $(".search").keyup(function(){
         if($(".search").val()==""){
             $("#myCarousel").fadeIn(100);
-             $('li.product-box').each(function(){                
+             $('.product-box').each(function(){                
                 
                 $(this).hide();
             });
