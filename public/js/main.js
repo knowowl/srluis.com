@@ -7,6 +7,7 @@ function evento (ev)
     var request;
    //Identify the typing action
     $('.search').keyup(function(e){
+        clearTimeout(thread);
         e.preventDefault();
         var $q = $(this);
 
@@ -19,14 +20,15 @@ function evento (ev)
         if(runningRequest){
             request.abort();
         }
-
-        runningRequest=true;
-        request = $.getJSON('/search',{
-            q:$q.val()
-        },function(data){           
-            showResults(data,$q.val());
-            runningRequest=false;
-        });
+        thread = setTimeout(function() { 
+            runningRequest=true;
+            request = $.getJSON('/search',{
+                q:$q.val()
+            },function(data){           
+                showResults(data,$q.val());
+                runningRequest=false;
+            });
+        }, 500);
 
 //Create HTML structure for the results and insert it on the result div
 function showResults(data, highlight){
