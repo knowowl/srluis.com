@@ -2,7 +2,7 @@
 $(document).on("ready", evento);
 function evento (ev)
 {
-   
+   var thread = null;
        var runningRequest = false;
     var request;
    //Identify the typing action
