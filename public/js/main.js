@@ -43,7 +43,8 @@ function showResults(data, highlight){
                 resultHtml+='<img src="http://www.know-owl.com/img/srluis/'+item.Path+'.jpg">';
                 resultHtml+='<p class="Name">'+item.Name+'</p>'; 
                 resultHtml+='<p class="Peek">'+item.Peek+'</p>'; 
-                resultHtml+='<span>Bs. 60,00</span>';                               
+                resultHtml+='<span class="Likes"> <div class="fb-like" data-href="http://www.srluis.com/product#1" data-send="false" data-layout="button_count" data-width="115" data-show-faces="false"></div>  </span>'; 
+                resultHtml+='<span class="Price">Bs. 60,00</span>';                            
                 resultHtml+='</div>';
                 resultHtml+='</a>';
                 resultHtml+='</div>';
@@ -98,3 +99,17 @@ $('.category li').each(function(){
             $("#myCarousel").fadeOut(100);
         }
     });
+    window.fbAsyncInit = function() {
+                FB.init({appId: '100001780719494', status: true, cookie: true,xfbml: true});
+                FB.Event.subscribe('edge.create', function(url) {
+                  _gaq.push(['_trackSocial', 'facebook', 'like', url]);
+                });
+                FB.Event.subscribe('edge.remove', function(url) {
+                  _gaq.push(['_trackSocial', 'facebook', 'unlike', url]);
+                });
+            };
+            (function() {
+                var e = document.createElement('script'); e.async = true;
+                e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
+                document.getElementById('fb-root').appendChild(e);
+            }());
