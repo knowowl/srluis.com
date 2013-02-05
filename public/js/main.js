@@ -33,7 +33,7 @@ function showResults(data, highlight){
            var resultHtml = '';
             $.each(data, function(i,item){
              
-                resultHtml+='<li class="product-box">';
+                resultHtml+='<div class="product-box">';
                 resultHtml+='<a href="#" class="product">';
                 resultHtml+='<div class="product-inner">';                
                 resultHtml+='<p class="Store">'+item.Store+'</p>'; 
@@ -43,12 +43,12 @@ function showResults(data, highlight){
                 resultHtml+='<span>Bs. 60,00</span>';                               
                 resultHtml+='</div>';
                 resultHtml+='</a>';
-                resultHtml+='</li>';
+                resultHtml+='</div>';
             });
             var delayIt = 100;
-            $('ul.results').html(resultHtml);
+            $('div.results').html(resultHtml);
                 
-                $('li.product-box').each(function(){                
+                $('div.product-box').each(function(){                
                 delayIt += 100;
                 $(this).delay(delayIt).fadeIn(100);
                  $('.results').masonry({
