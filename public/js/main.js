@@ -31,6 +31,7 @@ function evento (ev)
 //Create HTML structure for the results and insert it on the result div
 function showResults(data, highlight){
            var resultHtml = '';
+           $('.results').masonry( 'destroy' );
             $.each(data, function(i,item){
              
                 resultHtml+='<div class="product-box">';
@@ -47,14 +48,13 @@ function showResults(data, highlight){
             });
             var delayIt = 100;
             $('.results').html(resultHtml);
-                 $('.results').masonry({itemSelector : '.product-box' });
-
-               /* $('.product-box').each(function(){                
+                
+                $('.product-box').each(function(){                
                 delayIt += 100;
                 $(this).delay(delayIt).fadeIn(100);
 
-                
-            });*/
+                 $('.results').masonry({itemSelector : '.product-box' });
+            });
 
           
         }
