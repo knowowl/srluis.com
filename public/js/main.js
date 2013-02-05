@@ -60,7 +60,7 @@ function showResults(data, highlight){
                   var $container = $('.results');
                       $container.imagesLoaded( function() {
                         $container.masonry({itemSelector : '.product-box' });
-                        FB.XFBML.parse();
+                        FB.XFBML.parse('.results');
                       });
             });
 
