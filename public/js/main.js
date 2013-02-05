@@ -51,18 +51,26 @@ function showResults(data, highlight){
             });
             var delayIt = 100;
             $('.results').html(resultHtml);
-                
+                var eachCount=0;
+                var maxCount = $(".results").children().length;
                 $('.product-box').each(function(){                
                 delayIt += 100;
                 $(this).delay(delayIt).fadeIn(100);
 
-                
+                    
                   var $container = $('.results');
                       $container.imagesLoaded( function() {
                         $container.masonry({itemSelector : '.product-box' });
-                        FB.XFBML.parse(document.body);
+                        eachCount=eachCount+1;
+                        if(eachCount==maxCount){
+                            FB.XFBML.parse(document.body);
+                        }
+                       
                       });
             });
+             
+            
+                     
 
           
         }
