@@ -13,7 +13,7 @@ function evento (ev)
 
         if($q.val() == ''){
             $('div#results').html('');
-            return false;
+            return false;            
         }
 
         //Abort opened requests to speed it up
@@ -33,7 +33,7 @@ function evento (ev)
 //Create HTML structure for the results and insert it on the result div
 function showResults(data, highlight){
            var resultHtml = '';
-           $('.results').masonry( 'destroy' );
+           $('.masonry').masonry( 'destroy' );
             $.each(data, function(i,item){
              
                 resultHtml+='<div class="product-box">';
@@ -55,7 +55,11 @@ function showResults(data, highlight){
                 delayIt += 100;
                 $(this).delay(delayIt).fadeIn(100);
 
-                 $('.results').masonry({itemSelector : '.product-box' });
+                
+                  var $container = $('.results');
+                      $container.imagesLoaded( function() {
+                        $container.masonry({itemSelector : '.product-box' });
+                      });
             });
 
           
