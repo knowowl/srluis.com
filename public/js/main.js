@@ -60,13 +60,7 @@ function showResults(data, highlight){
                   var $container = $('.results');
                       $container.imagesLoaded( function() {
                         $container.masonry({itemSelector : '.product-box' });
-                        (function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "http://connect.facebook.net/es_ES/all.js#xfbml=1&appId=390325411063913";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
+                        FB.XFBML.parse();
                       });
             });
 
