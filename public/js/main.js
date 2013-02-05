@@ -48,12 +48,13 @@ function showResults(data, highlight){
             var delayIt = 100;
             $('.results').html(resultHtml);
                  $('.results').masonry({itemSelector : '.product-box' });
-                $('.product-box').each(function(){                
+
+               /* $('.product-box').each(function(){                
                 delayIt += 100;
                 $(this).delay(delayIt).fadeIn(100);
 
                 
-            });
+            });*/
 
           
         }
