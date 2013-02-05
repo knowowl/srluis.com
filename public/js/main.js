@@ -51,8 +51,13 @@ function showResults(data, highlight){
                 $('.product-box').each(function(){                
                 delayIt += 100;
                 $(this).delay(delayIt).fadeIn(100);
-
-                 $('.results').masonry({itemSelector : '.product-box' });
+                $('.results').BlocksIt({
+        numOfCol: 4,
+        offsetX: 8,
+        offsetY: 8,
+        blockElement: '.product-box'
+    });
+                 
             });
 
           
