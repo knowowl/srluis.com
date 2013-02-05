@@ -46,11 +46,11 @@ function showResults(data, highlight){
                 resultHtml+='</div>';
             });
             var delayIt = 100;
-            $('div.results').html(resultHtml);
+            $('ul.results').html(resultHtml);
                 
                 $('div.product-box').each(function(){                
                 delayIt += 100;
-                $(this).delay(delayIt).fadeIn(100);
+                $("ul.results").delay(delayIt).fadeIn(100);
                  $('.results').masonry({
     // options
     itemSelector : '.product-box'
