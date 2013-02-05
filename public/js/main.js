@@ -33,7 +33,7 @@ function showResults(data, highlight){
            var resultHtml = '';
             $.each(data, function(i,item){
              
-                resultHtml+='<div class="product-box">';
+                resultHtml+='<li class="product-box">';
                 resultHtml+='<a href="#" class="product">';
                 resultHtml+='<div class="product-inner">';                
                 resultHtml+='<p class="Store">'+item.Store+'</p>'; 
@@ -43,7 +43,7 @@ function showResults(data, highlight){
                 resultHtml+='<span>Bs. 60,00</span>';                               
                 resultHtml+='</div>';
                 resultHtml+='</a>';
-                resultHtml+='</div>';
+                resultHtml+='</li>';
             });
             var delayIt = 100;
             $('ul.results').html(resultHtml);
