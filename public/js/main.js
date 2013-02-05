@@ -30,7 +30,6 @@ function evento (ev)
 
 //Create HTML structure for the results and insert it on the result div
 function showResults(data, highlight){
-    var currentWidth = $(window).width();
            var resultHtml = '';
             $.each(data, function(i,item){
              
@@ -52,38 +51,8 @@ function showResults(data, highlight){
                 $('.product-box').each(function(){                
                 delayIt += 100;
                 $(this).delay(delayIt).fadeIn(100);
-               
-        var winWidth = $(window).width();
-        var conWidth;
-        if(winWidth < 660) {
-            conWidth = 440;
-            col = 1
-        } else if(winWidth < 880) {
-            conWidth = 660;
-            col = 2
-        } else if(winWidth < 1100) {
-            conWidth = 880;
-            col = 3;
-        } else {
-            conWidth = 1100;
-            col = 4;
-        }
-        
-        if(conWidth != currentWidth) {
-            currentWidth = conWidth;
-            $('.results').width(conWidth);
-            $('.results').BlocksIt({
-                numOfCol: col,
-                offsetX: 8,
-                offsetY: 8,
-                blockElement: '.product-box'
-            });
-        }
-    
-
-
-               
-                 
+                
+                 $('.results').masonry({itemSelector : '.product-box' });
             });
 
           
@@ -120,33 +89,5 @@ $('.category li').each(function(){
             });
         }else if($(".search").val()!=""){
             $("#myCarousel").fadeOut(100);
-        }
-    });
-     $(window).resize(function() {
-        var winWidth = $(window).width();
-        var conWidth;
-        if(winWidth < 660) {
-            conWidth = 440;
-            col = 1
-        } else if(winWidth < 880) {
-            conWidth = 660;
-            col = 2
-        } else if(winWidth < 1100) {
-            conWidth = 880;
-            col = 3;
-        } else {
-            conWidth = 1100;
-            col = 4;
-        }
-        
-        if(conWidth != currentWidth) {
-            currentWidth = conWidth;
-            $('.results').width(conWidth);
-            $('.results').BlocksIt({
-                numOfCol: col,
-                offsetX: 8,
-                offsetY: 8,
-                blockElement: '.product-box'
-            });
         }
     });
