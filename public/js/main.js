@@ -3,12 +3,7 @@ $(document).on("ready", evento);
 function evento (ev)
 {
     //AddToCart
-$(".product").click(function(){    
-    var p = $(this).position();
-    var t = $(".cartGuide").position();
-    $(this).clone().appendTo(".results").css({top:p.top+"px", left:p.left+"px", position:"absolute", opacity: ".8"}).animate({'top': t.top+"px",
-   'left': t.left+'px', 'opacity':0}, 200 );
-});
+
    var thread = null;
        var runningRequest = false;
     var request;
@@ -71,6 +66,12 @@ function showResults(data, highlight){
                         eachCount=eachCount+1;
                         if(eachCount==maxCount){
                             FB.XFBML.parse(document.body);
+                            $(".product-box").click(function(){    
+    var p = $(this).position();
+    var t = $(".cartGuide").position();
+    $(this).clone().appendTo(".results").css({top:p.top+"px", left:p.left+"px", position:"absolute", opacity: ".8"}).animate({'top': t.top+"px",
+   'left': t.left+'px', 'opacity':0}, 200 );
+});
                         }
                        
                       });
