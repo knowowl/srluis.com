@@ -68,9 +68,11 @@ function showResults(data, highlight){
                             FB.XFBML.parse(document.body);
                             $(".product-box").click(function(){    
     var p = $(this).position();
-    var t = $(".cartGuide").position();
-    $(this).clone().appendTo(".results").css({top:p.top+"px", left:p.left+"px", position:"absolute", opacity: ".8"}).animate({'top': t.top+"px",
-   'left': t.left+'px', 'opacity':0}, 200 );
+    var t = $(".cartGuide").offset();
+    $(this).clone().appendTo(".results").css({top:p.top+"px", left:p.left+"px", position:"absolute", opacity: "1"}).animate({'top': t.top+"px",
+   'left': t.left+'px', 'opacity':0}, 300 ,'linear', function(){
+    $(this).remove();
+   });
 });
                         }
                        
