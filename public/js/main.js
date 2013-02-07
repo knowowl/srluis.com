@@ -109,4 +109,10 @@ $('.category li').each(function(){
         }
     });
   
-          
+//AddToCart
+$(".product-box").click(function(){    
+    var p = $(this).position();
+    var t = $(".cartGuide").position();
+    $(this).clone().appendTo(".results").css({top:p.top+"px", left:p.left+"px", position:"absolute", opacity: ".8"}).animate({'top': t.top+"px",
+   'left': t.left+'px', 'opacity':0}, 200 );
+});
