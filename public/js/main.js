@@ -39,7 +39,7 @@ function showResults(data, highlight){
             $.each(data, function(i,item){
              
                 resultHtml+='<div class="product-box">';
-                resultHtml+='<a href="#" class="product">';
+                resultHtml+='<a class="product">';
                 resultHtml+='<div class="product-inner">';                
                 resultHtml+='<p class="Store">'+item.Store+'</p>'; 
                 resultHtml+='<img src="http://www.know-owl.com/img/srluis/'+item.Path+'.jpg">';
@@ -70,7 +70,7 @@ function showResults(data, highlight){
     var p = $(this).position();
     var t = $(".cartGuide").offset();
     $(this).clone().appendTo(".results").css({top:p.top+"px", left:p.left+"px", position:"absolute", opacity: "1"}).animate({'top': t.top+"px",
-   'left': t.left+'px', 'opacity':0}, 300 ,'linear', function(){
+   'left': t.left+'px', 'opacity':0}, 1000 ,'linear', function(){
     $(this).remove();
    });
 });
