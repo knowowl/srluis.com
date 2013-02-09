@@ -79,7 +79,7 @@ app.get('/search', loadSearch(), function(req, res, next) {
 
 app.get('/order', function(req, res) {
     res.contentType('application/json');      
-    order.findOne({'user_id': 'test', 'state':'cart'}, function(err, user) {
+    order.findOne({ 'state':'cart'}, function(err, user) {
      
         res.json(user);
     
