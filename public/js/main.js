@@ -9,8 +9,8 @@ function evento (ev)
                 resultHtml+='<div class="cart-box">';
                 resultHtml+='<a class="cart-product">';
                 resultHtml+='<div class="cart-product-inner">';                
-                resultHtml+='<p class="Store">'+items.store+'</p>';                
-                resultHtml+='<p class="Name">'+items.line_items+'</p>';                
+                resultHtml+='<p class="Store">'+item.store+'</p>';                
+                resultHtml+='<p class="Name">'+item.line_items+'</p>';                
                   resultHtml+='<span class="Price">Bs. 60,00</span>';                            
                 resultHtml+='</div>';
                 resultHtml+='</a>';
