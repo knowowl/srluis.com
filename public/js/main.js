@@ -4,6 +4,7 @@ function evento (ev)
 {
   function showCart(data){
      var resultHtml = '';
+     alert(data.toSource());
      $.each(data, function(i,item){
             
                 resultHtml+='<div class="cart-box">';
