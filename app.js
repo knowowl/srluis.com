@@ -79,10 +79,12 @@ app.get('/search', loadSearch(), function(req, res, next) {
 
 app.get('/order', function(req, res) {
     res.contentType('application/json');      
-    order.findOne({'user_id': 'test'}, function(err, user) {
+    order.findOne({}, function(err, user) {
       if (user != null) {
         console.log('Found the User:' + user.username);
         res.json(user);
+      }else{
+         console.log('error:' + err);
       }
     });
 });
