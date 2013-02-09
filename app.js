@@ -11,7 +11,12 @@ var express = require('express')
   , http = require('http')
   , path = require('path')
   , _ = require('underscore')._
-  , request = require('request');
+  , request = require('request')
+  , mongoose = require('mongoose')
+  , db = mongoose.connect('mongodb://ricroid:7023341conde...@linus.mongohq.com:10028/app11422772')
+  , Schema = mongoose.Schema
+  , line_items = new Schema({sku:String, nombre: String, store: String, price: Number})
+  , order = mongoose.model('Order',  new Schema({user_id:String, line_items: [line_items], state: String, subtotal: Number }), "order" );
 
   
 
@@ -70,6 +75,16 @@ function loadSearch() {
 
 app.get('/search', loadSearch(), function(req, res, next) {
      res.json(req.searchResults);
+});
+
+app.get('/order', function(req, res) {
+    res.contentType('application/json');      
+    order.findOne({'user_id': 'test', 'state':'cart'}, function(err, user) {
+      if (user != null) {
+        console.log('Found the User:' + user.username);
+        res.json(user);
+      }
+    });
 });
 
 http.createServer(app).listen(app.get('port'), function(){
