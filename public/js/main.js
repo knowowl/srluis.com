@@ -3,7 +3,11 @@ $(document).on("ready", evento);
 function evento (ev)
 {
     //AddToCart
-
+ cart = $.getJSON('/order',{
+                q:'test'
+            },function(data){           
+                showCart(data,$q.val());               
+            });
    var thread = null;
        var runningRequest = false;
     var request;
@@ -33,6 +37,22 @@ function evento (ev)
         }, 500);
 
 //Create HTML structure for the results and insert it on the result div
+function showCart(data, highlight){
+     var resultHtml = '';
+     $.each(data, function(i,item){
+             
+                resultHtml+='<div class="cart-box">';
+                resultHtml+='<a class="cart-product">';
+                resultHtml+='<div class="cart-product-inner">';                
+                resultHtml+='<p class="Store">'+item.Store+'</p>';                
+                resultHtml+='<p class="Name">'+item.Name+'</p>';                
+                  resultHtml+='<span class="Price">Bs. 60,00</span>';                            
+                resultHtml+='</div>';
+                resultHtml+='</a>';
+                resultHtml+='</div>';
+            });
+      $('.cartList').html(resultHtml);
+    }
 function showResults(data, highlight){
            var resultHtml = '';
            $('.masonry').masonry( 'destroy' );
