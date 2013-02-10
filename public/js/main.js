@@ -6,7 +6,7 @@ function evento (ev)
      var resultHtml = '';
      console.log("data: "+data.subtotal);
      $.each(data.line_items, function(i,item){
-                
+                alert(item);
                 resultHtml+='<div class="cart-box">';
                 resultHtml+='<a class="cart-product">';
                 resultHtml+='<div class="cart-product-inner">';                
