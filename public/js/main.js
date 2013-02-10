@@ -4,14 +4,14 @@ function evento (ev)
 {
   function showCart(data){
      var resultHtml = '';
-     console.log("data: "+data);
-     $.each(data, function(i,item){
-                console.log("item: "+item);
+     console.log("data: "+data.subtotal);
+     $.each(data.line_items, function(i,item){
+                
                 resultHtml+='<div class="cart-box">';
                 resultHtml+='<a class="cart-product">';
                 resultHtml+='<div class="cart-product-inner">';                
-                resultHtml+='<p class="Store">'+item.store+' '+i+'</p>';                
-                resultHtml+='<p class="Name">'+item.line_items+'</p>';                
+                resultHtml+='<p class="Store">'+item.nombre+' '+i+'</p>';                
+                resultHtml+='<p class="Name">'+item.store+'</p>';                
                 resultHtml+='<span class="Price">Bs. 60,00</span>';                            
                 resultHtml+='</div>';
                 resultHtml+='</a>';
