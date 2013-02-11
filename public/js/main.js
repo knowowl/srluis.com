@@ -3,6 +3,7 @@ $(document).on("ready", evento);
 function evento (ev)
 {
     $('.cartList').height(($(window).height()-36));
+    $(".cartList").mCustomScrollbar();
   function showCart(data){
      var resultHtml = '';
      console.log("data: "+data.subtotal);
