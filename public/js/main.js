@@ -96,7 +96,7 @@ function showResults(data, highlight){
                         if(eachCount==maxCount){
                             FB.XFBML.parse(document.body);
                             $(".product-box").click(function(){  
-                            $("#cartList").append('<div class="cart-box"><a class="cart-product"><div class="cart-product-inner"><p class="Store">Pizza 4 Quesos 1</p><p class="Name">PizzaHut</p><span class="Price">Bs. 60,00</span></div></a></div>');
+                            $("#cartList").append('<div class="cart-box"><a class="cart-product"><div class="cart-product-inner"><p class="inCartName">Pizza 4 Quesos 1</p><p class="inCartStore">PizzaHut</p><p class="inCartQty">Cantidad: 1</p><span class="inCartPrice">Bs. 60,00</span></div></a></div>');
                             
     var p = $(this).position();
     var t = $(".cartGuide").offset();
