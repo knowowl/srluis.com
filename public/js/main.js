@@ -32,7 +32,7 @@ function evento (ev)
       resultHtml2+='<p class="total-label">Total</p>';
       resultHtml2+='<p class="total-number">'+(data.subtotal*1.10)+'</p>';
       resultHtml2+='<a class="ordenar">Ordenar</a>';
-      $('#cartList').html(resultHtml+"<div class='cartGuide'></div>");
+      $('#cartTotal').html(resultHtml2);
       $('#cartList').html(resultHtml+"<div class='cartGuide'></div>");
     }
  cart = $.getJSON('/order',{
