@@ -1,29 +1,12 @@
 
 $(window).load(function(){
-  $("#cartList").mCustomScrollbar({
-  set_width:false, 
-  set_height:false, 
-  horizontalScroll:false, 
-  scrollInertia:550, 
-  scrollEasing:"easeOutCirc", 
-  mouseWheel:"auto", 
-  autoDraggerLength:true, 
-  scrollButtons:{ 
-    enable:false, 
-    scrollType:"continuous", 
-    scrollSpeed:20, 
-    scrollAmount:40 
-  },
-  advanced:{
-    updateOnBrowserResize:true, 
-    updateOnContentResize:true
-  }
-});
+  $('#cartList').height(($(window).height()-36));
+  $("#cartList").mCustomScrollbar();
 });
 $(document).on("ready", evento);
 function evento (ev)
 {
-    $('#cartList').height(($(window).height()-36));
+   
   
   function showCart(data){
      var resultHtml = '';
