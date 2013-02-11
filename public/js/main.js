@@ -16,9 +16,10 @@ function evento (ev)
                 resultHtml+='<div class="cart-box">';
                 resultHtml+='<a class="cart-product">';
                 resultHtml+='<div class="cart-product-inner">';                
-                resultHtml+='<p class="Store">'+item.nombre+' '+i+'</p>';                
-                resultHtml+='<p class="Name">'+item.store+'</p>';                
-                resultHtml+='<span class="Price">Bs. 60,00</span>';                            
+                resultHtml+='<p class="inCartName">'+item.nombre+'</p>';                
+                resultHtml+='<p class="inCartStore">'+item.store+'</p>';                
+                resultHtml+='<span class="inCartPrice">'+item.price+'</span>';    
+                resultHtml+='<span class="inCartQty">Cantidad: 1</span>';                         
                 resultHtml+='</div>';
                 resultHtml+='</a>';
                 resultHtml+='</div>';
@@ -102,7 +103,7 @@ function showResults(data, highlight){
     $(this).clone().appendTo(".results").css({top:p.top+"px", left:p.left+"px", position:"absolute", opacity: "1"}).animate({'top': t.top+"px",
    'left': t.left+'px', 'opacity':0}, 1000 ,'linear', function(){
     $(this).remove();
-    
+
    });
 });
                         }
