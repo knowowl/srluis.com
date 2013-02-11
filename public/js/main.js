@@ -2,11 +2,12 @@
 $(document).on("ready", evento);
 function evento (ev)
 {
+    $('.cartList').height(($(window).height()-36));
   function showCart(data){
      var resultHtml = '';
      console.log("data: "+data.subtotal);
      $.each(data.line_items, function(i,item){
-                alert(item);
+                console.log(item);
                 resultHtml+='<div class="cart-box">';
                 resultHtml+='<a class="cart-product">';
                 resultHtml+='<div class="cart-product-inner">';                
