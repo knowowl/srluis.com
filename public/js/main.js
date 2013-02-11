@@ -1,9 +1,7 @@
 
 $(document).on("ready", evento);
-function evento (ev)
-{
-    $('.cartList').height(($(window).height()-36));
-    $(".cartList").mCustomScrollbar({
+$(window).load(function(){
+  $(".cartList").mCustomScrollbar({
   set_width:false, 
   set_height:false, 
   horizontalScroll:false, 
@@ -22,6 +20,12 @@ function evento (ev)
     updateOnContentResize:true
   }
 });
+}
+
+function evento (ev)
+{
+    $('.cartList').height(($(window).height()-36));
+  
   function showCart(data){
      var resultHtml = '';
      console.log("data: "+data.subtotal);
