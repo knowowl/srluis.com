@@ -10,9 +10,9 @@ function evento (ev)
   
   function showCart(data){
      var resultHtml = '';
+     var resultHtml2 = '';
      console.log("data: "+data.subtotal);
-     $.each(data.line_items, function(i,item){
-                console.log(item);
+     $.each(data.line_items, function(i,item){                
                 resultHtml+='<div class="cart-box">';
                 resultHtml+='<a class="cart-product">';
                 resultHtml+='<div class="cart-product-inner">';                
@@ -25,6 +25,14 @@ function evento (ev)
                 resultHtml+='</div>';
             
             });
+      resultHtml2+='<p class="subtotal-label">Sub-total</p>';
+      resultHtml2+='<p class="subtotal-number">'+data.subtotal+'</p>';
+      resultHtml2+='<p class="subtotal-label">Envio</p>';
+      resultHtml2+='<p class="subtotal-number">'+(data.subtotal*0.10)+'</p>';
+      resultHtml2+='<p class="total-label">Total</p>';
+      resultHtml2+='<p class="total-number">'+(data.subtotal*1.10)+'</p>';
+      resultHtml2+='<a class="ordenar">Ordenar</a>';
+      $('#cartList').html(resultHtml+"<div class='cartGuide'></div>");
       $('#cartList').html(resultHtml+"<div class='cartGuide'></div>");
     }
  cart = $.getJSON('/order',{
