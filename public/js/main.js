@@ -20,7 +20,7 @@ function evento (ev)
                 resultHtml+='</div>';
             
             });
-      $('.cartList').html(resultHtml);
+      $('.cartList').html(resultHtml+"<div class='cartGuide'></div>");
     }
  cart = $.getJSON('/order',{
                 q:'test'
