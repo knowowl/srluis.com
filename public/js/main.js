@@ -1,5 +1,4 @@
 
-$(document).on("ready", evento);
 $(window).load(function(){
   $(".cartList").mCustomScrollbar({
   set_width:false, 
@@ -20,8 +19,8 @@ $(window).load(function(){
     updateOnContentResize:true
   }
 });
-}
-
+});
+$(document).on("ready", evento);
 function evento (ev)
 {
     $('.cartList').height(($(window).height()-36));
