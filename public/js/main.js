@@ -76,7 +76,7 @@ function showResults(data, highlight){
                 resultHtml+='</div>';
             });
             var delayIt = 100;
-            $('.results').html(resultHtml);
+            $('.results').html(resultHtml+"<div class='cartGuide'></div>");
                 var eachCount=0;
                 var maxCount = $(".results").children().length;
                 $('.product-box').each(function(){                
