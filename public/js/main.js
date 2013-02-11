@@ -90,7 +90,9 @@ function showResults(data, highlight){
                         eachCount=eachCount+1;
                         if(eachCount==maxCount){
                             FB.XFBML.parse(document.body);
-                            $(".product-box").click(function(){    
+                            $(".product-box").click(function(){  
+                            $(".cartList").append('<div class="cart-box"><a class="cart-product"><div class="cart-product-inner"><p class="Store">Pizza 4 Quesos 1</p><p class="Name">PizzaHut</p><span class="Price">Bs. 60,00</span></div></a></div>');
+                            $(".cartList").mCustomScrollbar("update");  
     var p = $(this).position();
     var t = $(".cartGuide").offset();
     $(this).clone().appendTo(".results").css({top:p.top+"px", left:p.left+"px", position:"absolute", opacity: "1"}).animate({'top': t.top+"px",
