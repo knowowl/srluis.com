@@ -1,6 +1,6 @@
 
 $(window).load(function(){
-  $('#cartList').height(($(window).height()-36-80));
+  $('#cartList').height(($(window).height()-36-85));
   
 });
 $(document).on("ready", evento);
@@ -159,5 +159,5 @@ $('.category li').each(function(){
         }
     });
   $(window).resize(function(){
-    $('#cartList').height(($(window).height()-36-80));
+    $('#cartList').height(($(window).height()-36-85));
   });
