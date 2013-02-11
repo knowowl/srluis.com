@@ -18,7 +18,7 @@ function evento (ev)
                 resultHtml+='<div class="cart-product-inner">';                
                 resultHtml+='<p class="inCartName">'+item.nombre+'</p>';                
                 resultHtml+='<p class="inCartStore">'+item.store+'</p>';                
-                resultHtml+='<span class="inCartPrice">'+item.price+'</span>';    
+                resultHtml+='<span class="inCartPrice">Bs. '+item.price+'</span>';    
                 resultHtml+='<span class="inCartQty">Cantidad: 1</span>';                         
                 resultHtml+='</div>';
                 resultHtml+='</a>';
