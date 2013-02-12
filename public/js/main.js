@@ -164,10 +164,14 @@ $('.category li').each(function(){
     $('#cartList').height(($(window).height()-36-85));
     }
     });
-  $(".cart").toggle(function(){
+  $(".cart").click(function(){
+    console.log("cart active");
+     if(cartListEnable){
+         $("#cartList").animate({height: "0px"}, 300);
+     cartListEnable=false;
+
+     }else{
     $("#cartList").animate({height: ($(window).height()-36-85)+"px"}, 300);
     cartListEnable=true;
-  },function(){
-     $("#cartList").animate({height: "0px"}, 300);
-     cartListEnable=false;
+    }
   });
