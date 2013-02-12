@@ -1,6 +1,6 @@
 
 $(window).load(function(){
-  $('#cartList').height(($(window).height()-36-85));
+  
   
 });
 $(document).on("ready", evento);
@@ -168,10 +168,12 @@ $('.category li').each(function(){
     console.log("cart active");
      if(cartListEnable){
          $("#cartList").animate({height: "0px"}, 300);
+         $("#cartTotal").fadeOut("fast");
      cartListEnable=false;
 
      }else{
     $("#cartList").animate({height: ($(window).height()-36-85)+"px"}, 300);
+     $("#cartTotal").fadeIn("fast");
     cartListEnable=true;
     }
   });
