@@ -158,6 +158,16 @@ $('.category li').each(function(){
             $("#myCarousel").fadeOut(100);
         }
     });
+    var cartListEnable=false;
   $(window).resize(function(){
+    if(cartListEnable){
     $('#cartList').height(($(window).height()-36-85));
+    }
+    });
+  $(".cart").toggle(function(){
+    $("#cartList").animate({height: ($(window).height()-36-85)+"px"}, 300);
+    cartListEnable=true;
+  },function(){
+     $("#cartList").animate({height: "0px"}, 300);
+     cartListEnable=false;
   });
