@@ -90,7 +90,7 @@ function showResults(data, highlight){
                 resultHtml+='<p class="Name">'+item.Name+'</p>'; 
                 resultHtml+='<p class="Peek">'+item.Peek+'</p>'; 
                 resultHtml+='<span class="Likes"> <div class="fb-like" data-href="http://www.srluis.com/product#1" data-send="false" data-layout="button_count" data-width="115" data-show-faces="false"></div>  </span>'; 
-                resultHtml+='<span class="Price">Bs. <span class="PriceNumber">60,00<span></span>';                            
+                resultHtml+='<span class="Price">Bs. <span class="PriceNumber">60.00</span></span>';                            
                 resultHtml+='</div>';
                 resultHtml+='</a>';
                 resultHtml+='</div>';

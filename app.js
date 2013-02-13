@@ -84,8 +84,8 @@ app.get('/order', function(req, res) {
      
       var q = req.param('q', null).split('#');
       order.update({'user_id': 'test', 'state':'cart'},
-    {'$push': {'line_items':{'sku': 'md-12', 'price': q[2], 'nombre': q[1], 'store':q[0]}},
-     '$inc': {'subtotal': q[2]}});
+    {'$push': {'line_items':{'sku': 'md-12', 'price': parseFloat(q[2]), 'nombre': q[1], 'store':q[0]}},
+     '$inc': {'subtotal': parseFloat(q[2])}});
     }
     order.findOne({'user_id': 'test', 'state':'cart'}, function(err, user) {
      
