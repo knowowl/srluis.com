@@ -79,7 +79,7 @@ app.get('/search', loadSearch(), function(req, res, next) {
 
 app.get('/order', function(req, res) {
     res.contentType('application/json');   
-     console.log("q="+req.param('q', null));   
+     console.log("q=");   
     if(req.param('q', null)!=false && req.param('q', null)!=null){
      
       var q = req.param('q', null).split('#');
