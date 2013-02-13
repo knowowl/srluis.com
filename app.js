@@ -82,10 +82,12 @@ app.get('/order', function(req, res) {
     if(req.param('q', null)!=false && req.param('q', null)!=null){
      
       var q = req.param('q', null).split('#');
-       var error =  order.update({'user_id': 'test', 'state':'cart'},
+       order.update({'user_id': 'test', 'state':'cart'},
     {'$push': {'line_items':{'sku': 'md-12', 'price': parseFloat(q[2]), 'nombre': q[1], 'store':q[0]}},
-     '$inc': {'subtotal': parseFloat(q[2])}});
-    console.log(error);
+     '$inc': {'subtotal': parseFloat(q[2])}},function(err){
+      console.log(error);
+     });
+    console.log(err);
     }
     order.findOne({'user_id': 'test', 'state':'cart'}, function(err, user) {
      
