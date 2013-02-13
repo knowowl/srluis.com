@@ -3,6 +3,14 @@ $(window).load(function(){
   
   
 });
+ function loadCart(query){
+  console.log("query:"+query);
+ cart = $.getJSON('/order',{
+                q:query
+            },function(data){           
+                showCart(data);               
+            });
+}
 $(document).on("ready", evento);
 function evento (ev)
 {
@@ -35,13 +43,7 @@ function evento (ev)
       $('#cartTotal').html(resultHtml2);
       $('#cartList').html(resultHtml+"<div class='cartGuide'></div>");
     }
-    function loadCart(query){
- cart = $.getJSON('/order',{
-                q:query
-            },function(data){           
-                showCart(data);               
-            });
-}
+   
 loadCart(false);
    var thread = null;
        var runningRequest = false;
