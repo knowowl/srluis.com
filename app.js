@@ -79,7 +79,8 @@ app.get('/search', loadSearch(), function(req, res, next) {
 
 app.get('/order', function(req, res) {
     res.contentType('application/json');      
-    if(req.param('q', null)){
+    if(req.param('q', null)!=false){
+      console.log("q="+req.param('q', null));
       var q = req.param('q', null).split('#');
       order.update({'user_id': 'test', 'state':'cart'},
     {'$push': {'line_items':{'sku': 'md-12', 'price': q[2], 'nombre': q[1], 'store':q[0]}},
