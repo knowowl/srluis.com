@@ -79,7 +79,14 @@ app.get('/search', loadSearch(), function(req, res, next) {
 
 app.get('/order', function(req, res) {
     res.contentType('application/json');      
-    order.findOne({ 'state':'cart'}, function(err, user) {
+    if(req.param('q', null)){
+      var q = req.param('q', null).split('#');
+      order.update({'user_id': 'test', 'state':'cart'},
+    {'$push': {'line_items':
+      {'sku': 'md-12', 'price': q[2], 'nombre': q[1], 'store':q[0]}}
+     '$inc': {'subtotal': price}});
+    }
+    order.findOne({'user_id': 'test', 'state':'cart'}, function(err, user) {
      
         res.json(user);
     

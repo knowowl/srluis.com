@@ -35,11 +35,14 @@ function evento (ev)
       $('#cartTotal').html(resultHtml2);
       $('#cartList').html(resultHtml+"<div class='cartGuide'></div>");
     }
+    function loadCart(query){
  cart = $.getJSON('/order',{
-                q:'test'
+                q:query
             },function(data){           
                 showCart(data);               
             });
+}
+loadCart(false);
    var thread = null;
        var runningRequest = false;
     var request;
@@ -104,29 +107,23 @@ function showResults(data, highlight){
                         if(eachCount==maxCount){
                             FB.XFBML.parse(document.body);
                             $(".product-box").click(function(){  
-                            
+                              $("#cartList").animate({height: ($(window).height()-36-85)+"px"}, 300);
+     $("#cartTotal").fadeIn("fast");
+    cartListEnable=true;
     var p = $(this).position();
     var t = $(".cartGuide").offset();
     $(this).clone().appendTo(".results").css({top:p.top+"px", left:p.left+"px", position:"absolute", opacity: "1"}).animate({'top': t.top+"px",
-   'left': t.left+'px', 'opacity':0}, 1000 ,'linear', function(){
+   'left': (t.left-200)+'px', 'opacity':0}, 500 ,'linear', function(){
     $(this).remove();
-    $("#cartList").animate({height: ($(window).height()-36-85)+"px"}, 300);
-     $("#cartTotal").fadeIn("fast");
-    cartListEnable=true;
-$("#cartList").append('<div class="cart-box"><a class="cart-product"><div class="cart-product-inner"><p class="inCartName">Pizza 4 Quesos 1</p><p class="inCartStore">PizzaHut</p><span class="inCartPrice">Bs. 60,00</span><span class="inCartQty">Cantidad: 1</span></div></a></div>');
-                            
+    loadCart($(".Store",this).html()+"#"+$(".Name",this).html()+"#"+$(".Price",this).html());
+                           
    });
 });
                         }
                        
-                      });
             });
-             
-            
-                     
-
-          
-        }
+            });
+}
 
         $('form').submit(function(e){
             e.preventDefault();
