@@ -11,12 +11,7 @@ $(window).load(function(){
                 showCart(data);               
             });
 }
-$(document).on("ready", evento);
-function evento (ev)
-{
-   
-  
-  function showCart(data){
+ function showCart(data){
      var resultHtml = '';
      var resultHtml2 = '';
      console.log("data: "+data.subtotal);
@@ -43,6 +38,13 @@ function evento (ev)
       $('#cartTotal').html(resultHtml2);
       $('#cartList').html(resultHtml+"<div class='cartGuide'></div>");
     }
+
+$(document).on("ready", evento);
+function evento (ev)
+{
+   
+  
+ 
    
 loadCart(false);
    var thread = null;
