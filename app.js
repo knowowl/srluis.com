@@ -85,9 +85,9 @@ app.get('/order', function(req, res) {
        order.update({'user_id': 'test', 'state':'cart'},
     {'$push': {'line_items':{'sku': 'md-12', 'price': parseFloat(q[2]), 'nombre': q[1], 'store':q[0]}},
      '$inc': {'subtotal': parseFloat(q[2])}},function(err){
-      console.log(error);
+      console.log(err);
      });
-    console.log(err);
+    
     }
     order.findOne({'user_id': 'test', 'state':'cart'}, function(err, user) {
      
