@@ -11,6 +11,9 @@ $(window).load(function(){
                 showCart(data);               
             });
 }
+$(".cart-box").click(function(){
+  $('#myModal').modal('show');
+});
  function showCart(data){
      var resultHtml = '';
      var resultHtml2 = '';

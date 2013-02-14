@@ -76,7 +76,19 @@ html.no-js
       .carousel-inner
         .item.active
           img(src="http://know-owl.com/img/srluis/carousel.jpg", alt="") 
-    .results.span10
+    .row
+      .results.span11
+    #myModal.modal.hide.fade(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
+      .modal-header
+        button.close(type="button", data-dismiss="modal", aria-hidden="true")&times;
+        h3 Modal header  
+      .modal-body
+        p One fine body… 
+      .modal-footer
+        a(href="#", class="btn") Close
+        a(href="#", class="btn btn-primary") Save changes
+   
+
     footer
     
     script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js')
