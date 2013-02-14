@@ -46,7 +46,7 @@ function evento (ev)
   
  
    
-loadCart(false);
+loadCart("q");
    var thread = null;
        var runningRequest = false;
     var request;
