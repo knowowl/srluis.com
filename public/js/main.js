@@ -12,6 +12,7 @@ $(window).load(function(){
             });
 }
 $(".cart-box").click(function(){
+  console.log("modal");
   $('#myModal').modal('show');
 });
  function showCart(data){
@@ -19,7 +20,7 @@ $(".cart-box").click(function(){
      var resultHtml2 = '';
      console.log("data: "+data.subtotal);
      $.each(data.line_items, function(i,item){                
-                resultHtml+='<div class="cart-box">';
+                resultHtml+='<div class="cart-box" data-toggle="modal" data-target="#myModal">';
                 resultHtml+='<a class="cart-product">';
                 resultHtml+='<div class="cart-product-inner">';                
                 resultHtml+='<p class="inCartName">'+item.nombre+'</p>';                
