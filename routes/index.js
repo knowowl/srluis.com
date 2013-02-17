@@ -11,6 +11,9 @@ exports.index = function(req, res){
 exports.contact = function(req, res){
   res.render('contact', { title: 'Express' });
 };
+exports.store = function(req, res){
+  res.render('store', { title: 'Express' });
+};
 
 
 
