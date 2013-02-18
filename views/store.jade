@@ -17,25 +17,25 @@ html.no-js
   body
     #navbar-example.navbar.navbar-static
       .navbar-inner
-        .container.span12
-          a.brand(href="#")SrLuis
+        .container(style="width:auto;")
+          a.brand(href="#") SrLuis
           ul.nav(role="navigation")
             li.dropdown
+              a#drop1.dropdown-toggle(href="#", role="button", data-toggle="dropdown") Dashboard 
+            li.dropdown
               a#drop1.dropdown-toggle(href="#", role="button", data-toggle="dropdown") Pedidos
-                b.caret
-              ul.dropdown-menu(role="menu", aria-labelledby="drop1")
-                li(role="presentation")
-                  a(role="menuitem", tabindex="-1", href="#") Pedidos realizados
-                li(role="presentation")
-                  a(role="menuitem", tabindex="-1", href="#") Listas de compra
+            li.dropdown
+              a#drop1.dropdown-toggle(href="#", role="button", data-toggle="dropdown") Carritos
             li.dropdown
               a#drop1.dropdown-toggle(href="#", role="button", data-toggle="dropdown") Productos
                 b.caret
               ul.dropdown-menu(role="menu", aria-labelledby="drop1")
                 li(role="presentation")
-                  a(role="menuitem", tabindex="-1", href="#") Agregar producto
+                  a(role="menuitem", tabindex="-1", href="store/add_product") Agregar producto
                 li(role="presentation")
                   a(role="menuitem", tabindex="-1", href="#") Ver productos
+            li.dropdown
+              a#drop1.dropdown-toggle(href="#", role="button", data-toggle="dropdown") Reglas de envio
 
 
     footer
