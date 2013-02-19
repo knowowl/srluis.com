@@ -14,7 +14,9 @@ exports.contact = function(req, res){
 exports.store = function(req, res){
   res.render('store', { title: 'Express' });
 };
-
+exports.store_add_product = function(req, res){
+  res.render('store_add_product', { title: 'Express' });
+};
 
 
 
