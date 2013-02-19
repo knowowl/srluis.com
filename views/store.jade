@@ -36,21 +36,26 @@ html.no-js
                   a(role="menuitem", tabindex="-1", href="#") Ver productos
             li.dropdown
               a#drop1.dropdown-toggle(href="#", role="button", data-toggle="dropdown") Reglas de envio
-    form.form-horizontal
+
+               h3.span10.offset1 Producto o Servicio Nuevo.
+    form.form-horizontal.span10.offset1
+      
       .control-group
-        h3 Producto o Servicio Nuevo.
+        label.control-label(for="inputTitle") SKU
+        .controls
+          input#inputSku.input-mini(type="text", placeholder="SKU")
       .control-group
         label.control-label(for="inputTitle") Titulo
         .controls
-          input#inputTitle.span2(type="text", placeholder="Titulo del producto o servicio")
+          input#inputTitle.input-xxlarge(type="text", placeholder="Titulo del producto o servicio")
       .control-group
         label.control-label(for="inputDescription") Descripcion
-        .input-append
-          input.span2#inputDescription(type="text")
-          span.add-on.descriptionCount
-        
         .controls
-          input#inputTitle(type="text", placeholder="Titulo del producto o servicio")
+          .input-append
+            input.input-xxlarge#inputDescription(type="text", placeholder="Descripcion del producto o servicio")
+            span.add-on.descriptionCount
+        
+        
 
     footer
     
