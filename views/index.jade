@@ -29,7 +29,8 @@ html.no-js
             ul.nav
               li.dropdown
                 a.dropdown-toggle(href='#', data-toggle='dropdown')
-                  <div class="fs1 settings" aria-hidden='true' data-icon='&#xe000;'></div>                                  
+                  .settings
+                    i.icon-user.icon-white                              
                 ul.dropdown-menu
                   li
                     a(href='#') Action
@@ -44,9 +45,12 @@ html.no-js
                   li
                     a(href='#') One more separated link
           form   
-            <div class="fs1 searchIcon" aria-hidden='true' data-icon='&#xe001;'></div>
-            input.search.span5(type="text",name="search", placeholder="Haz click aqui para buscar", onfocus="this.placeholder = ''", onblur="this.placeholder = 'Haz click aqui para buscar'")      
-          .cart              
+            .searchIcon
+              i.icon-search.icon-white
+            input.search.span8(type="text",name="search", placeholder="Haz click aqui para buscar", onfocus="this.placeholder = ''", onblur="this.placeholder = 'Haz click aqui para buscar'")      
+          .cart
+            i.icon-shopping-cart.icon-white   
+            span.cartText  Lista de Pedido            
     #cartList
       .cartGuide
     #cartTotal
@@ -77,7 +81,34 @@ html.no-js
         .item.active
           img(src="http://know-owl.com/img/srluis/carousel.jpg", alt="") 
     .row
-      .results.span11
+      .results.span12
+    
+    .popover.left.productSettings
+      .arrow
+      h3.popover-title Opciones del producto
+        button.close.closeSettings(type="button", aria-hidden="true")&times;
+      .popover-content
+        h6 Descripcion:
+        p.popover-peek  Relleno de anguila, cangrejo y queso crema con tope de masago y lluvia de camarones tempurizados con salsa de mostaza miel.
+         
+        ul.nav.nav-tabs#myTab
+          li.active
+            a(href="#quitar") Quitar
+          li
+            a(href="#agregar") Agregar
+          li
+            a(href="#cambiar") Cambiar 
+        .tab-content
+          .tab-pane.active#quitar            
+          .tab-pane#agregar
+          .tab-pane#cambiar
+
+          button.btn.btn-mini.btn-danger.btnDeleteList Eliminar de la lista
+
+   
+   
+        
+
     #myModal.modal.hide.fade(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
       .modal-header
         button.close(type="button", data-dismiss="modal", aria-hidden="true")&times;
@@ -101,6 +132,7 @@ html.no-js
     script(src='js/jquery.imagesloaded.min.js')
     script(src='js/jquery.mousewheel.min.js')
     script(src='js/jquery.mCustomScrollbar.min.js')
+    script(src='js/cloudinary.js')
     script(src='js/main.js')
     script
       var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];

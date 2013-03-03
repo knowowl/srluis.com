@@ -13,6 +13,7 @@ html.no-js
     link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Muli:300,400')
     link(rel='stylesheet', href='http://know-owl.com/img/srluis/style.css')
     link(rel='stylesheet', href='css/jquery.mCustomScrollbar.css')
+    link(rel='stylesheet', href='css/bootstrap-fileupload.min.css')
     script(src='js/vendor/modernizr-2.6.2-respond-1.1.0.min.js')
   body
     #navbar-example.navbar.navbar-static
@@ -36,21 +37,115 @@ html.no-js
                   a(role="menuitem", tabindex="-1", href="#") Ver productos
             li.dropdown
               a#drop1.dropdown-toggle(href="#", role="button", data-toggle="dropdown") Reglas de envio
-    form.form-horizontal
-      .control-group
-        h3 Producto o Servicio Nuevo.
-      .control-group
-        label.control-label(for="inputTitle") Titulo
-        .controls
-          input#inputTitle.span2(type="text", placeholder="Titulo del producto o servicio")
-      .control-group
-        label.control-label(for="inputDescription") Descripcion
-        .input-append
-          input.span2#inputDescription(type="text")
-          span.add-on.descriptionCount
+    if success != null
+      .alert.alert-success.span8.offset2
+        button.close(type="button", data-dismiss="alert")&times;
+        b ¡Bien hecho! 
+        | los cambios se han ejecutado con exito.
+
+    h3.span12 Producto o Servicio Nuevo.
+    #step1
+      form#addForm.form-horizontal.span10.offset1(action='/addProduct', method='POST', enctype="multipart/form-data")    
+        input#inputR(type='hidden', name='product[rAddon]', value='')
+        input#inputA(type='hidden', name='product[aAddon]', value='')
+        input#inputC(type='hidden', name='product[cAddon]', value='')
+        .control-group
+          label.control-label(for="inputSKU") SKU
+          .controls
+            input#inputSKU.span2(type="text", placeholder="SKU", name="product[sku]")
+              
+        .control-group
+          label.control-label(for="inputTitle") Titulo
+          .controls
+            .input-append
+              input#inputTitle.span5(type="text", placeholder="Titulo del producto o servicio", maxlength="32", name="product[title]")
+              span.add-on.titleCount
+            
+
+        .control-group
+          label.control-label(for="inputDescription") Descripcion
+          .controls
+            .input-append
+              input.span5#inputDescription(type="text", placeholder="Descripcion del producto o servicio", maxlength="130", name="product[peek]")
+              span.add-on.descriptionCount
+        .control-group
+          label.control-label(for="inputKeywords") Palabras claves
+          .controls
+            input.span5#inputKeywords(type="text", placeholder="Palabras claves", name="product[tags]")
+              
+        .control-group
+          label.control-label(for="inputPrice") Precio
+          .controls
+            .input-prepend
+              span.add-on Bs
+              input.span1#inputDescription(type="text", placeholder="Precio", maxlength="7", name="product[price]")
+        .control-group
+          label.control-label(for='inputImage') Foto
+          .controls
+            .fileupload.fileupload-new(data-provides="fileupload")
+              .fileupload-new.thumbnail(style="width: 50px; height: 50px;")
+              .fileupload-preview.fileupload-exists.thumbnail(style="width: 50px; height: 50px;")
+              span.btn.btn-file
+                span.fileupload-new Select image
+                span.fileupload-exists Cambiar
+                input(type="file", name="image")
+              a.btn.fileupload-exists(href="#", data-dismiss="fileupload")
+                | Eliminar
+        .control-group
+          label.control-label(for="inputPrice") Departamento
+          .controls
+            select.selectpicker#foodPicker
+              option(value='food') Comida
+              option(value='drink') Bebidas
+              option(value='trans') Transporte
+        .content
+          #drink 
+          #trans
+          #food
+            .control-group
+              .controls
+                label.checkbox
+                  input.checkbox.removibleChexbox(type='checkbox', value='')
+                  | Habilitar ingredientes removibles.
+              .controls.items_removibles
+                span.help-block Lista de ingredientes removibles. Ej.: Aderezo, Cebolla, Lechuga.
+                .input-prepend
+                  span.add-on Nombre
+                  input.span3.labelR(type="text", placeholder="Nombre del ingrediente removible")
+                .input-prepend
+                  span.add-on Precio
+                  input.span1.priceR(type="text")
+                a.add.btn.btn-link Agregar otro ingrediente removible
+            .control-group
+              .controls
+                label.checkbox
+                  input.checkbox.adicionalChexbox(type='checkbox', value='')
+                  | Habilitar ingredientes adicionales.
+              .controls.items_adicionales
+                span.help-block Lista de ingredientes adicionales. Ej.: Tocineta, Maiz, Jalapeño.
+                .input-prepend
+                  span.add-on Nombre
+                  input.span3.labelA(type="text", placeholder="Nombre del ingrediente adicional")
+                .input-prepend
+                  span.add-on Precio
+                  input.span1.priceA(type="text")                
+                a.add.btn.btn-link Agregar otro ingrediente adicional
+            .control-group
+              .controls
+                label.checkbox
+                  input.checkbox.sustitutoChexbox(type='checkbox', value='')
+                  | Habilitar ingredientes sustitutos.
+              .controls.items_sustitutos
+                span.help-block Lista de ingredientes sustitutos separados por coma. Ej.: Arroz, Pure de papas.
+                .input-prepend
+                  span.add-on 1
+                  input.span5(type="text", placeholder="Ingrediente sustitutos")
+                a.add.btn.btn-link Agregar otro grupo de ingredientes sustitutos
+        button#addBtn.btn.btn-primary.btn-large.span8.offset1 Guardar y cargar foto.
+    
+     
         
-        .controls
-          input#inputTitle(type="text", placeholder="Titulo del producto o servicio")
+    
 
     footer
     
@@ -59,7 +154,9 @@ html.no-js
     script
       window.jQuery || document.write('<script src="js/vendor/jquery-1.9.0.min.js"><\\/script>')
     script(src='js/vendor/bootstrap.min.js')
+    script(src='js/bootstrap-fileupload.min.js')
     script(src='js/plugins.js')  
+    script(src='js/select.js')  
     script(src='js/store.js')
     script
       var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];

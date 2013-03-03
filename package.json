@@ -14,7 +14,8 @@
     "stylus": "*",
     "nib": "*",
     "underscore": "latest",
-    "request": "latest"
+    "request": "latest",
+    "cloudinary": ""
    
   },
   "engines": {

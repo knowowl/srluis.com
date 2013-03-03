@@ -3,6 +3,10 @@ $(window).load(function(){
   
   
 });
+$(window).scroll(function(){ $('.popover').hide();});
+$('#cartList').scroll(function(){ $('.popover').hide();});
+var s;
+$.cloudinary.config("cloud_name", "hmoum9wou");
  function loadCart(query){
   console.log("query:"+query);
  cart = $.getJSON('/order',{
@@ -15,18 +19,18 @@ $(".cart-box").click(function(){
   console.log("modal");
   $('#myModal').modal('show');
 });
+var cartData;
  function showCart(data){
+  var cartData= data;
      var resultHtml = '';
      var resultHtml2 = '';
-     console.log("data: "+data.subtotal);
      $.each(data.line_items, function(i,item){                
-                resultHtml+='<div class="cart-box" data-toggle="modal" data-target="#myModal">';
+                resultHtml+='<div class="cart-box" item="'+i+'">';                
                 resultHtml+='<a class="cart-product">';
                 resultHtml+='<div class="cart-product-inner">';                
                 resultHtml+='<p class="inCartName">'+item.nombre+'</p>';                
                 resultHtml+='<p class="inCartStore">'+item.store+'</p>';                
-                resultHtml+='<span class="inCartPrice">Bs. '+item.price+'</span>';    
-                resultHtml+='<span class="inCartQty">Cantidad: 1</span>';                         
+                resultHtml+='<span class="inCartPrice">Bs. '+item.price+'</span>';                                      
                 resultHtml+='</div>';
                 resultHtml+='</a>';
                 resultHtml+='</div>';
@@ -40,13 +44,60 @@ $(".cart-box").click(function(){
       resultHtml2+='<p class="total-number">'+(data.subtotal*1.10)+'</p>';
       resultHtml2+='<a class="ordenar">Ordenar</a>';
       $('#cartTotal').html(resultHtml2);
+
       $('#cartList').html(resultHtml+"<div class='cartGuide'></div>");
+  
+      $(".cart-box").mouseenter(function(){
+          s = $(this);
+          var p= s.offset();
+          var w=$(window).scrollTop();
+          var top=((p.top)- ($('.productSettings').height()/2)+13);
+          var left=(p.left-($('.productSettings').width()));
+         
+
+          var minTop=w;
+          var maxTop=(w+$('#cartList').height())-$('.productSettings').height()+100;
+          
+          
+         
+          top=(top<=minTop)?minTop:top;
+          top=(top>=maxTop)?maxTop:top;
+
+          $('.productSettings').css({'position': 'absolute','left': left,'top': top, display:'block'});
+          var topArrow=(p.top-$('.popover').offset().top)+13;
+          $('.productSettings .arrow').css({'top': topArrow});
+          var itemId=$(this).attr('item');          
+          var popoverTitle=cartData.line_items[itemId].nombre+'<button class="close closeSettings" type="button" aria-hidden="true">&times;</button>';
+          var popoverPeek=cartData.line_items[itemId].peek;
+          var quitar=cartData.line_items[itemId].rAddon;          
+          $('.popover-title').html(popoverTitle);
+          $('.popover-peek').html(popoverPeek);
+          $('#quitar').html(renderCheckbox(quitar));
+        $('.closeSettings').click(function(){ $(this).parent().parent().hide();});
+          $('.row-addons').click(function(){
+            var c=$(this).children('td').children('input');
+            c.attr('checked', !c.attr('checked'));
+          });
+          });
     }
 
+function renderCheckbox(checkbox){
+    var html='<thead><tr><td>Seleccionar</td><td>Ingrediente</td><td>Costo Adicional</td></tr></thead><tbody>';
+   $.each(checkbox, function(i,item){  
+      html+='<tr class="row-addons"><td><input type="checkbox" id="cb-'+i+'" '+item.checked+'></td><td>'+item.label+'</td><td>'+item.price+'</td></tr>'
+   });          
+   return '<table class="table table-striped table-popover table-hover table-condensed">'+html+'</tbody></table>';    
+}
 $(document).on("ready", evento);
 function evento (ev)
 {
-   
+
+
+
+    $('#myTab a').click(function (e) {
+    e.preventDefault();
+    $(this).tab('show');
+    });
   
  
    
@@ -80,21 +131,27 @@ loadCart("q");
         }, 500);
 
 //Create HTML structure for the results and insert it on the result div
-
+function cloudinary_url(url){
+  u=url.split('/');
+  return u[0]+'/'
+}
 function showResults(data, highlight){
            var resultHtml = '';
            $('.masonry').masonry( 'destroy' );
             $.each(data, function(i,item){
-             
+              var pic='';
+              if(item.Img){
+                pic = $.cloudinary.url(item.Img, {width: 240, crop: "fill"});
+              }
                 resultHtml+='<div class="product-box">';
                 resultHtml+='<a class="product">';
                 resultHtml+='<div class="product-inner">';                
                 resultHtml+='<p class="Store">'+item.Store+'</p>'; 
-                resultHtml+='<img src="http://www.know-owl.com/img/srluis/'+item.Path+'.jpg">';
-                resultHtml+='<p class="Name">'+item.Name+'</p>'; 
+                resultHtml+='<img src="'+pic+'">';
+                resultHtml+='<p class="Name">'+item.Title+'</p>'; 
                 resultHtml+='<p class="Peek">'+item.Peek+'</p>'; 
                 resultHtml+='<span class="Likes"> <div class="fb-like" data-href="http://www.srluis.com/product#1" data-send="false" data-layout="button_count" data-width="115" data-show-faces="false"></div>  </span>'; 
-                resultHtml+='<span class="Price">Bs. <span class="PriceNumber">60.00</span></span>';                            
+                resultHtml+='<span class="Price">Bs. <span class="PriceNumber">'+item.Price+'</span></span>';                            
                 resultHtml+='</div>';
                 resultHtml+='</a>';
                 resultHtml+='</div>';
@@ -110,6 +167,7 @@ function showResults(data, highlight){
                     
                   var $container = $('.results');
                       $container.imagesLoaded( function() {
+
                         $container.masonry({itemSelector : '.product-box' });
                         eachCount=eachCount+1;
                         if(eachCount==maxCount){
@@ -123,7 +181,7 @@ function showResults(data, highlight){
     $(this).clone().appendTo(".results").css({top:p.top+"px", left:p.left+"px", position:"absolute", opacity: "1"}).animate({'top': t.top+"px",
    'left': (t.left-200)+'px', 'opacity':0}, 500 ,'linear', function(){
     $(this).remove();
-    loadCart($(".Store",this).html()+"#"+$(".Name",this).html()+"#"+$(".PriceNumber",this).html());
+    loadCart($(".Store",this).html()+"#"+$(".Name",this).html()+"#"+$(".PriceNumber",this).html()+"#"+$(".rAddon",this).val());
                            
    });
 });
@@ -168,6 +226,7 @@ $('.category li').each(function(){
     });
     var cartListEnable=false;
   $(window).resize(function(){
+    $('.popover').hide()
     if(cartListEnable){
     $('#cartList').height(($(window).height()-36-85));
     }
@@ -177,11 +236,19 @@ $('.category li').each(function(){
      if(cartListEnable){
          $("#cartList").animate({height: "0px"}, 300);
          $("#cartTotal").fadeOut("fast");
+         $('.cart').removeClass('cart-active');
      cartListEnable=false;
+     $('.results').removeClass('span10').addClass('span12').css('right','0');
+     $('.masonry').masonry( 'destroy' );
+     $('.results').masonry({itemSelector : '.product-box' });
 
      }else{
     $("#cartList").animate({height: ($(window).height()-36-85)+"px"}, 300);
      $("#cartTotal").fadeIn("fast");
+     $('.cart').addClass('cart-active');
+     $('.results').removeClass('span12').addClass('span10').css('right','200px');
+     $('.masonry').masonry( 'destroy' );
+     $('.results').masonry({itemSelector : '.product-box' });
     cartListEnable=true;
     }
   });
