@@ -3,7 +3,14 @@ html.no-js
   head
     meta(charset='utf-8')
     meta(http-equiv='X-UA-Compatible', content='IE=edge,chrome=1')
-    title
+    if productPage 
+      meta( property="og:title", content="#{title} - #{store}" )
+      meta(property="og:type", content="#{type}")
+      meta(property="og:url", content="http://www.srluis.com/?q=#{id}")
+      meta( property="og:image", content="#{img}")
+      meta(property="og:site_name", content="SrLuis")
+      meta(property="fb:admins", content="390325411063913")
+    title SrLuis.com
     meta(name='description', content='')
     meta(name='viewport', content='width=device-width')
     link(rel='stylesheet', href='css/bootstrap.min.css')    
@@ -47,7 +54,7 @@ html.no-js
           form   
             .searchIcon
               i.icon-search.icon-white
-            input.search.span8(type="text",name="search", placeholder="Haz click aqui para buscar", onfocus="this.placeholder = ''", onblur="this.placeholder = 'Haz click aqui para buscar'")      
+            input.search.span8(type="text",name="search",autocomplete="off", placeholder="Haz click aqui para buscar", onfocus="this.placeholder = ''", onblur="this.placeholder = 'Haz click aqui para buscar'")      
           .cart
             i.icon-shopping-cart.icon-white   
             span.cartText  Lista de Pedido            
@@ -81,7 +88,28 @@ html.no-js
         .item.active
           img(src="http://know-owl.com/img/srluis/carousel.jpg", alt="") 
     .row
+      .loading.span2.offset5
       .results.span12
+      if productPage
+        .productPage.span12
+          .product-box
+            a.product
+              .product-inner                
+                p.Store
+                  | #{store}
+                input.Store_id(type="hidden", value="#{store_id}") 
+                input.Sku(type="hidden", value="#{sku}") 
+                img(src="#{img}")
+                p.Name
+                  | #{title} 
+                p.Peek
+                  | #{peek} 
+                span.Likes
+                  .fb-like(data-href="http://www.srluis.com/product##{id}", data-send="false", data-layout="button_count", data-width="115",data-show-faces="false")
+                span.Price Bs. 
+                  span.PriceNumber #{price}
+                                     
+        
     
     .popover.left.productSettings
       .arrow
@@ -92,16 +120,18 @@ html.no-js
         p.popover-peek  Relleno de anguila, cangrejo y queso crema con tope de masago y lluvia de camarones tempurizados con salsa de mostaza miel.
          
         ul.nav.nav-tabs#myTab
+          
           li.active
-            a(href="#quitar") Quitar
+            a(href="#agregar") Agregale
           li
-            a(href="#agregar") Agregar
+            a(href="#cambiar") Cambiale 
           li
-            a(href="#cambiar") Cambiar 
-        .tab-content
-          .tab-pane.active#quitar            
-          .tab-pane#agregar
+            a(href="#quitar") Quitale
+
+        .tab-content                   
+          .tab-pane#agregar.active 
           .tab-pane#cambiar
+          .tab-pane#quitar  
 
           button.btn.btn-mini.btn-danger.btnDeleteList Eliminar de la lista
 
@@ -133,6 +163,7 @@ html.no-js
     script(src='js/jquery.mousewheel.min.js')
     script(src='js/jquery.mCustomScrollbar.min.js')
     script(src='js/cloudinary.js')
+    script(src='js/spin.js')
     script(src='js/main.js')
     script
       var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];

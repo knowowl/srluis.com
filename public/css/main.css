@@ -1,420 +1,68 @@
-body {
-  background: #d9d9d9 url("http://www.know-owl.com/img/srluis/background_image.jpg") 50% 0% fixed no-repeat;
-  overflow-y: scroll;
-}
-.brand {
-  background: transparent url("http://know-owl.com/img/srluis/isologo_small3.png") no-repeat;
-  width: 124px;
-  height: 36px;
-  padding: 0 !important;
-  margin: 5px 0 0px 0px !important;
-  float: left;
-  position: relative;
-  z-index: 2;
-}
-.container {
-  width: 100% !important;
-}
-.navbar-inner {
-  background: linear-gradient(#9a1a27, #741620);
-  border: 0 !important;
-  height: 35px !important;
-  border-radius: 0 !important;
-  box-shadow: 0px 1px 0px #4d0910 !important;
-}
-.navbar {
-  margin-bottom: 0px;
-  height: 35px !important;
-}
-.search {
-  background: transparent !important;
-  border: 0 !important;
-  padding: 10px 0 3px 0px !important;
-  margin: 0 0 0 0px !important;
-  height: 25px !important;
-  color: #fff !important;
-  font-family: 'Muli', sans-serif;
-  font-size: 1.2em !important;
-  box-shadow: none !important;
-  font-weight: 400;
-  text-shadow: 0 -1px 0 #741620;
-}
-.searchList {
-  position: relative;
-  float: left;
-  height: 0px;
-  background: #fff;
-  margin: 0;
-  width: 100%;
-  opacity: 0.9;
-  border-bottom: 1px solid #666;
-}
-.category {
-  padding: 0;
-  margin: 0;
-  float: left;
-}
-.category>li {
-  padding: 10px 5px 0px 5px;
-  float: left;
-  width: 80px;
-  height: 80px;
-  background: transparent;
-  list-style: none;
-  display: none;
-}
-.category li img {
-  border-radius: 6px;
-  margin0: 5px 0px 5px !important;
-  float: left;
-}
-.category li label {
-  float: left;
-  width: 80px;
-  text-align: center;
-}
-.category a {
-  color: #999;
-  float: left;
-}
-.category a:hover {
-  color: #333;
-}
-form {
-  margin: 0 !important;
-  float: left;
-}
-.search::-webkit-input-placeholder {
-  color: #fff;
-}
-.search:-moz-placeholder {
-  color: #fff;
-}
-.search::-moz-placeholder {
-  color: #fff;
-}
-.search:-ms-input-placeholder {
-  color: #fff;
-}
-.searchIcon {
-  float: left;
-  color: #9a1a27;
-  margin: 10px 5px 0px -15px;
-  padding: 3px 0px 0 3px;
-  width: 28px;
-  height: 25px;
-  text-align: left;
-  text-shadow: 0 1px 0 #4d0910;
-  background: transparent url("http://know-owl.com/img/srluis/search_bg.png") no-repeat !important;
-}
-.settings {
-  padding: 0;
-  float: left;
-  color: #741620;
-  padding: 5px 0px 0 5px;
-  text-align: center;
-  text-shadow: 0 -1px 0 #4d0910;
-  font-size: 1.3em;
-}
-.carousel {
-  float: left !important;
-}
-#results {
-  float: right;
-  right: 200px;
-}
-.product-box {
-  display: none;
-  box-shadow: rgba(0,0,0,0.2) 0 0px 3px;
-  float: left;
-  border-radius: 5px;
-  width: 240px;
-  margin: 10px;
-  cursor: hand;
-  cursor: pointer;
-}
-.product {
-  box-shadow: 0 8px 3px -5px rgba(0,0,0,0.2);
-  float: left;
-  border-radius: 100%/33px;
-}
-.product-inner {
-  float: left;
-  border-radius: 5px;
-  background: linear-gradient(#f9f9f9 70%, #e0dcdc 90%);
-}
-.product-inner>.Peek {
-  font-size: 0.85em;
-  font-weight: 500;
-  color: #888;
-  margin: 5px;
-}
-.product-inner>.Name,
-.product-inner>.Store {
-  margin: 5px 5px 0 5px;
-  font-size: 1.2em;
-  font-weight: 500;
-  text-shadow: rgba(0,0,0,0.6) 0 0px 1px;
-  color: #222;
-}
-.product-inner>img {
-  margin: 5px;
-  width: 230px;
-}
-.results {
-  list-style: none;
-  float: right;
-  right: 0px;
-}
-.product-inner>.Price {
-  width: 90px;
-  float: right;
-  text-align: right;
-  border-bottom-right-radius: 5px;
-  background: #ebebeb;
-  padding: 5px 5px 5px 0;
-  border-top: 1px solid 1px solid #c9c7c7;
-}
-.product-inner>.Likes {
-  width: 140px;
-  float: left;
-  text-align: left;
-  border-bottom-left-radius: 5px;
-  background: #ebebeb;
-  padding: 5px 0 5px 5px;
-  border-top: 1px solid 1px solid #c9c7c7;
-}
-.fb-like span,
-.fb-like,
-iframe.fb_ltr {
-  position: relative;
-  float: left;
-  min-width: 140px;
-  min-height: 20px;
-}
-#cartList {
-  float: left;
-  position: fixed;
-  right: 0;
-  top: 38px;
-  width: 200px;
-  height: 0;
-  background: #eee;
-  border-left: 1px solid #999;
-  box-shadow: inset 0 0 3px rgba(0,0,0,0.3);
-  overflow-y: scroll;
-}
-.cart {
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 200px;
-  height: 40px;
-  background: linear-gradient(#9a1a27, #741620);
-  border: 1px solid #ac4343;
-  z-index: 100;
-  border-top: 0;
-  border-right: 0;
-  box-shadow: inset 1px 1px 2px rgba(0,0,0,0.4);
-  float: left;
-  cursor: hand;
-  cursor: pointer;
-}
-.cart:hover {
-  background: linear-gradient(#741620, #9a1a27);
-}
-.cart-active,
-.cart-active:hover {
-  background: linear-gradient(#fc0, #ffa200);
-}
-.cart-active i,
-.cart-active:hover i {
-  background-image: url("https://github.com/twitter/bootstrap/diff_blob/88deb08ff27db0e016e0c030dce072f07b6bc7f4/img/glyphicons-halflings.png?raw=true");
-}
-.cart-active .cartText,
-.cart-active:hover .cartText {
-  color: #000 !important;
-}
-.cart-box {
-  width: 95%;
-  padding: 2%;
-  float: left;
-  border-bottom: 1px solid #ddd;
-}
-.cart-box:hover {
-  background-color: #7fbf4d;
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #7fbf4d), color-stop(100%, #63a62f));
-  background-image: -webkit-linear-gradient(top, #7fbf4d, #63a62f);
-  background-image: -moz-linear-gradient(top, #7fbf4d, #63a62f);
-  background-image: -ms-linear-gradient(top, #7fbf4d, #63a62f);
-  background-image: -o-linear-gradient(top, #7fbf4d, #63a62f);
-  background-image: linear-gradient(top, #7fbf4d, #63a62f);
-  cursor: pointer;
-  cursor: hand;
-}
-.cart-box:hover span,
-.cart-box:hover p {
-  color: #fff;
-}
-.cart-product-inner {
-  float: left;
-  width: 183px;
-}
-.cart-product {
-  float: left;
-}
-.inCartStore {
-  font-size: 0.7em;
-  line-height: 1.3em;
-  color: #666;
-  float: left;
-  width: 70%;
-  margin: 0;
-  padding: 0;
-}
-.inCartName {
-  font-size: 0.9em;
-  line-height: 0.9em;
-  color: #333;
-  float: left;
-  width: 70%;
-  margin: 0;
-  padding: 0;
-}
-.inCartPrice {
-  font-size: 0.8em;
-  line-height: 1.3em;
-  color: #666;
-  float: left;
-  width: 30%;
-  margin: 0;
-  padding: 0;
-}
-.inCartQty {
-  font-size: 0.7em;
-  line-height: 1.3em;
-  color: #666;
-  float: left;
-  width: 70%;
-  margin: 0;
-  padding: 0;
-}
-#cartTotal {
-  display: none;
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  background: #eee;
-  border-left: 1px solid #999;
-  box-shadow: inset 0 0 3px rgba(0,0,0,0.3);
-  width: 200px;
-  height: 85px;
-  float: left;
-}
-.subtotal-label {
-  font-size: 0.8em;
-  line-height: 1.3em;
-  color: #666;
-  float: left;
-  width: 50%;
-  margin: 0;
-  padding: 0;
-  border-bottom: 1px dotted #ddd;
-}
-.subtotal-number {
-  font-size: 0.8em;
-  line-height: 1.3em;
-  color: #666;
-  float: left;
-  text-align: right;
-  width: 48%;
-  margin: 0 2% 0 0;
-  padding: 0;
-  border-bottom: 1px dotted #ddd;
-}
-.total-label {
-  font-size: 1.2em;
-  line-height: 1.3em;
-  color: #666;
-  float: left;
-  width: 50%;
-  margin: 0;
-  padding: 0;
-}
-.total-number {
-  font-size: 1.2em;
-  font-weight: bold;
-  line-height: 1.3em;
-  color: #666;
-  float: left;
-  text-align: right;
-  width: 48%;
-  margin: 0 2% 0 0;
-  padding: 0;
-}
-.ordenar {
-  background-color: #7fbf4d;
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #7fbf4d), color-stop(100%, #63a62f));
-  background-image: -webkit-linear-gradient(top, #7fbf4d, #63a62f);
-  background-image: -moz-linear-gradient(top, #7fbf4d, #63a62f);
-  background-image: -ms-linear-gradient(top, #7fbf4d, #63a62f);
-  background-image: -o-linear-gradient(top, #7fbf4d, #63a62f);
-  background-image: linear-gradient(top, #7fbf4d, #63a62f);
-  border: 1px solid #63a62f;
-  border-bottom: 1px solid #5b992b;
-  border-radius: 3px;
-  -webkit-box-shadow: inset 0 1px 0 0 #96ca6d;
-  box-shadow: inset 0 1px 0 0 #96ca6d;
-  color: #fff;
-  font: bold 11px/1 "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
-  padding: 7px 0 8px 0;
-  text-align: center;
-  margin: 0 10px;
-  text-shadow: 0 -1px 0 #4c9021;
-  width: 180px;
-  float: left;
-}
-.icon-black {
-  background-image: url("https://github.com/twitter/bootstrap/diff_blob/88deb08ff27db0e016e0c030dce072f07b6bc7f4/img/glyphicons-halflings.png?raw=true");
-}
-.icon-white {
-  text-indent: -999px;
-  background-image: url("https://github.com/twitter/bootstrap/diff_blob/713105774fcccf1250a7555b47483b578cf82eb6/img/glyphicons-halflings-white.png?raw=true");
-}
-.cartText {
-  color: #fff !important;
-  float: left;
-  margin: 10px 0px 0 0px;
-}
-.cart i {
-  float: left;
-  margin: 13px 5px 0 20px;
-}
-.popover-content,
-.popover {
-  width: 470px;
-}
-.nav-tabs {
-  width: 450px !important;
-}
-.nav-tabs a {
-  outline: none;
-}
-.tab-pane label {
-  width: 40%;
-  float: left;
-}
-.popover-content p {
-  width: 90%;
-}
-.popover .arrow {
-  position: absolute !important;
-  top: 0;
-}
-.btnDeleteList {
-  width: 450px !important;
-}
-.table-popover {
-  width: 450px !important;
-  font-size: 0.9em;
-}
+body{background:#d9d9d9 url("http://www.know-owl.com/img/srluis/background_image.jpg") 50% 0% fixed no-repeat;overflow-y:scroll}
+.brand{background:transparent url("http://know-owl.com/img/srluis/isologo_small3.png") no-repeat;width:124px;height:36px;padding:0 !important;margin:5px 0 0 0 !important;float:left;position:relative;z-index:2}
+.container{width:100% !important}
+.navbar-inner{background:-webkit-gradient(linear, left top, left bottom, color-stop(0, #9a1a27), color-stop(1, #741620));background:-webkit-linear-gradient(top, #9a1a27 0%, #741620 100%);background:-moz-linear-gradient(top, #9a1a27 0%, #741620 100%);background:-o-linear-gradient(top, #9a1a27 0%, #741620 100%);background:-ms-linear-gradient(top, #9a1a27 0%, #741620 100%);background:linear-gradient(top, #9a1a27 0%, #741620 100%);border:0 !important;height:35px !important;-webkit-border-radius:0 !important;border-radius:0 !important;-webkit-box-shadow:0 1px 0 #4d0910 !important;box-shadow:0 1px 0 #4d0910 !important}
+.navbar{margin-bottom:0;height:35px !important}
+.search{background:transparent !important;border:0 !important;padding:10px 0 3px 0 !important;margin:0 0 0 0 !important;height:25px !important;color:#fff !important;font-family:'Muli',sans-serif;font-size:1.2em !important;-webkit-box-shadow:none !important;box-shadow:none !important;font-weight:400;text-shadow:0 -1px 0 #741620}
+.searchList{position:relative;float:left;height:0;background:#fff;margin:0;width:100%;opacity:.9;filter:alpha(opacity=90);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";border-bottom:1px solid #666}
+.category{padding:0;margin:0;float:left}
+.category>li{padding:10px 5px 0 5px;float:left;width:80px;height:80px;background:transparent;list-style:none;display:none}
+.category li img{-webkit-border-radius:6px;border-radius:6px;margin0:5px 0 5px !important;float:left}
+.category li label{float:left;width:80px;text-align:center}
+.category a{color:#999;float:left}
+.category a:hover{color:#333}
+form{margin:0 !important;float:left}
+.search::-webkit-input-placeholder{color:#fff}
+.search:-moz-placeholder{color:#fff}
+.search::-moz-placeholder{color:#fff}
+.search:-ms-input-placeholder{color:#fff}
+.searchIcon{float:left;color:#9a1a27;margin:10px 5px 0 -15px;padding:3px 0 0 3px;width:28px;height:25px;text-align:left;text-shadow:0 1px 0 #4d0910;background:transparent url("http://know-owl.com/img/srluis/search_bg.png") no-repeat !important}
+.settings{padding:0;float:left;color:#741620;padding:5px 0 0 5px;text-align:center;text-shadow:0 -1px 0 #4d0910;font-size:1.3em}
+.carousel{float:left !important}
+#results{float:right;right:200px}
+.product-box{-webkit-box-shadow:rgba(0,0,0,0.2) 0 0 3px;box-shadow:rgba(0,0,0,0.2) 0 0 3px;float:left;-webkit-border-radius:5px;border-radius:5px;width:240px;margin:10px;cursor:hand;cursor:pointer}
+.product{-webkit-box-shadow:0 8px 3px -5px rgba(0,0,0,0.2);box-shadow:0 8px 3px -5px rgba(0,0,0,0.2);float:left;-webkit-border-radius:100%/33px;border-radius:100%/33px}
+.product-inner{float:left;-webkit-border-radius:5px;border-radius:5px;background:-webkit-gradient(linear, left top, left bottom, color-stop(0.7, #f9f9f9), color-stop(0.9, #e0dcdc));background:-webkit-linear-gradient(top, #f9f9f9 70%, #e0dcdc 90%);background:-moz-linear-gradient(top, #f9f9f9 70%, #e0dcdc 90%);background:-o-linear-gradient(top, #f9f9f9 70%, #e0dcdc 90%);background:-ms-linear-gradient(top, #f9f9f9 70%, #e0dcdc 90%);background:linear-gradient(top, #f9f9f9 70%, #e0dcdc 90%)}
+.product-inner>.Peek{font-size:.85em;font-weight:500;color:#888;margin:5px}
+.product-inner>.Name,.product-inner>.Store{margin:5px 5px 0 5px;font-size:1.2em;font-weight:500;text-shadow:rgba(0,0,0,0.6) 0 0 1px;color:#222}
+.product-inner>img{margin:5px;width:230px}
+.results{list-style:none;float:right;right:0}
+.product-inner>.Price{width:90px;float:right;text-align:right;border-bottom-right-radius:5px;background:#ebebeb;padding:5px 5px 5px 0;border-top:1px solid 1px solid #c9c7c7}
+.product-inner>.Likes{width:140px;float:left;text-align:left;border-bottom-left-radius:5px;background:#ebebeb;padding:5px 0 5px 5px;border-top:1px solid 1px solid #c9c7c7}
+.fb-like span,.fb-like,iframe.fb_ltr{position:relative;float:left;min-width:140px;min-height:20px}
+#cartList{float:left;position:fixed;right:0;top:38px;width:200px;height:0;background:#eee;border-left:1px solid #999;-webkit-box-shadow:inset 0 0 3px rgba(0,0,0,0.3);box-shadow:inset 0 0 3px rgba(0,0,0,0.3);overflow-y:scroll}
+.cart{position:fixed;top:0;right:0;width:200px;height:40px;background:-webkit-gradient(linear, left top, left bottom, color-stop(0, #9a1a27), color-stop(1, #741620));background:-webkit-linear-gradient(top, #9a1a27 0%, #741620 100%);background:-moz-linear-gradient(top, #9a1a27 0%, #741620 100%);background:-o-linear-gradient(top, #9a1a27 0%, #741620 100%);background:-ms-linear-gradient(top, #9a1a27 0%, #741620 100%);background:linear-gradient(top, #9a1a27 0%, #741620 100%);border:1px solid #ac4343;z-index:100;border-top:0;border-right:0;-webkit-box-shadow:inset 1px 1px 2px rgba(0,0,0,0.4);box-shadow:inset 1px 1px 2px rgba(0,0,0,0.4);float:left;cursor:hand;cursor:pointer}
+.cart:hover{background:-webkit-gradient(linear, left top, left bottom, color-stop(0, #741620), color-stop(1, #9a1a27));background:-webkit-linear-gradient(top, #741620 0%, #9a1a27 100%);background:-moz-linear-gradient(top, #741620 0%, #9a1a27 100%);background:-o-linear-gradient(top, #741620 0%, #9a1a27 100%);background:-ms-linear-gradient(top, #741620 0%, #9a1a27 100%);background:linear-gradient(top, #741620 0%, #9a1a27 100%)}
+.cart-active,.cart-active:hover{background:-webkit-gradient(linear, left top, left bottom, color-stop(0, #fc0), color-stop(1, #ffa200));background:-webkit-linear-gradient(top, #fc0 0%, #ffa200 100%);background:-moz-linear-gradient(top, #fc0 0%, #ffa200 100%);background:-o-linear-gradient(top, #fc0 0%, #ffa200 100%);background:-ms-linear-gradient(top, #fc0 0%, #ffa200 100%);background:linear-gradient(top, #fc0 0%, #ffa200 100%)}
+.cart-active i,.cart-active:hover i{background-image:url("https://github.com/twitter/bootstrap/diff_blob/88deb08ff27db0e016e0c030dce072f07b6bc7f4/img/glyphicons-halflings.png?raw=true")}
+.cart-active .cartText,.cart-active:hover .cartText{color:#000 !important}
+.cart-box{width:95%;padding:2%;float:left;border-bottom:1px solid #ddd}
+.cart-box:hover{background-color:#7fbf4d;background-image:-webkit-gradient(linear,left top,left bottom,color-stop(0%,#7fbf4d),color-stop(100%,#63a62f));background-image:-webkit-linear-gradient(top,#7fbf4d,#63a62f);background-image:-moz-linear-gradient(top,#7fbf4d,#63a62f);background-image:-ms-linear-gradient(top,#7fbf4d,#63a62f);background-image:-o-linear-gradient(top,#7fbf4d,#63a62f);background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0, #7fbf4d), color-stop(1, #63a62f));background-image:-webkit-linear-gradient(top, #7fbf4d 0%, #63a62f 100%);background-image:-moz-linear-gradient(top, #7fbf4d 0%, #63a62f 100%);background-image:-o-linear-gradient(top, #7fbf4d 0%, #63a62f 100%);background-image:-ms-linear-gradient(top, #7fbf4d 0%, #63a62f 100%);background-image:linear-gradient(top, #7fbf4d 0%, #63a62f 100%);cursor:pointer;cursor:hand}
+.cart-box:hover span,.cart-box:hover p{color:#fff}
+.cart-product-inner{float:left;width:183px}
+.cart-product{float:left}
+.inCartStore{font-size:.7em;line-height:1.3em;color:#666;float:left;width:70%;margin:0;padding:0}
+.inCartName{font-size:.9em;line-height:.9em;color:#333;float:left;width:70%;margin:0;padding:0}
+.inCartPrice{font-size:.8em;line-height:1.3em;color:#666;float:left;width:30%;margin:0;padding:0}
+.inCartQty{font-size:.7em;line-height:1.3em;color:#666;float:left;width:70%;margin:0;padding:0}
+#cartTotal{display:none;position:fixed;right:0;bottom:0;background:#eee;border-left:1px solid #999;-webkit-box-shadow:inset 0 0 3px rgba(0,0,0,0.3);box-shadow:inset 0 0 3px rgba(0,0,0,0.3);width:200px;height:85px;float:left}
+.subtotal-label{font-size:.8em;line-height:1.3em;color:#666;float:left;width:50%;margin:0;padding:0;border-bottom:1px dotted #ddd}
+.subtotal-number{font-size:.8em;line-height:1.3em;color:#666;float:left;text-align:right;width:48%;margin:0 2% 0 0;padding:0;border-bottom:1px dotted #ddd}
+.total-label{font-size:1.2em;line-height:1.3em;color:#666;float:left;width:50%;margin:0;padding:0}
+.total-number{font-size:1.2em;font-weight:bold;line-height:1.3em;color:#666;float:left;text-align:right;width:48%;margin:0 2% 0 0;padding:0}
+.ordenar{background-color:#7fbf4d;background-image:-webkit-gradient(linear,left top,left bottom,color-stop(0%,#7fbf4d),color-stop(100%,#63a62f));background-image:-webkit-linear-gradient(top,#7fbf4d,#63a62f);background-image:-moz-linear-gradient(top,#7fbf4d,#63a62f);background-image:-ms-linear-gradient(top,#7fbf4d,#63a62f);background-image:-o-linear-gradient(top,#7fbf4d,#63a62f);background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0, #7fbf4d), color-stop(1, #63a62f));background-image:-webkit-linear-gradient(top, #7fbf4d 0%, #63a62f 100%);background-image:-moz-linear-gradient(top, #7fbf4d 0%, #63a62f 100%);background-image:-o-linear-gradient(top, #7fbf4d 0%, #63a62f 100%);background-image:-ms-linear-gradient(top, #7fbf4d 0%, #63a62f 100%);background-image:linear-gradient(top, #7fbf4d 0%, #63a62f 100%);border:1px solid #63a62f;border-bottom:1px solid #5b992b;-webkit-border-radius:3px;border-radius:3px;-webkit-box-shadow:inset 0 1px 0 0 #96ca6d;-webkit-box-shadow:inset 0 1px 0 0 #96ca6d;box-shadow:inset 0 1px 0 0 #96ca6d;color:#fff;font:bold 11px/1 "Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Verdana,sans-serif;padding:7px 0 8px 0;text-align:center;margin:0 10px;text-shadow:0 -1px 0 #4c9021;width:180px;float:left}
+.icon-black{background-image:url("https://github.com/twitter/bootstrap/diff_blob/88deb08ff27db0e016e0c030dce072f07b6bc7f4/img/glyphicons-halflings.png?raw=true")}
+.icon-white{text-indent:-999px;background-image:url("https://github.com/twitter/bootstrap/diff_blob/713105774fcccf1250a7555b47483b578cf82eb6/img/glyphicons-halflings-white.png?raw=true")}
+.cartText{color:#fff !important;float:left;margin:10px 0 0 0}
+.cart i{float:left;margin:13px 5px 0 20px}
+.popover-content,.popover{width:470px}
+.nav-tabs{width:450px !important}
+.nav-tabs a{outline:none}
+.tab-pane label{width:40%;float:left}
+.popover-content p{width:90%}
+.popover .arrow{position:absolute !important;top:0}
+.btnDeleteList{width:450px !important}
+.table-popover{width:450px !important;font-size:.9em}
+td{text-align:center !important}
+.loading{float:left;display:none;margin-top:100px}
+.productPage{position:relative}

@@ -94,14 +94,14 @@ html.no-js
         .control-group
           label.control-label(for="inputPrice") Departamento
           .controls
-            select.selectpicker#foodPicker
-              option(value='food') Comida
-              option(value='drink') Bebidas
-              option(value='trans') Transporte
+            select.selectpicker#foodPicker(name="product[dep]")
+              option(value='comida') Comida
+              option(value='bebida') Bebidas
+              option(value='transporte') Transporte
         .content
-          #drink 
-          #trans
-          #food
+          #bebida 
+          #transporte
+          #comida
             .control-group
               .controls
                 label.checkbox

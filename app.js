@@ -32,7 +32,9 @@ var app = express();
 function compile(str, path) {
   return stylus(str)
     .set('filename', path)
+    .set('compress', true)
     .use(nib())
+    .import('nib');
 }
 
 
@@ -64,7 +66,31 @@ app.configure('development', function(){
 });
 app.locals.api_key = cloudinary.config().api_key;
 app.locals.cloud_name = cloudinary.config().cloud_name;
-app.get('/', routes.index);
+app.get('/', loadSearch(), function(req, res, next) {
+   var p=req.searchResults[0];
+    if(req.param('q', null)==null){
+      res.render('index', { productPage: false });
+    }else{
+      var typeGood;
+      switch(p.Type){
+        case 'comida':typeGood='food';break;
+        case 'bebida':typeGood='drink';break;
+        default:typeGood='product';break;
+      }
+      res.render('index', { 
+        title: p.Title,
+        type: typeGood,
+        peek:  p.Peek,
+        store: p.Store,
+        store_id:  p.Store_id,
+        sku: p.SKU,
+        img:  cloudinary.url(p.Img, {width: 240, crop: "fill"}),
+        id: p._id,
+        price: p.Price,
+        productPage: true
+      });
+    }
+});
 app.get('/contact', routes.contact);
 app.get('/store', routes.store);
 app.get('/store/add_product', routes.store_add_product);
@@ -75,15 +101,28 @@ app.get('/users', user.list);
 
 function loadSearch() {
     return function(req, res, next) {
-        var url = 'http://6czgqqle:ceur22bw9iso66xu@juniper-2415144.us-east-1.bonsai.io/srluis/_search?q='+req.param('q', null);
-        req.searchResults = [];
+      req.searchResults = [];
+      if(req.param('q', null) != null){
+             
+        if(req.param('o', null)!=null){
+          var url = 'http://6czgqqle:ceur22bw9iso66xu@juniper-2415144.us-east-1.bonsai.io/srluis/_search?q=_id:'+req.param('q', null);
+          console.log(url);
+        }else{
+          var q=req.param('q', null).toUpperCase().replace(/([^0-9A-Z])/g,"");
+          var url = 'http://6czgqqle:ceur22bw9iso66xu@juniper-2415144.us-east-1.bonsai.io/srluis/_search?q='+q;
+        }
         request({ uri: url, json: true }, function(err, resp, data) {
             if (err) return res.send(500);
             req.searchResults = _(data.hits.hits).map(function(hit) {
-                return hit._source;
+                var r=hit._source;
+                r._id=hit._id;
+                return r;
             });
             next();
         });
+      }else{
+         next();
+      }
     };
 }
 
@@ -101,6 +140,7 @@ app.post('/addProduct', function(request, response){
       product.peek = r.peek;
       product.tags = r.tags;
       product.type = r.type;
+      product.store_id = 'srluis';
       
      
         product.rAddon=(r.rAddon=='')?'':JSON.parse(r.rAddon);      
@@ -115,12 +155,17 @@ app.post('/addProduct', function(request, response){
       product.save();
       completeMsg = {
         SKU: r.sku,
+        Store:'srluis',
+        Store_id:'srluis',
         Title:r.title,
         Peek:r.peek,
         Tags:r.tags,
-        Type:r.type,
+        Type:r.dep,
         Img:img.public_id+'.'+img.format,
-        Price:r.price
+        Price:r.price,
+        Zip: '2006',
+        Zone: '1'
+
       };
       routes.indexDocument(completeMsg);
      
@@ -142,10 +187,12 @@ app.get('/order', function(req, res) {
     if(req.param('q', null)!="q" && req.param('q', null)!=null){
      
       var q = req.param('q', null).split('#');
-      
+     
       //Aqui quede.... tengo que pasar los parametros sku y store del ElasticSearch para buscarlos en el mongohq
-      productModel.findOne({'sku':'1234', 'store_id':'srluis'}, 
+     // productModel.findOne({'sku':q[1], 'store_id':q[0]}, 
+       productModel.findOne({'sku':q[1]}, 
       function(err1, p) {
+        
         order.update({'user_id': 'test', 'state':'cart'},
                      {'$push': {'line_items':{'sku': p.sku, 'price': parseFloat(p.price), 'nombre': p.title, 'store': p.store, 'rAddon':p.rAddon }},
                       '$inc': {'subtotal': parseFloat(p.price) }},
