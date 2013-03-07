@@ -192,7 +192,7 @@ function evento (ev)
         resultHtml+='<img src="'+pic+'">';
         resultHtml+='<p class="Name">'+item.Title+'</p>'; 
         resultHtml+='<p class="Peek">'+item.Peek+'</p>'; 
-        resultHtml+='<span class="Likes"> <div class="fb-like" data-href="http://www.srluis.com/?o=product&q='+item._id+'" data-send="false" data-layout="button_count" data-width="115" data-show-faces="false"></div>  </span>'; 
+        resultHtml+='<span class="Likes"> <div class="fb-like" data-href="http://srluis.com/?o=product&q='+item._id+'" data-send="false" data-layout="button_count" data-width="115" data-show-faces="false"></div>  </span>'; 
         
         if(item.Price==0){
         resultHtml+='<span class="Price">A Convenir.</span>';
