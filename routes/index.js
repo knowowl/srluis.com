@@ -1,6 +1,7 @@
 var http = require('http')
 ,   stringify = require('querystring').stringify
-,   request = require('request');
+,   request = require('request')
+, url='http://localhost:3000/';
 
 
 exports.index = function(req, res){
@@ -11,7 +12,17 @@ exports.contact = function(req, res){
 };
 exports.store = function(req, res){
   var s=req.param('s', null);
-  res.render('store', { title: 'Express', success: s  });
+  res.render('store', { 
+  	url:url,
+  	title: 'Express',
+  	success: s,
+  	btn1:'',
+    btn2:'',
+    btn3:'',
+    btn4:'active',
+    btn5:'',
+    btn6:''
+  });
 };
 exports.store_add_product = function(req, res){
   res.render('store_add_product', { title: 'Express' });

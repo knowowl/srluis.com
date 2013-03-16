@@ -5,6 +5,8 @@
 
 var express = require('express')
   , cloudinary = require('cloudinary')
+  , flash = require('connect-flash')
+  , util = require('util')
   , fs = require('fs')
   , stylus = require('stylus')
   , nib = require('nib')  
@@ -17,18 +19,23 @@ var express = require('express')
   , mongoose = require('mongoose')
   , db = mongoose.connect('mongodb://ricroid:7023341conde...@linus.mongohq.com:10028/app11422772')
   , Schema = mongoose.Schema
-  , line_items = new Schema({sku:String, nombre: String, store: String,rAddon:[rAddon],aAddon:[aAddon],cAddon:[cAddon], price: Number})
+  , line_items = new Schema({sku:String,user_id:String, nombre: String, store: String,rAddon:[rAddon],aAddon:[aAddon],cAddon:[cAddon], price: Number})
   , rAddon = new Schema({label:String, price: Number})
   , aAddon = new Schema({label:String, price: Number})
   , cAddon = new Schema({label:String, price: Number})
   , order = mongoose.model('Order',  new Schema({user_id:String, line_items: [line_items], state: String, subtotal: Number }), "order" )
   , productSchema= new Schema({sku:String, store: String, title: String, peek: String, tags: String,rAddon:[rAddon],aAddon:[aAddon],cAddon:[cAddon], type: String, img: String, price: Number})
-  , productModel = mongoose.model('product', productSchema, 'product');
-
-  
-
+  , productModel = mongoose.model('product', productSchema, 'product')
+  , passport = require('passport')
+  , LocalStrategy = require('passport-local').Strategy
+  , site_url='http://localhost:3000/';
 
 var app = express();
+var users = [
+    { id: '1', username: 'ricroid', password: '2281990', email: 'ceo@know-owl.com', store: true }
+  , { id: '2', username: 'guest', password: 'guest', email: 'baul.conde@gmail.com', store:false }
+];
+
 function compile(str, path) {
   return stylus(str)
     .set('filename', path)
@@ -36,15 +43,60 @@ function compile(str, path) {
     .use(nib())
     .import('nib');
 }
+function findById(id, fn) {
+  var idx = id - 1;
+  if (users[idx]) {
+    fn(null, users[idx]);
+  } else {
+    fn(new Error('User ' + id + ' does not exist'));
+  }
+}
 
+function findByUsername(username, fn) {
+  for (var i = 0, len = users.length; i < len; i++) {
+    var user = users[i];
+    if (user.email === username) {
+      return fn(null, user);
+    }
+  }
+  return fn(null, null);
+}
+
+
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done) {
+  findById(id, function (err, user) {
+    done(err, user);
+  });
+});
+passport.use(new LocalStrategy(
+  function(username, password, done) {
+
+    process.nextTick(function () {
+      
+      findByUsername(username, function(err, user) {
+        if (err) { return done(err); }
+        if (!user) { return done(null, false, { message: 'Unknown user ' + username }); }
+        if (user.password != password) { return done(null, false, { message: 'Invalid password' }); }
+        return done(null, user);
+      })
+    });
+  }
+));
 
 app.configure(function(){
+
+ 
   app.set('port', process.env.PORT || 3000);
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
 
   app.use(express.favicon());
   app.use(express.logger('dev'));
+  app.use(express.cookieParser());
   app.use(express.bodyParser());
   app.use(stylus.middleware(
   { src: __dirname + '/public'
@@ -55,6 +107,12 @@ app.configure(function(){
 
   app.use(express.bodyParser());
   app.use(express.methodOverride());
+   app.use(express.session({ secret: 'keyboard cat' }));
+  // Initialize Passport!  Also use passport.session() middleware, to support
+  // persistent login sessions (recommended).
+  app.use(flash());
+  app.use(passport.initialize());
+  app.use(passport.session());
   app.use(app.router);
   app.use(express.static(path.join(__dirname, 'public')));
 });
@@ -66,10 +124,11 @@ app.configure('development', function(){
 });
 app.locals.api_key = cloudinary.config().api_key;
 app.locals.cloud_name = cloudinary.config().cloud_name;
-app.get('/', loadSearch(), function(req, res, next) {
+app.get('/',ensureAuthenticated, loadSearch(), function(req, res, next) {
+  
    var p=req.searchResults[0];
     if(req.param('q', null)==null){
-      res.render('index', { productPage: false });
+      res.render('index', { productPage: false, user:req.user });
     }else{
       var typeGood;
       switch(p.Type){
@@ -78,6 +137,7 @@ app.get('/', loadSearch(), function(req, res, next) {
         default:typeGood='product';break;
       }
       res.render('index', { 
+        user:req.user,
         title: p.Title,
         type: typeGood,
         peek:  p.Peek,
@@ -92,21 +152,26 @@ app.get('/', loadSearch(), function(req, res, next) {
     }
 });
 app.get('/contact', routes.contact);
-app.get('/store', routes.store);
-app.get('/store/add_product', routes.store_add_product);
+app.get('/store/product/add', routes.store);
 app.get('/users', user.list);
+app.get('/login', function(req, res){
 
+  res.render('login', { user: req.user, message: req.flash('error') });
+});
 
-
+app.post('/login', 
+  passport.authenticate('local', { successRedirect: '/', failureRedirect: '/login', failureFlash: true }),
+  function(req, res) {
+    res.redirect('/');
+  });
 
 function loadSearch() {
     return function(req, res, next) {
       req.searchResults = [];
-      if(req.param('q', null) != null){
-             
+      if(req.param('q', null) != null){             
         if(req.param('o', null)!=null){
           var url = 'http://6czgqqle:ceur22bw9iso66xu@juniper-2415144.us-east-1.bonsai.io/srluis/_search?q=_id:'+req.param('q', null);
-          console.log(url);
+          
         }else{
           var q=req.param('q', null).toUpperCase().replace(/([^0-9A-Z])/g,"");
           var url = 'http://6czgqqle:ceur22bw9iso66xu@juniper-2415144.us-east-1.bonsai.io/srluis/_search?q='+q;
@@ -129,6 +194,7 @@ function loadSearch() {
 app.get('/search', loadSearch(), function(req, res, next) {
      res.json(req.searchResults);
 });
+
 app.post('/addProduct', function(request, response){
  var r=request.body.product;
  var product = new productModel();
@@ -171,17 +237,70 @@ app.post('/addProduct', function(request, response){
      
     });
   imageStream.on('data', cloudStream.write).on('end', cloudStream.end);
- response.redirect('/store?s=true');
+ response.redirect('/store/product/add?s=true');
   
 });
 app.post('/uploadImage', function(req, res){
   var imageStream = fs.createReadStream(req.files.image.path, { encoding: 'binary' })
-    , cloudStream = cloudinary.uploader.upload_stream(function() { res.redirect('/store'); });
+    , cloudStream = cloudinary.uploader.upload_stream(function() { res.redirect('/store/product/add'); });
 
   imageStream.on('data', cloudStream.write).on('end', cloudStream.end);
 });
+app.get('/logout', function(req, res){
+  req.logout();
+  res.redirect('/');
+});
 
-
+app.get('/store/product/list', ensureAuthenticated, function(req, res){
+  productModel.find({'user_id': req.user.id}, 
+          function(err, p) {              
+            res.render('list', {
+              url:site_url,
+              products: p,
+              btn1:'',
+              btn2:'',
+              btn3:'',
+              btn4:'',
+              btn5:'active',
+              btn6:''});
+          });
+});
+app.get('/store/cart', ensureAuthenticated, function(req, res){
+  
+  order.find({'state':'cart','line_items.user_id': req.user.id}, 
+          function(err, p) {    
+                    
+            res.render('cart', {
+              user:req.user,
+              url:site_url,
+              cart: p,
+              btn1:'',
+              btn2:'active',
+              btn3:'',
+              btn4:'',
+              btn5:'',
+              btn6:''
+            });
+          }); 
+});
+app.get('/store/order', ensureAuthenticated, function(req, res){
+  
+  order.find({'state':'order','line_items.user_id': req.user.id}, 
+          function(err, p) {    
+                    
+            res.render('order', {
+              user:req.user,
+              url:site_url,
+              cart: p,
+              btn1:'active',
+              btn2:'',
+              btn3:'',
+              btn4:'',
+              btn5:'',
+              btn6:''
+            });
+          }); 
+});
 app.get('/order', function(req, res) {
     res.contentType('application/json');       
     if(req.param('q', null)!="q" && req.param('q', null)!=null){
@@ -214,3 +333,7 @@ app.get('/order', function(req, res) {
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
 });
+function ensureAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) { return next(); }
+  res.redirect('/login')
+}

@@ -6,46 +6,26 @@ html.no-js
     title
     meta(name='description', content='')
     meta(name='viewport', content='width=device-width')
-    link(rel='stylesheet', href='css/bootstrap.min.css')    
-    link(rel='stylesheet', href='css/bootstrap-responsive.min.css')
-    link(rel='stylesheet', href='css/store.css')
+    link(rel='stylesheet', href=url+'css/bootstrap.min.css')    
+    link(rel='stylesheet', href=url+'css/bootstrap-responsive.min.css')
+    link(rel='stylesheet', href=url+'css/store.css')
     link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300')
     link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Muli:300,400')
     link(rel='stylesheet', href='http://know-owl.com/img/srluis/style.css')
-    link(rel='stylesheet', href='css/jquery.mCustomScrollbar.css')
-    link(rel='stylesheet', href='css/bootstrap-fileupload.min.css')
-    script(src='js/vendor/modernizr-2.6.2-respond-1.1.0.min.js')
+    link(rel='stylesheet', href=url+'css/jquery.mCustomScrollbar.css')
+    link(rel='stylesheet', href=url+'css/bootstrap-fileupload.min.css')
+    script(src=url+'js/vendor/modernizr-2.6.2-respond-1.1.0.min.js')
   body
-    #navbar-example.navbar.navbar-static
-      .navbar-inner
-        .container(style="width:auto;")
-          a.brand(href="#") SrLuis
-          ul.nav(role="navigation")
-            li.dropdown
-              a#drop1.dropdown-toggle(href="#", role="button", data-toggle="dropdown") Dashboard 
-            li.dropdown
-              a#drop1.dropdown-toggle(href="#", role="button", data-toggle="dropdown") Pedidos
-            li.dropdown
-              a#drop1.dropdown-toggle(href="#", role="button", data-toggle="dropdown") Carritos
-            li.dropdown
-              a#drop1.dropdown-toggle(href="#", role="button", data-toggle="dropdown") Productos
-                b.caret
-              ul.dropdown-menu(role="menu", aria-labelledby="drop1")
-                li(role="presentation")
-                  a(role="menuitem", tabindex="-1", href="store/add_product") Agregar producto
-                li(role="presentation")
-                  a(role="menuitem", tabindex="-1", href="#") Ver productos
-            li.dropdown
-              a#drop1.dropdown-toggle(href="#", role="button", data-toggle="dropdown") Reglas de envio
+    include include/navbar-store
+    
     if success != null
       .alert.alert-success.span8.offset2
         button.close(type="button", data-dismiss="alert")&times;
         b ¡Bien hecho! 
         | los cambios se han ejecutado con exito.
-
-    h3.span12 Producto o Servicio Nuevo.
+    h3.span10.offset2 Producto o Servicio Nuevo.
     #step1
-      form#addForm.form-horizontal.span10.offset1(action='/addProduct', method='POST', enctype="multipart/form-data")    
+      form#addForm.form-horizontal.span10.offset2(action='/addProduct', method='POST', enctype="multipart/form-data")    
         input#inputR(type='hidden', name='product[rAddon]', value='')
         input#inputA(type='hidden', name='product[aAddon]', value='')
         input#inputC(type='hidden', name='product[cAddon]', value='')
@@ -153,11 +133,11 @@ html.no-js
     script(src='http://code.jquery.com/ui/1.10.0/jquery-ui.js')
     script
       window.jQuery || document.write('<script src="js/vendor/jquery-1.9.0.min.js"><\\/script>')
-    script(src='js/vendor/bootstrap.min.js')
-    script(src='js/bootstrap-fileupload.min.js')
-    script(src='js/plugins.js')  
-    script(src='js/select.js')  
-    script(src='js/store.js')
+    script(src=url+'js/vendor/bootstrap.min.js')
+    script(src=url+'js/bootstrap-fileupload.min.js')
+    script(src=url+'js/plugins.js')  
+    script(src=url+'js/select.js')  
+    script(src=url+'js/store.js')
     script
       var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
       (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];

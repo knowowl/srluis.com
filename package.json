@@ -15,7 +15,11 @@
     "nib": "*",
     "underscore": "latest",
     "request": "latest",
-    "cloudinary": ""
+    "cloudinary": "",
+    "passport": "*",
+    "passport-local": "*",
+    "connect-flash": "*",
+    "util": "*"
    
   },
   "engines": {

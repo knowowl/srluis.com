@@ -3,8 +3,7 @@ $(window).load(function(){
     if($('.productPage').length > 0){
     $('#myCarousel').hide();
     $('.results').masonry({itemSelector : '.product-box' });
-  }   
-  
+  }  
 });
 $(window).scroll(function(){ $('.popover').hide();});
 $('#cartList').scroll(function(){ $('.popover').hide();});
@@ -27,9 +26,11 @@ var cartData;
   var cartData= data;
      var resultHtml = '';
      var resultHtml2 = '';
+     var order=[];
+     var subtotal=0;
      $.each(data.line_items, function(i,item){                
                 resultHtml+='<div class="cart-box" item="'+i+'">';                
-                resultHtml+='<a class="cart-product">';
+                resultHtml+='<a class="cart-product"  data-target="#myModal" data-toggle="modal" >';
                 resultHtml+='<div class="cart-product-inner">';                
                 resultHtml+='<p class="inCartName">'+item.nombre+'</p>';                
                 resultHtml+='<p class="inCartStore">'+item.store+'</p>';                
@@ -37,46 +38,35 @@ var cartData;
                 resultHtml+='</div>';
                 resultHtml+='</a>';
                 resultHtml+='</div>';
+                subtotal+=item.price;
+                if(typeof order[item.store] == 'undefined'){
+                  order[item.store]=[];                
+                  order[item.store]['item']=new Array();
+                  order[item.store]['price']=new Array();
+                }
+                order[item.store]['item'].push(item.nombre);
+                order[item.store]['price'].push(item.price);
             
             });
+     
       resultHtml2+='<p class="subtotal-label">Sub-total</p>';
-      resultHtml2+='<p class="subtotal-number">'+data.subtotal+'</p>';
+      resultHtml2+='<p class="subtotal-number">'+subtotal+'</p>';
       resultHtml2+='<p class="subtotal-label">Envio</p>';
-      resultHtml2+='<p class="subtotal-number">'+(data.subtotal*0.10)+'</p>';
+      resultHtml2+='<p class="subtotal-number">'+(subtotal*0.10)+'</p>';
       resultHtml2+='<p class="total-label">Total</p>';
-      resultHtml2+='<p class="total-number">'+(data.subtotal*1.10)+'</p>';
-      resultHtml2+='<a class="ordenar">Ordenar</a>';
+      resultHtml2+='<p class="total-number">'+(subtotal*1.10)+'</p>';
+      resultHtml2+='<a id="orderBtn" data-target="#myModal" data-toggle="modal" role="button" class="btn btn-success" style="width:83%; margin:2%">Ordenar</a>';
       $('#cartTotal').html(resultHtml2);
-
-      $('#cartList').html(resultHtml+"<div class='cartGuide'></div>");
-  
-      $(".cart-box").mouseenter(function(){
-          s = $(this);
-          var p= s.offset();
-          var w=$(window).scrollTop();
-          var top=((p.top)- ($('.productSettings').height()/2)+13);
-          var left=(p.left-($('.productSettings').width()));
-         
-
-          var minTop=w;
-          var maxTop=(w+$('#cartList').height())-$('.productSettings').height()+100;
-          
-          
-         
-          top=(top<=minTop)?minTop:top;
-          top=(top>=maxTop)?maxTop:top;
-
-          $('.productSettings').css({'position': 'absolute','left': left,'top': top, display:'block'});
-          var topArrow=(p.top-$('.popover').offset().top)+13;
-          $('.productSettings .arrow').css({'top': topArrow});
+      $('#cartList').html(resultHtml+"<div class='cartGuide'></div>");  
+      $(".cart-box").click(function(){
           var itemId=$(this).attr('item');          
           var popoverTitle=cartData.line_items[itemId].nombre+'<button class="close closeSettings" type="button" aria-hidden="true">&times;</button>';
           var popoverPeek=cartData.line_items[itemId].peek;
           var quitar=cartData.line_items[itemId].rAddon;       
           var agregar=cartData.line_items[itemId].aAddon;    
           var cambiar=cartData.line_items[itemId].cAddon;    
-          $('.popover-title').html(popoverTitle);
-          $('.popover-peek').html(popoverPeek);
+          $('.modal-title').html(popoverTitle);
+          $('.modal-peek').html(popoverPeek);
           $('#quitar').html(renderCheckbox(quitar, 'q'));
           $('#agregar').html(renderCheckbox(agregar, 'a'));
           $('#cambiar').html(renderCheckbox(cambiar, 'c'));
@@ -176,6 +166,7 @@ function evento (ev)
     //Create HTML structure for the results and insert it on the result div
   
     function showResults(data, highlight){
+      var resultData= data;
       var resultHtml = '';
       $('.masonry').masonry( 'destroy' );
       $.each(data, function(i,item){
@@ -183,8 +174,8 @@ function evento (ev)
         if(item.Img){
           pic = $.cloudinary.url(item.Img, {width: 240, crop: "fill"});
         }
-        resultHtml+='<div class="product-box">';
-        resultHtml+='<a class="product">';
+        resultHtml+='<div class="product-box"  item="'+i+'">'; 
+        resultHtml+='<a class="product"  data-target="#myModal" data-toggle="modal">';
         resultHtml+='<div class="product-inner">';                
         resultHtml+='<p class="Store">'+item.Store+'</p>'; 
         resultHtml+='<input type="hidden" class="Store_id" value="'+item.Store_id+'">'; 
@@ -217,15 +208,37 @@ function evento (ev)
           if(eachCount==maxCount){
             FB.XFBML.parse(document.body);
             $(".product-box").click(function(){  
-              $("#cartList").animate({height: ($(window).height()-36-85)+"px"}, 300);
-              $("#cartTotal").fadeIn("fast");
-              cartListEnable=true;
-              var p = $(this).position();
-              var t = $(".cartGuide").offset();
-              $(this).clone().appendTo(".results").css({top:p.top+"px", left:p.left+"px", position:"absolute", opacity: "1"}).animate({'top': t.top+"px",
-              'left': (t.left-200)+'px', 'opacity':0}, 500 ,'linear', function(){
-                $(this).remove();
-                loadCart($(".Store_id",this).val()+"#"+$(".Sku",this).val());
+              if(!cartListEnable){
+                $("#cartList").animate({height: ($(window).height()-36-85)+"px"}, 300);
+                $("#cartTotal").fadeIn("fast");
+                $('.cart').addClass('cart-active');
+                $('.results').removeClass('span12').addClass('span10').css('right','200px');
+                $('.masonry').masonry( 'destroy' );
+                $('.results').masonry({itemSelector : '.product-box' });
+                cartListEnable=true;
+              }       
+              var target= $(this);
+              var itemId=$(this).attr('item');   
+                      console.log(resultData[itemId]);
+                var popoverTitle=resultData[itemId].Title;
+                var popoverPeek=resultData[itemId].Peek;
+                var quitar=resultData[itemId].rAddon;       
+                var agregar=resultData[itemId].aAddon;    
+                var cambiar=resultData[itemId].cAddon;    
+                $('.modal-header h3').html(popoverTitle);
+                $('.modal-peek').html(popoverPeek);
+                $('#quitar').html(renderCheckbox(quitar, 'q'));
+                $('#agregar').html(renderCheckbox(agregar, 'a'));
+                $('#cambiar').html(renderCheckbox(cambiar, 'c'));
+                $('.closeSettings').click(function(){ $(this).parent().parent().hide();});
+                $('.row-addons').click(function(){
+                  var c=$(this).children('td').children('input');           
+                  c.prop('checked', !c.prop('checked'));
+                });
+              $('#addToCart').click(function(){             
+                
+                sendToCart(target);
+                //cerrar Modal ... buscar en bootstrap
               });
             });
           }                       
@@ -237,6 +250,15 @@ function evento (ev)
       e.preventDefault();
     });
   });
+  function sendToCart(target){
+    var p = $(target).position();
+    var t = $(".cartGuide").offset();
+    $(target).clone().appendTo(".results").css({top:p.top+"px", left:p.left+"px", position:"absolute", opacity: "1"}).animate({'top': t.top+"px",
+              'left': (t.left-200)+'px', 'opacity':0}, 500 ,'linear', function(){
+              $(target).remove();
+              loadCart($(".Store_id",target).val()+"#"+$(".Sku",target).val());
+              });
+  }
 
   var opts = {
   lines: 11, // The number of lines to draw
@@ -258,24 +280,7 @@ function evento (ev)
  $(".loading").spin(opts);
 
 }
-$(".search").click(function(){    
-  if($('.searchList').height()==0){
-    $('.searchList').animate({height: '100px'}, 300);
-    var delayIt = 100;
-    $('.category li').each(function(){                
-      delayIt += 100;
-      $(this).delay(delayIt).fadeIn(100);
-    });
-  }   
 
-  
-});
-        
-    
-    $(".search").blur(function(){
-        $('.searchList').animate({height: '0px'}, 300);
-        $('.category>li').fadeOut(100);
-    });
 
     $(".search").keyup(function(){
         if($(".search").val()==""){
@@ -308,13 +313,13 @@ $(".search").click(function(){
      $('.results').masonry({itemSelector : '.product-box' });
 
      }else{
-    $("#cartList").animate({height: ($(window).height()-36-85)+"px"}, 300);
-     $("#cartTotal").fadeIn("fast");
-     $('.cart').addClass('cart-active');
-     $('.results').removeClass('span12').addClass('span10').css('right','200px');
-     $('.masonry').masonry( 'destroy' );
-     $('.results').masonry({itemSelector : '.product-box' });
-    cartListEnable=true;
+      $("#cartList").animate({height: ($(window).height()-36-85)+"px"}, 300);
+      $("#cartTotal").fadeIn("fast");
+      $('.cart').addClass('cart-active');
+      $('.results').removeClass('span12').addClass('span10').css('right','200px');
+      $('.masonry').masonry( 'destroy' );
+      $('.results').masonry({itemSelector : '.product-box' });
+      cartListEnable=true;
     }
   });
 $.fn.spin = function(opts) {

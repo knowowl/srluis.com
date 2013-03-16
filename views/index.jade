@@ -40,17 +40,14 @@ html.no-js
                     i.icon-user.icon-white                              
                 ul.dropdown-menu
                   li
-                    a(href='#') Action
-                  li
-                    a(href='#') Another action
-                  li
-                    a(href='#') Something else here
+                    a(href='#') Mi cuenta                  
+                  if user.store 
+                    li.divider
+                    li
+                      a(href='/store/order') Mi tienda                  
                   li.divider
-                  li.nav-header Nav header
                   li
-                    a(href='#') Separated link
-                  li
-                    a(href='#') One more separated link
+                    a(href='/logout') Cerrar sesión
           form   
             .searchIcon
               i.icon-search.icon-white
@@ -86,7 +83,7 @@ html.no-js
     #myCarousel.carousel.slide
       .carousel-inner
         .item.active
-          img(src="http://know-owl.com/img/srluis/carousel.jpg", alt="") 
+          img(src="", alt="") 
     .row
       .loading.span2.offset5
       .results.span12
@@ -108,46 +105,34 @@ html.no-js
                   .fb-like(data-href="http://srluis.com/?o=product&q=#{id}", data-send="false", data-layout="button_count", data-width="115",data-show-faces="false")
                 span.Price Bs. 
                   span.PriceNumber #{price}
-                                     
-        
+
     
-    .popover.left.productSettings
-      .arrow
-      h3.popover-title Opciones del producto
-        button.close.closeSettings(type="button", aria-hidden="true")&times;
-      .popover-content
-        h6 Descripcion:
-        p.popover-peek  Relleno de anguila, cangrejo y queso crema con tope de masago y lluvia de camarones tempurizados con salsa de mostaza miel.
+
          
-        ul.nav.nav-tabs#myTab
+
           
+
+    #myModal.modal.hide.fade(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
+      .modal-header
+        button.close(type="button", data-dismiss="modal", aria-hidden="true")&times;
+        h3 Opciones del producto  
+      .modal-body
+        h6 Descripcion:
+        p.modal-peek  Relleno de anguila, cangrejo y queso crema con tope de masago y lluvia de camarones tempurizados con salsa de mostaza miel.
+        ul.nav.nav-tabs#myTab          
           li.active
             a(href="#agregar") Agregale
           li
             a(href="#cambiar") Cambiale 
           li
             a(href="#quitar") Quitale
-
         .tab-content                   
           .tab-pane#agregar.active 
           .tab-pane#cambiar
-          .tab-pane#quitar  
-
-          button.btn.btn-mini.btn-danger.btnDeleteList Eliminar de la lista
-
-   
-   
-        
-
-    #myModal.modal.hide.fade(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
-      .modal-header
-        button.close(type="button", data-dismiss="modal", aria-hidden="true")&times;
-        h3 Modal header  
-      .modal-body
-        p One fine body… 
+          .tab-pane#quitar 
       .modal-footer
-        a(href="#", class="btn") Close
-        a(href="#", class="btn btn-primary") Save changes
+        a(href="#", class="btn", data-dismiss="modal", aria-hidden="true") Cancelar
+        a#addToCart(href="#", class="btn btn-primary ", data-dismiss="modal", aria-hidden="true") Agregar a la lista de pedidos >>
    
 
     footer
