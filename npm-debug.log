@@ -1,0 +1,184 @@
+info it worked if it ends with ok
+verbose cli [ '/usr/bin/nodejs', '/usr/bin/npm', 'install' ]
+info using npm@1.1.4
+info using node@v0.6.19
+verbose config file /home/ricroid/.npmrc
+verbose config file /usr/etc/npmrc
+verbose config file /usr/share/npm/npmrc
+verbose caching /home/ricroid/projects/srluis/package.json
+verbose loadDefaults srluis@0.0.1
+verbose readDependencies: using package.json deps
+verbose where, deps [ '/home/ricroid/projects/srluis',
+verbose where, deps   [ 'express',
+verbose where, deps     'mongoose',
+verbose where, deps     'coffee-script',
+verbose where, deps     'connect-coffee-script',
+verbose where, deps     'jade',
+verbose where, deps     'stylus',
+verbose where, deps     'nib',
+verbose where, deps     'underscore',
+verbose where, deps     'request',
+verbose where, deps     'cloudinary',
+verbose where, deps     'passport',
+verbose where, deps     'passport-local',
+verbose where, deps     'connect-flash',
+verbose where, deps     'util',
+verbose where, deps     'socket.io' ] ]
+verbose from cache /home/ricroid/projects/srluis/package.json
+info preinstall srluis@0.0.1
+verbose caching /home/ricroid/projects/srluis/node_modules/coffee-script/package.json
+verbose loadDefaults coffee-script@1.4.0
+verbose caching /home/ricroid/projects/srluis/node_modules/express/package.json
+verbose loadDefaults express@3.1.0
+verbose caching /home/ricroid/projects/srluis/node_modules/connect-flash/package.json
+verbose caching /home/ricroid/projects/srluis/node_modules/jade/package.json
+verbose loadDefaults jade@0.28.1
+verbose caching /home/ricroid/projects/srluis/node_modules/connect-coffee-script/package.json
+verbose loadDefaults connect-coffee-script@0.1.1
+verbose caching /home/ricroid/projects/srluis/node_modules/util/package.json
+verbose caching /home/ricroid/projects/srluis/node_modules/stylus/package.json
+verbose loadDefaults stylus@0.32.0
+verbose caching /home/ricroid/projects/srluis/node_modules/mongoose/package.json
+verbose loadDefaults mongoose@3.5.5
+verbose caching /home/ricroid/projects/srluis/node_modules/passport-local/package.json
+verbose caching /home/ricroid/projects/srluis/node_modules/socket.io/package.json
+verbose caching /home/ricroid/projects/srluis/node_modules/cloudinary/package.json
+verbose caching /home/ricroid/projects/srluis/node_modules/request/package.json
+verbose loadDefaults request@2.14.0
+verbose caching /home/ricroid/projects/srluis/node_modules/passport/package.json
+verbose caching /home/ricroid/projects/srluis/node_modules/nib/package.json
+verbose loadDefaults nib@0.9.1
+verbose caching /home/ricroid/projects/srluis/node_modules/underscore/package.json
+verbose loadDefaults underscore@1.4.4
+verbose from cache /home/ricroid/projects/srluis/package.json
+verbose readDependencies: using package.json deps
+verbose from cache /home/ricroid/projects/srluis/node_modules/coffee-script/package.json
+verbose from cache /home/ricroid/projects/srluis/node_modules/express/package.json
+verbose from cache /home/ricroid/projects/srluis/node_modules/connect-flash/package.json
+verbose from cache /home/ricroid/projects/srluis/node_modules/jade/package.json
+verbose from cache /home/ricroid/projects/srluis/node_modules/connect-coffee-script/package.json
+verbose from cache /home/ricroid/projects/srluis/node_modules/util/package.json
+verbose from cache /home/ricroid/projects/srluis/node_modules/stylus/package.json
+verbose from cache /home/ricroid/projects/srluis/node_modules/mongoose/package.json
+verbose from cache /home/ricroid/projects/srluis/node_modules/passport-local/package.json
+verbose from cache /home/ricroid/projects/srluis/node_modules/socket.io/package.json
+verbose from cache /home/ricroid/projects/srluis/node_modules/cloudinary/package.json
+verbose from cache /home/ricroid/projects/srluis/node_modules/request/package.json
+verbose from cache /home/ricroid/projects/srluis/node_modules/passport/package.json
+verbose from cache /home/ricroid/projects/srluis/node_modules/nib/package.json
+verbose from cache /home/ricroid/projects/srluis/node_modules/underscore/package.json
+verbose already installed in /home/ricroid/projects/srluis skipping nib@*
+verbose already installed in /home/ricroid/projects/srluis skipping cloudinary@
+verbose cache add [ 'underscore@latest', null ]
+silly cache add: name, spec, args [ undefined, 'underscore@latest', [ 'underscore@latest', null ] ]
+verbose parsed url { pathname: 'underscore@latest',
+verbose parsed url   path: 'underscore@latest',
+verbose parsed url   href: 'underscore@latest' }
+silly cache add: name, spec, args [ 'underscore', 'latest', [ 'underscore', 'latest' ] ]
+verbose parsed url { pathname: 'latest', path: 'latest', href: 'latest' }
+verbose addNamed [ 'underscore', 'latest' ]
+verbose addNamed [ null, null ]
+info addNameTag [ 'underscore', 'latest' ]
+verbose already installed in /home/ricroid/projects/srluis skipping passport@*
+verbose cache add [ 'request@latest', null ]
+silly cache add: name, spec, args [ undefined, 'request@latest', [ 'request@latest', null ] ]
+verbose parsed url { pathname: 'request@latest',
+verbose parsed url   path: 'request@latest',
+verbose parsed url   href: 'request@latest' }
+silly cache add: name, spec, args [ 'request', 'latest', [ 'request', 'latest' ] ]
+verbose parsed url { pathname: 'latest', path: 'latest', href: 'latest' }
+verbose addNamed [ 'request', 'latest' ]
+verbose addNamed [ null, null ]
+info addNameTag [ 'request', 'latest' ]
+verbose already installed in /home/ricroid/projects/srluis skipping passport-local@*
+verbose already installed in /home/ricroid/projects/srluis skipping connect-flash@*
+verbose already installed in /home/ricroid/projects/srluis skipping util@*
+verbose already installed in /home/ricroid/projects/srluis skipping socket.io@*
+verbose already installed in /home/ricroid/projects/srluis skipping express@3.1.0
+verbose already installed in /home/ricroid/projects/srluis skipping mongoose@3.5.5
+verbose already installed in /home/ricroid/projects/srluis skipping coffee-script@1.4.0
+verbose already installed in /home/ricroid/projects/srluis skipping connect-coffee-script@*
+verbose already installed in /home/ricroid/projects/srluis skipping jade@*
+verbose already installed in /home/ricroid/projects/srluis skipping stylus@*
+verbose raw, before any munging underscore
+verbose url resolving [ 'https://registry.npmjs.org/', './underscore' ]
+verbose url resolved https://registry.npmjs.org/underscore
+verbose etag "DBHCWLRLF5LX7HJF7D8M2HNFO"
+http GET https://registry.npmjs.org/underscore
+verbose raw, before any munging request
+verbose url resolving [ 'https://registry.npmjs.org/', './request' ]
+verbose url resolved https://registry.npmjs.org/request
+verbose etag "B4TK9VG8WTYH39CWFYKU6VGS2"
+http GET https://registry.npmjs.org/request
+http 304 https://registry.npmjs.org/request
+silly get cb [ 304,
+silly get cb   { server: 'CouchDB/1.2.1 (Erlang OTP/R15B03)',
+silly get cb     etag: '"B4TK9VG8WTYH39CWFYKU6VGS2"',
+silly get cb     date: 'Thu, 21 Mar 2013 02:59:47 GMT',
+silly get cb     'content-length': '0' } ]
+verbose etag request from cache
+http 304 https://registry.npmjs.org/underscore
+silly get cb [ 304,
+silly get cb   { server: 'CouchDB/1.2.1 (Erlang OTP/R15B03)',
+silly get cb     etag: '"DBHCWLRLF5LX7HJF7D8M2HNFO"',
+silly get cb     date: 'Thu, 21 Mar 2013 02:59:47 GMT',
+silly get cb     'content-length': '0' } ]
+verbose etag underscore from cache
+verbose bin dist [ '0.6-ares1.9.1-evundefined-openssl1.0.1c-v83.8.9.20-linux-ia32-3.5.0-25-generic',
+verbose bin dist   { shasum: '61a6a32010622afa07963bf325203cf12239d604',
+verbose bin dist     tarball: 'http://registry.npmjs.org/underscore/-/underscore-1.4.4.tgz' } ]
+verbose bin dist [ '0.6-ares1.9.1-evundefined-openssl1.0.1c-v83.8.9.20-linux-ia32-3.5.0-25-generic',
+verbose bin dist   { shasum: '872fe445ae72de266b37879d6ad7dc948fa01cad',
+verbose bin dist     tarball: 'http://registry.npmjs.org/request/-/request-2.16.6.tgz' } ]
+verbose caching /home/ricroid/.npm/underscore/1.4.4/package/package.json
+verbose loadDefaults underscore@1.4.4
+info already installed underscore@1.4.4
+verbose caching /home/ricroid/.npm/request/2.16.6/package/package.json
+verbose loadDefaults request@2.16.6
+silly resolved [ { name: 'request',
+silly resolved     description: 'Simplified HTTP request client.',
+silly resolved     tags: [ 'http', 'simple', 'util', 'utility' ],
+silly resolved     version: '2.16.6',
+silly resolved     author: { name: 'Mikeal Rogers', email: 'mikeal.rogers@gmail.com' },
+silly resolved     repository: { type: 'git', url: 'git://github.com/mikeal/request.git' },
+silly resolved     bugs: { url: 'http://github.com/mikeal/request/issues' },
+silly resolved     engines: [ 'node >= 0.8.0', node: ' >= 0.8.0' ],
+silly resolved     main: 'index.js',
+silly resolved     dependencies: 
+silly resolved      { 'form-data': '~0.0.3',
+silly resolved        mime: '~1.2.7',
+silly resolved        hawk: '~0.10.2',
+silly resolved        'node-uuid': '~1.4.0',
+silly resolved        'cookie-jar': '~0.2.0',
+silly resolved        'aws-sign': '~0.2.0',
+silly resolved        'oauth-sign': '~0.2.0',
+silly resolved        'forever-agent': '~0.2.0',
+silly resolved        'tunnel-agent': '~0.2.0',
+silly resolved        'json-stringify-safe': '~3.0.0',
+silly resolved        qs: '~0.5.4' },
+silly resolved     scripts: { test: 'node tests/run.js' },
+silly resolved     _id: 'request@2.16.6',
+silly resolved     devDependencies: {},
+silly resolved     optionalDependencies: {},
+silly resolved     _engineSupported: false,
+silly resolved     _npmVersion: '1.1.4',
+silly resolved     _nodeVersion: 'v0.6.19',
+silly resolved     _defaultsLoaded: true,
+silly resolved     _from: 'request@latest' } ]
+info into /home/ricroid/projects/srluis request@2.16.6
+info installOne request@2.16.6
+verbose installOne cb request@2.16.6
+ERR! Unsupported
+ERR! Not compatible with your version of node/npm: request@2.16.6
+ERR! Required: ["node >= 0.8.0"]
+ERR! Actual:   {"npm":"1.1.4","node":"0.6.19"}
+ERR! 
+ERR! System Linux 3.5.0-25-generic
+ERR! command "/usr/bin/nodejs" "/usr/bin/npm" "install"
+ERR! cwd /home/ricroid/projects/srluis
+ERR! node -v v0.6.19
+ERR! npm -v 1.1.4
+ERR! code ENOTSUP
+ERR! message Unsupported
+ERR! errno {}
+verbose exit [ 1, true ]

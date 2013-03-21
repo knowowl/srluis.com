@@ -5,14 +5,17 @@
 
 var express = require('express')
   , cloudinary = require('cloudinary')
+  , http = require('http')
+  , app = express()
+  , server = http.createServer(app)
+  , io = require('socket.io').listen(server)
   , flash = require('connect-flash')
   , util = require('util')
   , fs = require('fs')
   , stylus = require('stylus')
-  , nib = require('nib')  
+  , nib = require('nib')
   , routes = require('./routes')
-  , user = require('./routes/user')
-  , http = require('http')
+  , user = require('./routes/user')  
   , path = require('path')
   , _ = require('underscore')._
   , request = require('request')
@@ -30,7 +33,6 @@ var express = require('express')
   , LocalStrategy = require('passport-local').Strategy
   , site_url='http://localhost:3000/';
 
-var app = express();
 var users = [
     { id: '1', username: 'ricroid', password: '2281990', email: 'ceo@know-owl.com', store: true }
   , { id: '2', username: 'guest', password: 'guest', email: 'baul.conde@gmail.com', store:false }
@@ -206,6 +208,7 @@ app.post('/addProduct', function(request, response){
       product.peek = r.peek;
       product.tags = r.tags;
       product.type = r.type;
+      product.store = 'srluis';
       product.store_id = 'srluis';
       
      
@@ -233,17 +236,14 @@ app.post('/addProduct', function(request, response){
         Zone: '1'
 
       };
-      routes.indexDocument(completeMsg);
-     
+      routes.indexDocument(completeMsg);     
     });
   imageStream.on('data', cloudStream.write).on('end', cloudStream.end);
- response.redirect('/store/product/add?s=true');
-  
+ response.redirect('/store/product/add?s=true');  
 });
 app.post('/uploadImage', function(req, res){
   var imageStream = fs.createReadStream(req.files.image.path, { encoding: 'binary' })
     , cloudStream = cloudinary.uploader.upload_stream(function() { res.redirect('/store/product/add'); });
-
   imageStream.on('data', cloudStream.write).on('end', cloudStream.end);
 });
 app.get('/logout', function(req, res){
@@ -283,6 +283,12 @@ app.get('/store/cart', ensureAuthenticated, function(req, res){
             });
           }); 
 });
+app.get('/findOne', function(req, res){  
+  productModel.findOne({'store_id':req.param('store', null),'sku': req.param('sku', null)}, 
+          function(err, p) {
+            res.json(p);
+          }); 
+});
 app.get('/store/order', ensureAuthenticated, function(req, res){
   
   order.find({'state':'order','line_items.user_id': req.user.id}, 
@@ -302,6 +308,8 @@ app.get('/store/order', ensureAuthenticated, function(req, res){
           }); 
 });
 app.get('/order', function(req, res) {
+    var nOrder=new order();
+    console.log(nOrder);
     res.contentType('application/json');       
     if(req.param('q', null)!="q" && req.param('q', null)!=null){
      
@@ -309,27 +317,58 @@ app.get('/order', function(req, res) {
      
       //Aqui quede.... tengo que pasar los parametros sku y store del ElasticSearch para buscarlos en el mongohq
      // productModel.findOne({'sku':q[1], 'store_id':q[0]}, 
-       productModel.findOne({'sku':q[1]}, 
-      function(err1, p) {
-        
-        order.update({'user_id': 'test', 'state':'cart'},
-                     {'$push': {'line_items':{'sku': p.sku, 'price': parseFloat(p.price), 'nombre': p.title, 'store': p.store, 'rAddon':p.rAddon }},
-                      '$inc': {'subtotal': parseFloat(p.price) }},
-        function(err2){
-          order.findOne({'user_id': 'test', 'state':'cart'}, 
-          function(err, user) {     
-            res.json(user);
-          });     
-        });
-      });
+      order.findOne({'user_id': 'test', 'state':'cart'}, 
+        function(err0, user0) {  
+          if(user0){   
+           productModel.findOne({'sku':q[1]}, 
+          function(err1, p) { 
+              order.update({'user_id': 'test', 'state':'cart'},
+                         {'$push': {'line_items':{'sku': p.sku, 'price': parseFloat(p.price), 'nombre': p.title, 'store': p.store }},
+                          '$inc': {'subtotal': parseFloat(p.price) }},
+              function(err2){
+                
+              order.findOne({'user_id': 'test', 'state':'cart'}, 
+                function(err, user) {     
+                  res.json(user);
+               });  
+              
+             });
+            
+          });
+        }else{
+          productModel.findOne({'sku':q[1]}, 
+          function(err1, p) {               
+            
+            nOrder.state='cart';
+            nOrder.user_id='test';
+            nOrder.subtotal=parseFloat(p.price);            
+            nOrder.line_items.push({'sku': p.sku, 'price': parseFloat(p.price), 'nombre': p.title, 'store': p.store});
+            
+            nOrder.save(function(){
+               order.findOne({'user_id': 'test', 'state':'cart'}, function(err, user) {
+               res.json(user);    
+                });
+            });
+
+           
+          });
+      
+        }
+       });
     }else{
       order.findOne({'user_id': 'test', 'state':'cart'}, function(err, user) {
+        
         res.json(user);    
+      
       });
     }
   
 });
-
+io.configure(function () {
+  io.set("transports", ["xhr-polling"]);
+  io.set("polling duration", 10);
+  io.set("origins","*");
+});
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
 });
@@ -337,3 +376,12 @@ function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) { return next(); }
   res.redirect('/login')
 }
+var status = "All is well.";
+
+io.sockets.on('connection', function (socket) {
+  io.sockets.emit('status', { status: status }); // note the use of io.sockets to emit but socket.on to listen
+  socket.on('reset', function (data) {
+    status = "War is imminent!";
+    io.sockets.emit('status', { status: status });
+  });
+});

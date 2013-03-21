@@ -120,11 +120,11 @@ html.no-js
         h6 Descripcion:
         p.modal-peek  Relleno de anguila, cangrejo y queso crema con tope de masago y lluvia de camarones tempurizados con salsa de mostaza miel.
         ul.nav.nav-tabs#myTab          
-          li.active
+          li#l1.active
             a(href="#agregar") Agregale
-          li
+          li#l2
             a(href="#cambiar") Cambiale 
-          li
+          li#l3
             a(href="#quitar") Quitale
         .tab-content                   
           .tab-pane#agregar.active 
@@ -133,7 +133,8 @@ html.no-js
       .modal-footer
         a(href="#", class="btn", data-dismiss="modal", aria-hidden="true") Cancelar
         a#addToCart(href="#", class="btn btn-primary ", data-dismiss="modal", aria-hidden="true") Agregar a la lista de pedidos >>
-   
+    #status
+    button#reset Reset!
 
     footer
     
@@ -149,6 +150,7 @@ html.no-js
     script(src='js/jquery.mCustomScrollbar.min.js')
     script(src='js/cloudinary.js')
     script(src='js/spin.js')
+    script(src='js/socket.io.js')
     script(src='js/main.js')
     script
       var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];

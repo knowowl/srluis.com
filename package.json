@@ -19,7 +19,8 @@
     "passport": "*",
     "passport-local": "*",
     "connect-flash": "*",
-    "util": "*"
+    "util": "*",
+    "socket.io": "*"
    
   },
   "engines": {
