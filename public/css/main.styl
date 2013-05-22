@@ -4,6 +4,7 @@ rojo3 = #4D0910
 
 body
 	background #d9d9d9 url("http://www.know-owl.com/img/srluis/background_image.jpg") 50% 0% fixed no-repeat
+	overflow-y scroll
 .brand
 	background transparent url("http://know-owl.com/img/srluis/isologo_small3.png") no-repeat
 	width 124px
@@ -15,8 +16,8 @@ body
 	z-index: 2
 .container
 	width 100% !important
-.navbar-inner
-	background rojo1 url("http://know-owl.com/img/srluis/navbar-bg2.jpg") !important
+.navbar-inner	
+	background linear-gradient(top, rojo1, rojo2)	
 	border 0 !important
 	height 35px !important
 	border-radius 0 !important
@@ -99,18 +100,14 @@ form
 	text-align center
 	text-shadow 0 -1px 0 rojo3
 	font-size 1.3em
-.dropdown-toggle
-	outline 0 !important
-	background transparent !important
-.dropdown-menu
-	margin-left 12px
+
 .carousel	
 	float left !important
 #results
 	float right
 	right 200px
 .product-box
-	display none
+	
 	box-shadow rgba(0,0,0,.2) 0 0px 3px
 	float left
 	border-radius 5px
@@ -125,7 +122,7 @@ form
 .product-inner
 	float left
 	border-radius 5px
-	background -webkit-linear-gradient(top, rgba(249,249,249,1) 70%, rgba(224, 220, 220, 1) 90%)
+	background linear-gradient( rgba(249,249,249,1) 70%, rgba(224, 220, 220, 1) 90%)
 .product-inner>.Peek
 	font-size 0.85em
 	font-weight 500	
@@ -143,7 +140,7 @@ form
 .results
 	list-style none
 	float right
-	right 200px
+	right 0px
 .product-inner>.Price
 	width 90px
 	float right
@@ -181,18 +178,25 @@ form
 	top 0
 	right 0
 	width 200px
-	height 41px
+	height 40px
+	background linear-gradient(rojo1, rojo2)
 	border 1px solid rgb(172, 67, 67)	
 	z-index 100
 	border-top 0
 	border-right 0
 	box-shadow inset 1px 1px 2px rgba(0,0,0,.4)
-	background rojo1 url("http://know-owl.com/img/srluis/navbar-bg2.jpg") !important
+	float left	
 	cursor hand
 	cursor pointer
-.cart:hover
-	background-image none
-	background #ed9200
+.cart:hover	
+	background linear-gradient(rojo2, rojo1)
+.cart-active, .cart-active:hover	
+	background linear-gradient(#FFCC00, #FFA200)	
+.cart-active i, .cart-active:hover i
+	background-image url("https://github.com/twitter/bootstrap/diff_blob/88deb08ff27db0e016e0c030dce072f07b6bc7f4/img/glyphicons-halflings.png?raw=true")
+.cart-active .cartText, .cart-active:hover .cartText
+	color black !important
+
 .cart-box
 	width 95%
 	padding 2%
@@ -212,6 +216,7 @@ form
 	color white
 .cart-product-inner	
 	float left
+	width 183px
 .cart-product
 	float left
 .inCartStore
@@ -315,3 +320,120 @@ form
 	text-shadow 0 -1px 0 #4c9021
 	width 180px
 	float left
+.icon-black
+	background-image url("https://github.com/twitter/bootstrap/diff_blob/88deb08ff27db0e016e0c030dce072f07b6bc7f4/img/glyphicons-halflings.png?raw=true")
+.icon-white
+	text-indent -999px
+	background-image url('https://github.com/twitter/bootstrap/diff_blob/713105774fcccf1250a7555b47483b578cf82eb6/img/glyphicons-halflings-white.png?raw=true')
+.cartText
+	color white !important
+	float left
+	margin 10px 0px 0 0px
+.cart i
+	float left
+	margin 13px 5px 0 20px
+.popover-content, .popover
+	width 470px
+.nav-tabs
+	width 450px !important
+.nav-tabs a
+	outline none
+.tab-pane label
+	width 40%
+	float left
+.popover-content p
+	width 90%
+.popover .arrow
+	position absolute!important
+	top 0
+.btnDeleteList
+	width 450px !important
+.table-popover
+	width 450px !important
+	font-size .9em
+td
+	text-align center!important
+.loading	
+	float left	
+	display none
+	margin-top 150px
+.productPage
+	position relative
+#homeContent
+	margin-top 110px !important
+	margin 0
+	padding 0
+	background #891721 url('http://res.cloudinary.com/hmoum9wou/image/upload/v1362844512/carousel_niolih.jpg') center top no-repeat
+	width 100%
+	float left
+.bodyHome
+	background #891721
+#homeContent form
+	float left
+	color white	
+	
+
+.contentRegisterForm
+	margin 50px 0 50px 0
+	background rgba(68, 22, 22, .6)
+	border-radius 5px
+	padding 10px
+	height auto!important
+	float left
+.contentLoginForm
+	margin 50px 0 0 0
+	background rgba(68, 22, 22, .6)
+	padding 10px
+	float left
+	border-radius 5px
+#inputPassword
+	margin 0
+	width 67%
+.btnEntrar
+	margin 0 0 0 2%
+	width 25%
+#inputEmail
+	margin 0 0 5px 0
+.btnLogin
+	width 60%
+	font-size .9em
+	float left
+	padding 0
+	color white
+	margin 0
+	text-shadow none
+.btnLogin:hover
+	color white
+.checkboxLabelLogin
+	padding 0
+	font-size .9em
+	margin 0 0 0 2%
+	width 23%
+	float left
+.checkboxLogin
+	font-size .9em
+	padding 0
+	margin 0
+	width 5%
+	float left
+.loginGroup
+	margin 0
+#bannerTop
+	background #891721 url('http://res.cloudinary.com/hmoum9wou/image/upload/v1362714468/srluis_big_vzvibi.jpg') center -110px no-repeat
+	float left
+	height 120px
+	width 100%
+	margin 0
+	padding 0
+	box-shadow 0px 2px 10px rgba(0, 0, 0, .6)
+	border-bottom 1px solid #891721
+	position absolute
+	z-index 99
+.loginLabel
+	color white
+.dropdown a
+	outline 0
+.dropdown-toggle
+	background transparent!important
+.dropdown-menu
+	margin 2px 0 0 9px

@@ -3,7 +3,14 @@ html.no-js
   head
     meta(charset='utf-8')
     meta(http-equiv='X-UA-Compatible', content='IE=edge,chrome=1')
-    title
+    if productPage 
+      meta( property="og:title", content="#{title} - #{store}" )
+      meta(property="og:type", content="#{type}")
+      meta(property="og:url", content="http://srluis.com/?o=product&q=#{id}")
+      meta( property="og:image", content="#{img}")
+      meta(property="og:site_name", content="SrLuis")
+      meta(property="fb:admins", content="390325411063913")
+    title SrLuis.com
     meta(name='description', content='')
     meta(name='viewport', content='width=device-width')
     link(rel='stylesheet', href='css/bootstrap.min.css')    
@@ -29,24 +36,25 @@ html.no-js
             ul.nav
               li.dropdown
                 a.dropdown-toggle(href='#', data-toggle='dropdown')
-                  <div class="fs1 settings" aria-hidden='true' data-icon='&#xe000;'></div>                                  
+                  .settings
+                    i.icon-user.icon-white                              
                 ul.dropdown-menu
                   li
-                    a(href='#') Action
-                  li
-                    a(href='#') Another action
-                  li
-                    a(href='#') Something else here
+                    a(href='#') Mi cuenta                  
+                  if user.store 
+                    li.divider
+                    li
+                      a(href='/store/order') Mi tienda                  
                   li.divider
-                  li.nav-header Nav header
                   li
-                    a(href='#') Separated link
-                  li
-                    a(href='#') One more separated link
+                    a(href='/logout') Cerrar sesión
           form   
-            <div class="fs1 searchIcon" aria-hidden='true' data-icon='&#xe001;'></div>
-            input.search.span5(type="text",name="search", placeholder="Haz click aqui para buscar", onfocus="this.placeholder = ''", onblur="this.placeholder = 'Haz click aqui para buscar'")      
-          .cart              
+            .searchIcon
+              i.icon-search.icon-white
+            input.search.span8(type="text",name="search",autocomplete="off", placeholder="Haz click aqui para buscar", onfocus="this.placeholder = ''", onblur="this.placeholder = 'Haz click aqui para buscar'")      
+          .cart
+            i.icon-shopping-cart.icon-white   
+            span.cartText  Lista de Pedido            
     #cartList
       .cartGuide
     #cartTotal
@@ -75,19 +83,81 @@ html.no-js
     #myCarousel.carousel.slide
       .carousel-inner
         .item.active
-          img(src="http://know-owl.com/img/srluis/carousel.jpg", alt="") 
+          img(src="", alt="") 
     .row
-      .results.span11
+      .loading.span2.offset5
+      .results.span12
+      if productPage
+        .productPage.span12
+          .product-box
+            a.product
+              .product-inner                
+                p.Store
+                  | #{store}
+                input.Store_id(type="hidden", value="#{store_id}") 
+                input.Sku(type="hidden", value="#{sku}") 
+                img(src="#{img}")
+                p.Name
+                  | #{title} 
+                p.Peek
+                  | #{peek} 
+                span.Likes
+                  .fb-like(data-href="http://srluis.com/?o=product&q=#{id}", data-send="false", data-layout="button_count", data-width="115",data-show-faces="false")
+                span.Price Bs. 
+                  span.PriceNumber #{price}
+
+    
+
+         
+
+          
+
     #myModal.modal.hide.fade(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
       .modal-header
         button.close(type="button", data-dismiss="modal", aria-hidden="true")&times;
-        h3 Modal header  
+        h3 Opciones del producto  
       .modal-body
-        p One fine body… 
+        h6 Descripcion:
+        p.modal-peek  Relleno de anguila, cangrejo y queso crema con tope de masago y lluvia de camarones tempurizados con salsa de mostaza miel.
+        ul.nav.nav-tabs#myTab          
+          li#l1.active
+            a(href="#agregar") Agregale
+          li#l2
+            a(href="#cambiar") Cambiale 
+          li#l3
+            a(href="#quitar") Quitale
+        .tab-content                   
+          .tab-pane#agregar.active 
+          .tab-pane#cambiar
+          .tab-pane#quitar 
       .modal-footer
-        a(href="#", class="btn") Close
-        a(href="#", class="btn btn-primary") Save changes
-   
+        a(href="#", class="btn", data-dismiss="modal", aria-hidden="true") Cancelar
+        a#addToCart(href="#", class="btn btn-primary ", data-dismiss="modal", aria-hidden="true") Agregar a la lista de pedidos >>
+    //MODAL 2 
+
+    #myModal2.modal.hide.fade(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
+      .modal-header
+        button.close(type="button", data-dismiss="modal", aria-hidden="true")&times;
+        h3 Opciones del producto  
+      .modal-body
+        h6 Descripcion:
+        p.modal-peek  Relleno de anguila, cangrejo y queso crema con tope de masago y lluvia de camarones tempurizados con salsa de mostaza miel.
+        ul.nav.nav-tabs#myTab          
+          li#l1.active
+            a(href="#agregar") Agregale
+          li#l2
+            a(href="#cambiar") Cambiale 
+          li#l3
+            a(href="#quitar") Quitale
+        .tab-content                   
+          .tab-pane#agregar.active 
+          .tab-pane#cambiar
+          .tab-pane#quitar 
+      .modal-footer
+        a(href="#", class="btn", data-dismiss="modal", aria-hidden="true") Cancelar
+        a#addToCart(href="#", class="btn btn-primary ", data-dismiss="modal", aria-hidden="true") Agregar a la lista de pedidos >>
+    
+
 
     footer
     
@@ -101,7 +171,13 @@ html.no-js
     script(src='js/jquery.imagesloaded.min.js')
     script(src='js/jquery.mousewheel.min.js')
     script(src='js/jquery.mCustomScrollbar.min.js')
+    script(src='js/cloudinary.js')
+    script(src='js/spin.js')
+    script(src='js/socket.io.js')
+    script
+      var  email= "#{user.email}";
     script(src='js/main.js')
+    script(src='js/socket.js')
     script
       var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
       (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];

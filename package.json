@@ -14,7 +14,13 @@
     "stylus": "*",
     "nib": "*",
     "underscore": "latest",
-    "request": "latest"
+    "request": "latest",
+    "cloudinary": "",
+    "passport": "*",
+    "passport-local": "*",
+    "connect-flash": "*",
+    "util": "*",
+    "socket.io": "*"
    
   },
   "engines": {
