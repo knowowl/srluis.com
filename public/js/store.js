@@ -77,4 +77,7 @@ $('#addBtn').mouseenter(function(e){
         $("#" + this.value ).show().siblings().hide();
     });
     $("#foodPicker").change();
+    $('.orderRow').click(function(){
+        console.log(cart);
+    });
 }

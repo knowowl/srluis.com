@@ -8,7 +8,7 @@ var express = require('express')
   , http = require('http')
   , app = express()
   , server = http.createServer(app)
-  , io = require('socket.io').listen(server)
+  
   , flash = require('connect-flash')
   , util = require('util')
   , fs = require('fs')
@@ -364,24 +364,33 @@ app.get('/order', function(req, res) {
     }
   
 });
-io.configure(function () {
-  io.set("transports", ["xhr-polling"]);
-  io.set("polling duration", 10);
-  io.set("origins","*");
-});
-http.createServer(app).listen(app.get('port'), function(){
+
+var server=http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
 });
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) { return next(); }
   res.redirect('/login')
 }
-var status = "All is well.";
 
-io.sockets.on('connection', function (socket) {
-  io.sockets.emit('status', { status: status }); // note the use of io.sockets to emit but socket.on to listen
-  socket.on('reset', function (data) {
-    status = "War is imminent!";
-    io.sockets.emit('status', { status: status });
+var io = require('socket.io').listen(server, {log: false, origins: '*:*'});
+var usuariosConectados = {};
+io.sockets.on('connection', function (socket) {   
+    socket.on('enviarNombre', function (datos) {
+      if(!usuariosConectados[datos[0]]){
+        socket.nickname = datos[0];
+        usuariosConectados[datos[0]] = socket.nickname;
+      }
+      data = [datos[0], data[1], usuariosConectados];
+      io.sockets.emit('mensaje', data);
+    });
+
+    socket.on('enviarMensaje', function (mensaje) {    
+      
+      var data = [socket.nickname, mensaje];
+      io.sockets.emit('newMessage', data);
+ 
   });
+   
 });
+

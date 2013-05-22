@@ -133,8 +133,31 @@ html.no-js
       .modal-footer
         a(href="#", class="btn", data-dismiss="modal", aria-hidden="true") Cancelar
         a#addToCart(href="#", class="btn btn-primary ", data-dismiss="modal", aria-hidden="true") Agregar a la lista de pedidos >>
-    #status
-    button#reset Reset!
+    //MODAL 2 
+
+    #myModal2.modal.hide.fade(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
+      .modal-header
+        button.close(type="button", data-dismiss="modal", aria-hidden="true")&times;
+        h3 Opciones del producto  
+      .modal-body
+        h6 Descripcion:
+        p.modal-peek  Relleno de anguila, cangrejo y queso crema con tope de masago y lluvia de camarones tempurizados con salsa de mostaza miel.
+        ul.nav.nav-tabs#myTab          
+          li#l1.active
+            a(href="#agregar") Agregale
+          li#l2
+            a(href="#cambiar") Cambiale 
+          li#l3
+            a(href="#quitar") Quitale
+        .tab-content                   
+          .tab-pane#agregar.active 
+          .tab-pane#cambiar
+          .tab-pane#quitar 
+      .modal-footer
+        a(href="#", class="btn", data-dismiss="modal", aria-hidden="true") Cancelar
+        a#addToCart(href="#", class="btn btn-primary ", data-dismiss="modal", aria-hidden="true") Agregar a la lista de pedidos >>
+    
+
 
     footer
     
@@ -151,7 +174,10 @@ html.no-js
     script(src='js/cloudinary.js')
     script(src='js/spin.js')
     script(src='js/socket.io.js')
+    script
+      var  email= "#{user.email}";
     script(src='js/main.js')
+    script(src='js/socket.js')
     script
       var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
       (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];

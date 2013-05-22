@@ -191,15 +191,9 @@ function renderCheckbox(checkbox, type){
 $(document).on("ready", evento);
 function evento (ev)
 {
-  var socket = io.connect(window.location.hostname);
 
-  console.log(window.location.hostname);
-  socket.on('status', function (data) {
-    $('#status').html(data.status);
-});
-$('#reset').click(function() {
-    socket.emit('reset');
-});
+  
+
   $('#myTab a').click(function (e) {
     e.preventDefault();
     $(this).tab('show');

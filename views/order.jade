@@ -30,8 +30,9 @@ html.no-js
             td.span1.text-center Products
             td.span1.text-center Precio          
         tbody
+
           each item, i in cart
-            tr
+            tr#orderBtn.orderRow(data-target="#myModal", data-toggle="modal", role="button")
               td.text-center #{i+1}
               td.text-center #{item.user_id}
               - var price= 0
@@ -47,6 +48,18 @@ html.no-js
      
         
     
+    #myModal.modal.hide.fade(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
+      .modal-header
+        button.close(type="button", data-dismiss="modal", aria-hidden="true")&times;
+        h3 Orden  
+      .modal-body
+        h6 Responder:
+        textarea.span3(name='mensaje')
+        a.btnMsj Enviar mensaje
+      .modal-footer
+        a(href="#", class="btn", data-dismiss="modal", aria-hidden="true") Cancelar
+        a#addToCart(href="#", class="btn btn-primary ", data-dismiss="modal", aria-hidden="true") Agregar a la lista de pedidos >>
+    
 
     footer
     
@@ -58,6 +71,9 @@ html.no-js
     script(src=url+'js/bootstrap-fileupload.min.js')
     script(src=url+'js/plugins.js')  
     script(src=url+'js/select.js')  
+    script
+      var cart=json.stringify(#{cart});
+      console.log(cart);
     script(src=url+'js/store.js')
     script
       var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
