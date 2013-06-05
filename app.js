@@ -298,6 +298,7 @@ app.get('/store/order', ensureAuthenticated, function(req, res){
               user:req.user,
               url:site_url,
               cart: p,
+              ct: p,
               btn1:'active',
               btn2:'',
               btn3:'',
@@ -381,14 +382,13 @@ io.sockets.on('connection', function (socket) {
         socket.nickname = datos[0];
         usuariosConectados[datos[0]] = socket.nickname;
       }
-      data = [datos[0], data[1], usuariosConectados];
-      io.sockets.emit('mensaje', data);
+      data = [datos, usuariosConectados];
+      io.sockets.emit('newUser', data);
     });
 
-    socket.on('enviarMensaje', function (mensaje) {    
-      
-      var data = [socket.nickname, mensaje];
-      io.sockets.emit('newMessage', data);
+    socket.on('enviarMensaje', function (mensaje) {         
+      //var data = [socket.nickname, mensaje];
+      io.sockets.emit('newMessage', mensaje);
  
   });
    

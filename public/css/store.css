@@ -21,3 +21,11 @@ h3{text-align:center}
 .text-center{text-align:center !important}
 .nav a{font-size:.85em}
 .well{margin:20px}
+#msjContent{height:200px;overflow-y:scroll;overflow-x:hidden;margin:5px 0;border:1px solid #d9d9d9;-webkit-border-radius:3px;border-radius:3px}
+.btnOrder{width:50%;padding:30px 44px}
+.thead{border:1px solid #ccc;border-top-left-radius:3px;border-top-right-radius:3px;float:left;list-style:none;width:90%;margin-bottom:0}
+.thead li{text-align:center;padding:5px 0;float:left;width:30%;border-left:1px solid #ccc}
+#contentTable{overflow-y:scroll;float:left;width:300px}
+#orderTable{float:left;width:300px}
+.tbody{margin-top:0;margin-bottom:0;border:1px solid #ccc;border-top:0;float:left;list-style:none;width:90%}
+.tbody li{height:100%;text-align:center;padding:5px 0;float:left;width:30%;border-left:1px solid #ccc}

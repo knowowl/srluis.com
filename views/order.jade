@@ -28,21 +28,25 @@ html.no-js
             td.span1.text-center #
             td.span2.text-center Nombre
             td.span1.text-center Products
-            td.span1.text-center Precio          
+            td.span1.text-center Precio    
+            td.span1.text-center Estado        
         tbody
-
+          script
+            var cart = !{JSON.stringify(ct)};  
+            var user = !{user.id} ;      
           each item, i in cart
-            tr#orderBtn.orderRow(data-target="#myModal", data-toggle="modal", role="button")
-              td.text-center #{i+1}
+            tr#orderBtn.orderRow(data-target="#myModal", data-toggle="modal", role="button", item="#{i}")
+              td.text-center #{i+1}                
               td.text-center #{item.user_id}
               - var price= 0
               - var products = 0
               each p, i in item.line_items
-                if p.user_id  == user.id
-                  - products = i
+                if p.user_id  == user.id                  
+                  - products++
                   - price= price+parseInt(p.price)
               td.text-center #{products}
               td.text-center #{price}
+              td.text-center Pendiente
             
 
      
@@ -53,14 +57,44 @@ html.no-js
         button.close(type="button", data-dismiss="modal", aria-hidden="true")&times;
         h3 Orden  
       .modal-body
-        h6 Responder:
-        textarea.span3(name='mensaje')
-        a.btnMsj Enviar mensaje
-      .modal-footer
-        a(href="#", class="btn", data-dismiss="modal", aria-hidden="true") Cancelar
-        a#addToCart(href="#", class="btn btn-primary ", data-dismiss="modal", aria-hidden="true") Agregar a la lista de pedidos >>
+        .tabbable
+          ul.nav.nav-tabs
+            li.active
+              a(href="#tab1", data-toggle="tab") Pedido
+            li
+              a(href="#tab2", data-toggle="tab") Mensajes  
+            li
+              a(href="#tab3", data-toggle="tab") Perfil del cliente
+          .tab-content
+            .tab-pane.active#tab1
+             .row-fluid
+              #orderTable
+                ul.thead
+                  li SKU
+                  li Precio
+                  li Nombre
+              #contentTable
+              
+                  
+                .btn-group
+                  
+                  button.btn.btn-large.btnOrder CANCELAR PEDIDO
+                  button.btn.btn-success.btn-large.btn-primary.btnOrder CONFIRMAR PEDIDO
+                
+            .tab-pane#tab2
+              .row-fluid
+                #msjContent.span12            
+              .input-append.row-fluid
+                input.span10#mensaje(type="text")
+                button.btn.btnMsj(type="button") Enviar
+            .tab-pane#tab3
+              p I'm in Section 1.
+              
     
 
+        
+        
+     
     footer
     
     script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js')
@@ -71,10 +105,10 @@ html.no-js
     script(src=url+'js/bootstrap-fileupload.min.js')
     script(src=url+'js/plugins.js')  
     script(src=url+'js/select.js')  
-    script
-      var cart=json.stringify(#{cart});
-      console.log(cart);
+    script(src=url+'js/socket.io.js')
+   
     script(src=url+'js/store.js')
+    script(src=url+'js/socket.js')
     script
       var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
       (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];

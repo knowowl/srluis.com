@@ -78,6 +78,34 @@ $('#addBtn').mouseenter(function(e){
     });
     $("#foodPicker").change();
     $('.orderRow').click(function(){
-        console.log(cart);
+        //console.log(cart);
+    });
+
+    $(".orderRow").click(function(){
+
+        var id = $(this).attr("item");
+        console.log(cart[id].line_items);
+        var tbl_body = "";
+        var rows=0;
+        var expected_keys = { key_1 : true, key_2 : true, key_3 : false, key_4 : true };
+        $.each(cart[id].line_items, function(k1, v1) {
+
+            if(this.user_id == user){
+
+                var tbl_row = "";
+                $.each(this, function(k , v){
+                    if ( k == "nombre" || k == "price" || k == "sku" ) {
+                     tbl_row += "<li>"+v+"</li>";
+                    }                
+                });
+                rows++;
+                 tbl_body += "<ul class='tbody'>"+tbl_row+"</ul>"; 
+            }
+            
+                           
+        });
+        rows=((4-rows)<0)?0:(4-rows);
+        for(var i=0; i<=(rows); i++) tbl_body += "<ul class='tbody'><li></li><li></li><li></li></ul>";
+        $("#contentTable").html(tbl_body);
     });
 }

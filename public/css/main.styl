@@ -5,6 +5,7 @@ rojo3 = #4D0910
 body
 	background #d9d9d9 url("http://www.know-owl.com/img/srluis/background_image.jpg") 50% 0% fixed no-repeat
 	overflow-y scroll
+	padding 0
 .brand
 	background transparent url("http://know-owl.com/img/srluis/isologo_small3.png") no-repeat
 	width 124px
@@ -173,6 +174,7 @@ form
 	border-left 1px solid #999
 	box-shadow inset 0 0 3px rgba(0,0,0,.3)
 	overflow-y scroll
+	overflow-x hidden
 .cart
 	position fixed
 	top 0
@@ -371,8 +373,6 @@ td
 #homeContent form
 	float left
 	color white	
-	
-
 .contentRegisterForm
 	margin 50px 0 50px 0
 	background rgba(68, 22, 22, .6)
@@ -437,3 +437,108 @@ td
 	background transparent!important
 .dropdown-menu
 	margin 2px 0 0 9px
+.categorias	
+	padding 0
+	margin 6px 0 0 0
+	background-color black
+	
+.categorias>div>div
+	height 210px
+.categorias>div>div
+	margin-top 0px
+	border 0px solid 
+	border-radius 0px
+	height 210px
+	cursor pointer
+	cursor hand
+.comida, .bebida, .transporte, .farmacia, .hogar
+	float left
+	position relative	
+.comida
+	width 50%
+.bebida
+	width 50%
+.farmacia
+	width 33%
+.hogar
+	width 33%
+.transporte
+	width 34%
+
+
+.row
+	margin-left 0
+.searchBar
+	position absolute
+	top 0
+	left 200px
+	float left
+	margin 0 !important
+.icon-white
+	text-indent -9999px
+.btn-nabvar-group
+	float right
+	margin-top -2px !important
+.btn-nabvar-group .btn-navbar
+	background linear-gradient(top, rojo2, rojo3) !important
+.categorias p
+	float left	
+	margin 0 0 0 -15px
+	padding 20px 0 0 0
+	width 100%
+	height 50px
+	font-size 4em
+	color white
+	opacity 1
+	text-align left
+	font-family 'Roboto', sans-serif;	
+	font-weight 100
+	top 30px
+	left 15px
+	text-shadow 0 1px 2px rgba(0,0,0,.8)
+	position absolute
+	background-color rgba(0,0,0,0.5)
+	z-index 11
+.comida-img, .drink-img, .transporte-img, .hogar-img, .farmacia-img
+	float left
+	position absolute
+	width 100%
+	height 100%
+	top 0
+	left 0
+.background-img
+	float left
+	width 100%
+	height 100%
+	position absolute
+	top 0
+	left 0
+	z-index 8
+	opacity 0
+.comida .background-img:nth-child(1)
+	background black url('../img/food.jpg') right no-repeat
+.comida .background-img:nth-child(2)
+	background black url('../img/food2.jpg') right no-repeat
+.comida .background-img:nth-child(3)
+	background black url('../img/food3.jpg') right no-repeat
+.comida .background-img:nth-child(4)
+	background black url('../img/food4.jpg') right no-repeat
+.comida-img .active, .drink-img .active, .transporte-img .active, .farmacia-img .active, .hogar-img .active
+	z-index 10
+	opacity 1
+.comida-img .last-active, .drink-img .last-active, .transporte-img .last-active, .farmacia-img .last-active, .hogar-img .last-active
+	z-index 9
+.bebida .background-img:nth-child(1)
+	background black url('../img/drink.jpg') right no-repeat
+.bebida .background-img:nth-child(2)
+	background black url('../img/drink2.jpg') right no-repeat
+.bebida .background-img:nth-child(3)
+	background black url('../img/drink3.jpg') right no-repeat
+.transporte .background-img:nth-child(1)
+	background black url('../img/taxi.jpg') right no-repeat
+.farmacia .background-img:nth-child(1)
+	background black url('../img/farmacia.jpg') right no-repeat
+.hogar .background-img:nth-child(1)
+	background black url('../img/hogar.jpg') right no-repeat
+.opacar
+	opacity .3

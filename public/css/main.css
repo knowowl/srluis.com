@@ -1,4 +1,4 @@
-body{background:#d9d9d9 url("http://www.know-owl.com/img/srluis/background_image.jpg") 50% 0% fixed no-repeat;overflow-y:scroll}
+body{background:#d9d9d9 url("http://www.know-owl.com/img/srluis/background_image.jpg") 50% 0% fixed no-repeat;overflow-y:scroll;padding:0}
 .brand{background:transparent url("http://know-owl.com/img/srluis/isologo_small3.png") no-repeat;width:124px;height:36px;padding:0 !important;margin:5px 0 0 0 !important;float:left;position:relative;z-index:2}
 .container{width:100% !important}
 .navbar-inner{background:-webkit-gradient(linear, left top, left bottom, color-stop(0, #9a1a27), color-stop(1, #741620));background:-webkit-linear-gradient(top, #9a1a27 0%, #741620 100%);background:-moz-linear-gradient(top, #9a1a27 0%, #741620 100%);background:-o-linear-gradient(top, #9a1a27 0%, #741620 100%);background:-ms-linear-gradient(top, #9a1a27 0%, #741620 100%);background:linear-gradient(top, #9a1a27 0%, #741620 100%);border:0 !important;height:35px !important;-webkit-border-radius:0 !important;border-radius:0 !important;-webkit-box-shadow:0 1px 0 #4d0910 !important;box-shadow:0 1px 0 #4d0910 !important}
@@ -30,7 +30,7 @@ form{margin:0 !important;float:left}
 .product-inner>.Price{width:90px;float:right;text-align:right;border-bottom-right-radius:5px;background:#ebebeb;padding:5px 5px 5px 0;border-top:1px solid 1px solid #c9c7c7}
 .product-inner>.Likes{width:140px;float:left;text-align:left;border-bottom-left-radius:5px;background:#ebebeb;padding:5px 0 5px 5px;border-top:1px solid 1px solid #c9c7c7}
 .fb-like span,.fb-like,iframe.fb_ltr{position:relative;float:left;min-width:140px;min-height:20px}
-#cartList{float:left;position:fixed;right:0;top:38px;width:200px;height:0;background:#eee;border-left:1px solid #999;-webkit-box-shadow:inset 0 0 3px rgba(0,0,0,0.3);box-shadow:inset 0 0 3px rgba(0,0,0,0.3);overflow-y:scroll}
+#cartList{float:left;position:fixed;right:0;top:38px;width:200px;height:0;background:#eee;border-left:1px solid #999;-webkit-box-shadow:inset 0 0 3px rgba(0,0,0,0.3);box-shadow:inset 0 0 3px rgba(0,0,0,0.3);overflow-y:scroll;overflow-x:hidden}
 .cart{position:fixed;top:0;right:0;width:200px;height:40px;background:-webkit-gradient(linear, left top, left bottom, color-stop(0, #9a1a27), color-stop(1, #741620));background:-webkit-linear-gradient(top, #9a1a27 0%, #741620 100%);background:-moz-linear-gradient(top, #9a1a27 0%, #741620 100%);background:-o-linear-gradient(top, #9a1a27 0%, #741620 100%);background:-ms-linear-gradient(top, #9a1a27 0%, #741620 100%);background:linear-gradient(top, #9a1a27 0%, #741620 100%);border:1px solid #ac4343;z-index:100;border-top:0;border-right:0;-webkit-box-shadow:inset 1px 1px 2px rgba(0,0,0,0.4);box-shadow:inset 1px 1px 2px rgba(0,0,0,0.4);float:left;cursor:hand;cursor:pointer}
 .cart:hover{background:-webkit-gradient(linear, left top, left bottom, color-stop(0, #741620), color-stop(1, #9a1a27));background:-webkit-linear-gradient(top, #741620 0%, #9a1a27 100%);background:-moz-linear-gradient(top, #741620 0%, #9a1a27 100%);background:-o-linear-gradient(top, #741620 0%, #9a1a27 100%);background:-ms-linear-gradient(top, #741620 0%, #9a1a27 100%);background:linear-gradient(top, #741620 0%, #9a1a27 100%)}
 .cart-active,.cart-active:hover{background:-webkit-gradient(linear, left top, left bottom, color-stop(0, #fc0), color-stop(1, #ffa200));background:-webkit-linear-gradient(top, #fc0 0%, #ffa200 100%);background:-moz-linear-gradient(top, #fc0 0%, #ffa200 100%);background:-o-linear-gradient(top, #fc0 0%, #ffa200 100%);background:-ms-linear-gradient(top, #fc0 0%, #ffa200 100%);background:linear-gradient(top, #fc0 0%, #ffa200 100%)}
@@ -84,3 +84,33 @@ td{text-align:center !important}
 .dropdown a{outline:0}
 .dropdown-toggle{background:transparent !important}
 .dropdown-menu{margin:2px 0 0 9px}
+.categorias{padding:0;margin:6px 0 0 0;background-color:#000}
+.categorias>div>div{height:210px}
+.categorias>div>div{margin-top:0;border:0 solid;-webkit-border-radius:0;border-radius:0;height:210px;cursor:pointer;cursor:hand}
+.comida,.bebida,.transporte,.farmacia,.hogar{float:left;position:relative}
+.comida{width:50%}
+.bebida{width:50%}
+.farmacia{width:33%}
+.hogar{width:33%}
+.transporte{width:34%}
+.row{margin-left:0}
+.searchBar{position:absolute;top:0;left:200px;float:left;margin:0 !important}
+.icon-white{text-indent:-9999px}
+.btn-nabvar-group{float:right;margin-top:-2px !important}
+.btn-nabvar-group .btn-navbar{background:-webkit-gradient(linear, left top, left bottom, color-stop(0, #741620), color-stop(1, #4d0910)) !important;background:-webkit-linear-gradient(top, #741620 0%, #4d0910 100%) !important;background:-moz-linear-gradient(top, #741620 0%, #4d0910 100%) !important;background:-o-linear-gradient(top, #741620 0%, #4d0910 100%) !important;background:-ms-linear-gradient(top, #741620 0%, #4d0910 100%) !important;background:linear-gradient(top, #741620 0%, #4d0910 100%) !important}
+.categorias p{float:left;margin:0 0 0 -15px;padding:20px 0 0 0;width:100%;height:50px;font-size:4em;color:#fff;opacity:1;-ms-filter:none;filter:none;text-align:left;font-family:'Roboto',sans-serif;font-weight:100;top:30px;left:15px;text-shadow:0 1px 2px rgba(0,0,0,0.8);position:absolute;background-color:rgba(0,0,0,0.5);z-index:11}
+.comida-img,.drink-img,.transporte-img,.hogar-img,.farmacia-img{float:left;position:absolute;width:100%;height:100%;top:0;left:0}
+.background-img{float:left;width:100%;height:100%;position:absolute;top:0;left:0;z-index:8;opacity:0;filter:alpha(opacity=0);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"}
+.comida .background-img:nth-child(1){background:#000 url("../img/food.jpg") right no-repeat}
+.comida .background-img:nth-child(2){background:#000 url("../img/food2.jpg") right no-repeat}
+.comida .background-img:nth-child(3){background:#000 url("../img/food3.jpg") right no-repeat}
+.comida .background-img:nth-child(4){background:#000 url("../img/food4.jpg") right no-repeat}
+.comida-img .active,.drink-img .active,.transporte-img .active,.farmacia-img .active,.hogar-img .active{z-index:10;opacity:1;-ms-filter:none;filter:none}
+.comida-img .last-active,.drink-img .last-active,.transporte-img .last-active,.farmacia-img .last-active,.hogar-img .last-active{z-index:9}
+.bebida .background-img:nth-child(1){background:#000 url("../img/drink.jpg") right no-repeat}
+.bebida .background-img:nth-child(2){background:#000 url("../img/drink2.jpg") right no-repeat}
+.bebida .background-img:nth-child(3){background:#000 url("../img/drink3.jpg") right no-repeat}
+.transporte .background-img:nth-child(1){background:#000 url("../img/taxi.jpg") right no-repeat}
+.farmacia .background-img:nth-child(1){background:#000 url("../img/farmacia.jpg") right no-repeat}
+.hogar .background-img:nth-child(1){background:#000 url("../img/hogar.jpg") right no-repeat}
+.opacar{opacity:.3;filter:alpha(opacity=30);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=30)"}
